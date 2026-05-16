@@ -3246,3 +3246,418 @@ hr { border-color: var(--border-soft); }
 }
 @media (min-width: 960px) { .cmdHint { display: flex; } }
 .cmdHint:hover { border-color: var(--ink, #0a0a0a); color: var(--ink, #0a0a0a); }
+
+
+/* ===========================================================
+   POLISH PASS — Light theme fixups + transitions & animations
+   =========================================================== */
+
+/* ---------- View Transitions (Chromium / Chrome 111+) ---------- */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vtFadeOut 140ms ease forwards;
+}
+::view-transition-new(root) {
+  animation: vtFadeIn 260ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes vtFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+@keyframes vtFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Page-load entry animation on main content ---------- */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* siteMain — first-load animation */
+.siteMain {
+  animation: pageEnter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 20ms;
+}
+
+/* pageStack — replays on every client-side navigation (remounts with each route) */
+.pageStack {
+  animation: pageEnter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---------- Fix: About page cards — light backgrounds ---------- */
+.aboutManifestoCard,
+.aboutTimelineCard {
+  background: #ffffff !important;
+  border-color: var(--border-soft) !important;
+  color: var(--ink);
+}
+
+.aboutManifestoCard h2,
+.aboutManifestoCard p,
+.aboutTimelineCard h2,
+.aboutTimelineCard p,
+.aboutTimelineCard li,
+.aboutTimelineMeta p {
+  color: inherit;
+}
+
+.aboutValueGrid article {
+  background: var(--paper-tint) !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--ink);
+}
+
+.aboutValueGrid article p { color: var(--text-200); }
+.aboutValueGrid svg,
+.aboutTimelineMeta svg { color: var(--ink); }
+
+.aboutGalleryBand {
+  background: var(--paper-tint) !important;
+  border-color: var(--border-soft) !important;
+}
+
+.aboutGalleryTile {
+  border: 1px solid var(--border-soft) !important;
+}
+
+/* ---------- Fix: FAQ — light backgrounds ---------- */
+.faqCategoryStrip {
+  background: var(--paper-tint) !important;
+  border-color: var(--border-soft) !important;
+}
+
+.faqCategoryStrip article {
+  background: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--ink);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.faqCategoryStrip article:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.faqCategoryStrip article h2 { color: var(--ink); }
+.faqCategoryStrip article p { color: var(--text-300); }
+
+.faqSectionCard {
+  background: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--ink);
+}
+
+.faqSectionCardEditorial {
+  background: var(--paper-tint) !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--ink);
+}
+
+/* FAQ accordion item */
+[data-radix-accordion-item],
+details {
+  border-color: var(--border-soft) !important;
+}
+
+/* ---------- Fix: Artists page — ribbon + pills ---------- */
+.artistStyleRibbon {
+  background: var(--paper-tint) !important;
+  border: 1px solid var(--border-soft) !important;
+}
+
+.artistStyleRibbon .artistRole { color: var(--text-300); }
+
+.artistStylePills span {
+  background: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--text-200);
+  transition: background 160ms, border-color 160ms, color 160ms;
+}
+
+.artistStylePills span:hover {
+  background: var(--ink) !important;
+  border-color: var(--ink) !important;
+  color: #ffffff;
+}
+
+/* Artist atlas card — enforce white on light theme */
+.artistAtlasCard {
+  background: #ffffff !important;
+}
+
+.artistAtlasCard.isPrimary {
+  background: var(--paper-tint) !important;
+}
+
+/* ---------- Nav improvements ---------- */
+.siteNavLink {
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+/* Left-to-right underline sweep instead of center-expand */
+.siteNavLink span::after {
+  left: 0;
+  transform: none;
+  transition: width 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.siteNavLink:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.siteNavLink.isActive span::after { background: var(--ink); }
+
+/* ---------- Card hover lift — consistent across all cards ---------- */
+.artistAtlasCard,
+.aboutManifestoCard,
+.aboutTimelineCard,
+.faqSectionCard,
+.faqSectionCardEditorial,
+.faqCategoryStrip article,
+.bookingCard,
+.bookingGuidance {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 220ms ease,
+              border-color 220ms ease;
+}
+
+.aboutManifestoCard:hover,
+.aboutTimelineCard:hover,
+.faqSectionCard:hover,
+.faqSectionCardEditorial:hover,
+.bookingCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: rgba(0, 0, 0, 0.22) !important;
+}
+
+/* ---------- Inline action links — animated underline ---------- */
+.inlineAction {
+  position: relative;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: opacity 150ms ease, color 150ms ease;
+}
+
+.inlineAction::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.inlineAction:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+/* ---------- Primary button — smooth fill swap ---------- */
+.primaryButton,
+.headerCta {
+  transition: background 180ms ease, color 180ms ease, 
+              border-color 180ms ease, transform 180ms ease,
+              box-shadow 220ms ease !important;
+}
+
+/* ---------- Image hover zoom — global improvement ---------- */
+.artistAtlasMedia,
+.aboutGalleryTile,
+.portfolioAlbumTile,
+.portfolioLeadTile,
+.portfolioTile {
+  overflow: hidden;
+}
+
+.artistAtlasMedia img,
+.aboutGalleryTile img,
+.portfolioLeadTile img,
+.portfolioTile img {
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 380ms ease;
+}
+
+.artistAtlasCard:hover .artistAtlasMedia img,
+.aboutGalleryTile:hover img,
+.portfolioLeadTile:hover img,
+.portfolioTile:hover img {
+  transform: scale(1.04);
+  filter: brightness(1.02) saturate(1.04);
+}
+
+/* ---------- Footer links ---------- */
+footer a,
+.siteFooter a {
+  transition: opacity 140ms ease;
+}
+
+footer a:hover,
+.siteFooter a:hover {
+  opacity: 0.6;
+}
+
+/* ---------- Booking form inputs ---------- */
+.bookingFormField input,
+.bookingFormField textarea,
+.bookingFormField select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.bookingFormField input:focus,
+.bookingFormField textarea:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--ink) !important;
+  box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.08);
+}
+
+/* ---------- FAQ accordion transition ---------- */
+[data-radix-accordion-content],
+details > *:not(summary) {
+  animation: accordionOpen 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes accordionOpen {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Section spacing breathing room ---------- */
+.pageHeroCompact {
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* ---------- Artist tags in cards ---------- */
+.artistTags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--paper-tint);
+  border: 1px solid var(--border-soft);
+  color: var(--text-200);
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  transition: background 160ms, border-color 160ms;
+}
+
+.artistTags span:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #ffffff;
+}
+
+/* ---------- Page hero card polish ---------- */
+.pageHeroCompact {
+  background: var(--paper-tint);
+  border: 1px solid var(--border-soft);
+  box-shadow: none;
+}
+
+/* ---------- Quick look button styling ---------- */
+.artistActionsRow button.inlineAction {
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  color: inherit;
+  font-weight: 600;
+}
+
+/* ---------- Fix: Policies page — light backgrounds ---------- */
+.policyKeyTerms {
+  background: var(--paper-tint) !important;
+  border-color: var(--border-soft) !important;
+}
+
+.policyKeyTerms p {
+  color: var(--text-200);
+}
+
+.policyKeyTerms svg {
+  color: var(--ink);
+}
+
+.policyCardEditorial {
+  background: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--ink);
+}
+
+.policyCardEditorial li,
+.policyCardEditorial h2 { color: var(--ink); }
+
+.policyCardEditorial svg { color: var(--ink); }
+
+.policyCard {
+  background: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--ink);
+}
+
+.policyCard h2 { color: var(--ink); }
+
+/* Revert SVG icon color from gold to ink for policy cards on light theme */
+.policyCardEditorial svg,
+.policyKeyTerms svg {
+  color: var(--ink) !important;
+}
+
+/* ---------- Fix: Contact page — light backgrounds ---------- */
+.contactChannelPanel,
+.contactLocationPanel,
+.contactBookingBand {
+  background: #ffffff !important;
+  border-color: var(--border-soft) !important;
+  color: var(--ink);
+}
+
+.contactChannelPanel p,
+.contactLocationPanel p,
+.contactBookingBand p {
+  color: var(--text-200);
+}
+
+.contactLinkStack a,
+.contactExpectationList p {
+  color: var(--text-200);
+}
+
+.contactExpectationList svg { color: var(--ink) !important; }
+
+/* Fix: Booking guidance card */
+.bookingGuidance {
+  background: #ffffff !important;
+  border-color: var(--border-soft) !important;
+  color: var(--ink);
+}
+
+/* ---------- Fix: Contact mailto box and booking card ---------- */
+.contactCard,
+.contactMailtoBox {
+  background: var(--paper-tint) !important;
+  border-color: var(--border-soft) !important;
+  color: var(--ink);
+}
+
+.contactCard a,
+.contactCard p {
+  color: var(--text-200);
+}
