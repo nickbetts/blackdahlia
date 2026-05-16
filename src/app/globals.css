@@ -3661,3 +3661,23 @@ details > *:not(summary) {
 .contactCard p {
   color: var(--text-200);
 }
+
+/* ---------- Fix: Footer contact section links stack vertically ---------- */
+.siteFooter .footerGrid section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.siteFooter .footerGrid section a {
+  display: inline-flex;
+  width: fit-content;
+}
+
+/* ---------- Fix: Artist detail sidebar — light card ---------- */
+.artistDetailSidebar {
+  background: #ffffff !important;
+  border-color: var(--border-soft) !important;
+  color: var(--ink);
+}
+.artistDetailSidebar a { color: var(--text-200); }
+.artistDetailSidebar .artistRole { color: var(--text-200); }

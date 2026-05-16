@@ -7,17 +7,18 @@ import { artists } from "@/content/studio";
 import { getArtistGallery, getLeadImage } from "@/lib/media";
 
 type ArtistPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
   return artists.map((artist) => ({ slug: artist.slug }));
 }
 
-export function generateMetadata({ params }: ArtistPageProps): Metadata {
-  const artist = artists.find((entry) => entry.slug === params.slug);
+export async function generateMetadata({ params }: ArtistPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const artist = artists.find((entry) => entry.slug === slug);
 
   if (!artist) {
     return {
@@ -31,8 +32,9 @@ export function generateMetadata({ params }: ArtistPageProps): Metadata {
   };
 }
 
-export default function ArtistDetailPage({ params }: ArtistPageProps) {
-  const artist = artists.find((entry) => entry.slug === params.slug);
+export default async function ArtistDetailPage({ params }: ArtistPageProps) {
+  const { slug } = await params;
+  const artist = artists.find((entry) => entry.slug === slug);
 
   if (!artist) {
     notFound();
