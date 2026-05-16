@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { ShieldCheck, Sparkle, Users } from "@phosphor-icons/react/dist/ssr";
+import { GiInkSwirl, GiSkullCrossedBones } from "react-icons/gi";
 import { Reveal } from "@/components/reveal";
 import { aboutCopy, artists } from "@/content/studio";
 import { getLeadImage, studioGallery } from "@/lib/media";
@@ -47,9 +49,9 @@ export default function AboutPage() {
           </div>
 
           <div className="aboutValueGrid">
-            {studioValues.map((value) => (
+            {studioValues.map((value, i) => (
               <article key={value}>
-                <ShieldCheck size={16} />
+                {i === 0 ? <ShieldCheck weight="fill" size={18} /> : i === 1 ? <GiSkullCrossedBones size={18} /> : <GiInkSwirl size={18} />}
                 <p>{value}</p>
               </article>
             ))}
@@ -66,10 +68,10 @@ export default function AboutPage() {
 
           <div className="aboutTimelineMeta">
             <p>
-              <Users size={16} /> Three resident artists, each working in their own lane.
+              <Users weight="fill" size={16} /> Three resident artists, each working in their own lane.
             </p>
             <p>
-              <Sparkles size={16} /> Custom commissions — placement and composition planned with you.
+              <Sparkle weight="fill" size={16} /> Custom commissions — placement and composition planned with you.
             </p>
           </div>
 

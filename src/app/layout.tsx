@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Fraunces, Manrope, Special_Elite } from "next/font/google";
 import { studioInfo } from "@/content/studio";
 import { SiteNav } from "@/components/site-nav";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { CommandPalette } from "@/components/command-palette";
 import "./globals.css";
 
 const headingFont = Fraunces({
@@ -73,6 +75,8 @@ export default function RootLayout({
           Skip to content
         </a>
 
+        <SmoothScroll />
+        <CommandPalette />
         <div className="ambientGradient" aria-hidden="true" />
         <div className="ambientMesh" aria-hidden="true" />
         <div className="ambientGrain" aria-hidden="true" />
@@ -91,9 +95,19 @@ export default function RootLayout({
 
             <SiteNav items={navLinks} />
 
-            <Link className="headerCta" href="/booking">
-              <span>Book a session</span>
-            </Link>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+              <button
+                className="cmdHint"
+                aria-label="Open navigation palette"
+                onClick={undefined}
+                suppressHydrationWarning
+              >
+                <kbd>⌘</kbd><kbd>K</kbd>
+              </button>
+              <Link className="headerCta" href="/booking">
+                <span>Book a session</span>
+              </Link>
+            </div>
           </div>
         </header>
 

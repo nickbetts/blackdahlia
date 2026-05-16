@@ -3025,3 +3025,224 @@ label { color: var(--ink); }
 /* ---------- Misc cleanups ---------- */
 hr { border-color: var(--border-soft); }
 ::selection { background: var(--ink); color: #ffffff; }
+
+
+/* ===========================================================
+   New component systems: GSAP Marquee, cmdk, Vaul Drawer,
+   Portfolio Album, Command Palette
+   =========================================================== */
+
+/* ---------- GSAP Marquee ---------- */
+.marqueeGsapOuter {
+  overflow: hidden;
+  width: 100%;
+  padding: 0.9rem 0;
+}
+.marqueeGsapTrack {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+}
+.marqueeGsapSet {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ---------- Command Palette (cmdk) ---------- */
+.cmdOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 9000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: min(14vh, 8rem);
+  animation: cmdFadeIn 140ms ease;
+}
+@keyframes cmdFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.cmdDialog {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 30px 80px rgba(0,0,0,0.16);
+  width: min(560px, calc(100vw - 2rem));
+  overflow: hidden;
+  animation: cmdSlideIn 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes cmdSlideIn {
+  from { opacity: 0; transform: scale(0.97) translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+.cmdInput {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-body), sans-serif;
+  font-size: 1rem;
+  color: var(--ink, #0a0a0a);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  outline: none;
+}
+.cmdList {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+.cmdGroup {
+  padding: 0.25rem 0;
+}
+[cmdk-group-heading] {
+  padding: 0.4rem 0.75rem 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-300, #6b6b6b);
+  font-family: var(--font-accent), monospace;
+}
+.cmdItem {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--ink, #0a0a0a);
+  transition: background 120ms;
+}
+.cmdItem[aria-selected="true"],
+.cmdItem:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+.cmdEmpty {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-300, #6b6b6b);
+  font-size: 0.9rem;
+}
+
+/* ---------- Vaul Drawer ---------- */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 8000;
+}
+.drawerContent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 92dvh;
+  background: #ffffff;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -4px 40px rgba(0,0,0,0.2);
+  z-index: 8001;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.drawerHandle {
+  width: 44px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 2px;
+  margin: 0.9rem auto 0;
+  flex-shrink: 0;
+}
+.drawerInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  overflow: hidden;
+}
+@media (min-width: 720px) {
+  .drawerInner {
+    grid-template-columns: 280px 1fr;
+    max-height: 80dvh;
+  }
+  .drawerContent { max-height: 80dvh; }
+}
+.drawerMedia {
+  overflow: hidden;
+}
+.drawerMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 240px;
+}
+@media (min-width: 720px) {
+  .drawerMedia img { max-height: none; }
+}
+.drawerBody {
+  padding: 1.75rem 1.75rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  overflow-y: auto;
+}
+.drawerEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.drawerTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  margin-top: 0.25rem;
+}
+.drawerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Portfolio Album (react-photo-album) ---------- */
+.portfolioAlbumGrid {
+  width: 100%;
+}
+.portfolioAlbumTile {
+  cursor: zoom-in;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft, rgba(0,0,0,0.1));
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.portfolioAlbumTile:hover {
+  transform: scale(1.015);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+}
+.portfolioAlbumTile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Cmd+K hint in header ---------- */
+.cmdHint {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--text-300, #6b6b6b);
+  font-family: var(--font-accent), monospace;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border-soft, rgba(0,0,0,0.1));
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 150ms, color 150ms;
+}
+@media (min-width: 960px) { .cmdHint { display: flex; } }
+.cmdHint:hover { border-color: var(--ink, #0a0a0a); color: var(--ink, #0a0a0a); }

@@ -1,7 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, Award, CheckCircle2, Clock3, MapPin, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Clock3, MapPin, Star } from "lucide-react";
+import { GiSkullCrossedBones, GiRose, GiInkSwirl, GiDiamondHard } from "react-icons/gi";
+import { ShieldCheck as PhShieldCheck, CheckCircle, SealWarning } from "@phosphor-icons/react/dist/ssr";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { Reveal } from "@/components/reveal";
+import { MarqueeGsap } from "@/components/marquee-gsap";
+import { PortfolioGallery } from "@/components/portfolio-gallery";
 import { artists, faqSections, homeIntro, studioInfo } from "@/content/studio";
 import { getLeadImage, heroImages, studioGallery } from "@/lib/media";
 
@@ -12,25 +16,34 @@ export default function Home() {
   }));
 
   const signatureStyles = Array.from(new Set(artists.flatMap((artist) => artist.specialities))).slice(0, 9);
-  const portfolioLead = studioGallery[0] ?? null;
-  const portfolioTiles = studioGallery.slice(1, 7);
-  const marqueeItems = [...homeIntro.marquee, ...homeIntro.marquee];
+  const portfolioImages = studioGallery.slice(0, 12).map((img) => ({
+    src: img.localPath,
+    width: 800,
+    height: 1000,
+    title: img.title || "Tattoo portfolio",
+  }));
+  const marqueeItems = homeIntro.marquee;
 
   const trustPoints = [
     {
-      icon: ShieldCheck,
+      icon: <PhShieldCheck weight="fill" size={22} />,
       title: "Private room, no walk-ins",
       body: "One client at a time. No queue, no rush, no flash wall — just your session.",
     },
     {
-      icon: Award,
+      icon: <GiRose size={20} />,
       title: "Three artists, three hands",
       body: "Pick the artist whose line work matches your idea, not whoever happens to be free.",
     },
     {
-      icon: CheckCircle2,
+      icon: <CheckCircle weight="fill" size={22} />,
       title: "Straight answers, no surprises",
       body: "Quote, timing, deposit and aftercare are agreed before the machine ever turns on.",
+    },
+    {
+      icon: <GiInkSwirl size={20} />,
+      title: "Custom designs only",
+      body: "Everything is drawn for your placement, your story. Nothing pulled off a flash wall.",
     },
   ];
 
@@ -82,14 +95,7 @@ export default function Home() {
       </section>
 
       <section className="marqueeBand" aria-hidden="true">
-        <div className="marqueeTrack">
-          {marqueeItems.map((item, index) => (
-            <span key={`${item}-${index}`} className="marqueeItem">
-              <span>{item}</span>
-              <span className="marqueeDot">✦</span>
-            </span>
-          ))}
-        </div>
+        <MarqueeGsap items={marqueeItems} speed={70} />
       </section>
 
       <section className="container sectionSpacing">
@@ -104,7 +110,7 @@ export default function Home() {
         <div className="signatureStrip">
           {signatureStyles.map((style, index) => (
             <Reveal key={style} delay={0.08 + index * 0.04} className="signaturePill">
-              <Sparkles size={15} />
+              <GiDiamondHard size={13} />
               <span>{style}</span>
             </Reveal>
           ))}
@@ -175,19 +181,7 @@ export default function Home() {
         </Reveal>
 
         <div className="portfolioGalleryCluster">
-          {portfolioLead ? (
-            <Reveal className="portfolioLeadTile" delay={0.06}>
-              <img src={portfolioLead.localPath} alt={portfolioLead.title || "Lead portfolio piece"} loading="lazy" />
-            </Reveal>
-          ) : null}
-
-          <div className="portfolioTileGrid">
-            {portfolioTiles.map((image, index) => (
-              <Reveal key={image.hash} delay={0.08 + index * 0.04} className="portfolioTile">
-                <img src={image.localPath} alt={image.title || "Tattoo portfolio"} loading="lazy" />
-              </Reveal>
-            ))}
-          </div>
+          <PortfolioGallery images={portfolioImages} columns={3} />
         </div>
       </section>
 
@@ -203,7 +197,7 @@ export default function Home() {
             <div className="trustGrid">
               {trustPoints.map((point) => (
                 <article key={point.title} className="trustItem">
-                  <point.icon size={18} />
+                  {point.icon}
                   <div>
                     <h3>{point.title}</h3>
                     <p>{point.body}</p>
@@ -253,7 +247,7 @@ export default function Home() {
           {faqPreview.map((item, index) => (
             <Reveal key={item.question} delay={0.06 + index * 0.05} className="faqPreviewCard">
               <h3>
-                <Star size={16} /> {item.question}
+                <SealWarning weight="fill" size={16} /> {item.question}
               </h3>
               <p>{item.answer}</p>
             </Reveal>

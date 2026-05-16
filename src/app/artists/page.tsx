@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Camera, ExternalLink } from "lucide-react";
+import { GiSkullCrossedBones, GiRose } from "react-icons/gi";
 import { Reveal } from "@/components/reveal";
+import { ArtistDrawer } from "@/components/artist-drawer";
 import { artists } from "@/content/studio";
 import { getArtistGallery, getLeadImage } from "@/lib/media";
 
@@ -10,6 +12,8 @@ export const metadata: Metadata = {
   description:
     "Explore the resident artists at The Black Dahlia and browse styles including realism, blackwork, geometric, illustrative, and traditional work.",
 };
+
+const motifIcons = [<GiRose key="rose" size={14} />, <GiSkullCrossedBones key="skull" size={14} />, <GiRose key="rose2" size={14} />];
 
 export default function ArtistsPage() {
   const styleIndex = Array.from(new Set(artists.flatMap((artist) => artist.specialities))).slice(0, 12);
@@ -41,6 +45,7 @@ export default function ArtistsPage() {
           {artists.map((artist, index) => {
             const leadImage = getLeadImage(artist.slug);
             const thumbnailGallery = getArtistGallery(artist.slug, index === 0 ? 5 : 3);
+            const motifIcon = motifIcons[index % motifIcons.length];
 
             return (
               <Reveal
@@ -61,24 +66,33 @@ export default function ArtistsPage() {
 
                   <div className="artistTags">
                     {artist.specialities.map((item) => (
-                      <span key={item}>{item}</span>
+                      <span key={item}>{motifIcon}{item}</span>
                     ))}
                   </div>
 
                   <p className="artistAtlasMeta">
-                    Best if you’re after {artist.specialities.slice(0, 2).join(" or ").toLowerCase()}.
+                    Best if you&apos;re after {artist.specialities.slice(0, 2).join(" or ").toLowerCase()}.
                   </p>
 
                   <div className="artistActionsRow">
+                    <ArtistDrawer
+                      name={artist.name}
+                      role={artist.role}
+                      shortBio={artist.shortBio}
+                      longBio={artist.longBio}
+                      specialities={artist.specialities}
+                      slug={artist.slug}
+                      instagramUrl={artist.social.instagram}
+                      leadImageSrc={leadImage?.localPath}
+                    >
+                      <button className="inlineAction">Quick look</button>
+                    </ArtistDrawer>
                     <Link href={`/artists/${artist.slug}`} className="inlineAction">
                       Full profile <ExternalLink size={15} />
                     </Link>
                     <a href={artist.social.instagram} target="_blank" rel="noreferrer" className="inlineAction">
                       Instagram <Camera size={15} />
                     </a>
-                    <Link href="/booking" className="inlineAction">
-                      Book with {artist.name}
-                    </Link>
                   </div>
 
                   <div className="artistAtlasGallery">
