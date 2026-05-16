@@ -2472,3 +2472,166 @@ details > *:not(summary) {
   border-radius: 999px !important; /* keep pills */
 }
 
+
+/* ===========================================================
+   Black & White Palette Refresh
+   Overrides the warm/gold scheme with a clean monochrome system.
+   Placed last so it wins the cascade without !important.
+   =========================================================== */
+
+:root {
+  --bg-950: #050505;
+  --bg-900: #0c0c0c;
+  --bg-850: #141414;
+  --surface-900: #0e0e0e;
+  --surface-800: #181818;
+  --text-100: #ffffff;
+  --text-200: #d9d9d9;
+  --text-300: #9a9a9a;
+  --accent-gold: #ffffff;
+  --accent-red: #ffffff;
+  --border-soft: rgba(255, 255, 255, 0.12);
+  --shadow-deep: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+body {
+  color: var(--text-100);
+  background: radial-gradient(1100px 640px at 8% -10%, #1a1a1a 0%, transparent 64%),
+    radial-gradient(900px 580px at 92% 0%, #161616 0%, transparent 66%),
+    linear-gradient(165deg, #0a0a0a 0%, #000000 70%);
+}
+
+.ambientMesh {
+  background: radial-gradient(circle at 82% 20%, rgba(255, 255, 255, 0.05), transparent 38%),
+    radial-gradient(circle at 15% 74%, rgba(255, 255, 255, 0.035), transparent 34%);
+}
+
+/* Buttons — white-on-black, with inverse hover */
+.headerCta,
+.primaryButton {
+  background: #ffffff;
+  background-image: none;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.headerCta:hover,
+.primaryButton:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.ghostButton {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-100);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ghostButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+/* Cards & panels — strip warm tints, use neutral grayscale */
+.heroCopy {
+  background: linear-gradient(155deg, rgba(28, 28, 28, 0.9), rgba(10, 10, 10, 0.96));
+}
+
+.heroCopyEditorial {
+  background: linear-gradient(155deg, rgba(22, 22, 22, 0.9), rgba(8, 8, 8, 0.96));
+}
+
+.artistFeatureCard,
+.artistAtlasCard {
+  background: linear-gradient(160deg, rgba(22, 22, 22, 0.9), rgba(10, 10, 10, 0.96));
+}
+
+.portfolioStoryBand {
+  background: linear-gradient(155deg, rgba(18, 18, 18, 0.85), rgba(8, 8, 8, 0.94));
+}
+
+.artistPreviewCard,
+.artistIndexCard {
+  background: linear-gradient(160deg, rgba(24, 24, 24, 0.9), rgba(12, 12, 12, 0.96));
+}
+
+.faqPreviewSection {
+  background: linear-gradient(160deg, rgba(20, 20, 20, 0.85), rgba(10, 10, 10, 0.94));
+}
+
+.ctaBandInner {
+  background: linear-gradient(130deg, #ffffff 0%, #e5e5e5 100%);
+  border: 1px solid #ffffff;
+  color: #000000;
+}
+
+.ctaBandInner h2,
+.ctaBandInner h2 em,
+.ctaBandInner p,
+.ctaBandInner .eyebrow {
+  color: #000000 !important;
+}
+
+.ctaBandInner .primaryButton {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.ctaBandInner .primaryButton:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #000000;
+}
+
+.ctaBandInner .ghostButton {
+  background: transparent;
+  color: #000000;
+  border-color: #000000;
+}
+
+.ctaBandInner .ghostButton:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.pageHeroCompact {
+  background: linear-gradient(160deg, rgba(20, 20, 20, 0.9), rgba(8, 8, 8, 0.95));
+}
+
+.siteHeader {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+.brandSymbol {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12), transparent 70%);
+}
+
+/* Signature pill gold halo → white halo */
+.signaturePill::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent 55%);
+}
+
+/* Hairline header underline */
+.siteHeader > div[aria-hidden] ,
+.siteHeader::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+/* Tone down grain so it doesn't muddy the monochrome */
+.ambientGrain {
+  opacity: 0.05;
+}
+
+/* Eyebrow number divider in white */
+.eyebrowNumber {
+  border-right-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Marquee separator hairlines */
+.marqueeBand {
+  border-top-color: rgba(255, 255, 255, 0.18);
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+}
+
