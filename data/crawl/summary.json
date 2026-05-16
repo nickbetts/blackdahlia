@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-05-16T08:40:29.576Z",
+  "siteOrigin": "https://www.theblackdahlia.co.uk",
+  "sitemapIndex": "https://www.theblackdahlia.co.uk/sitemap.xml",
+  "childSitemaps": [
+    "https://www.theblackdahlia.co.uk/portfolio-projects-sitemap.xml",
+    "https://www.theblackdahlia.co.uk/portfolio-collections-sitemap.xml",
+    "https://www.theblackdahlia.co.uk/pages-sitemap.xml"
+  ],
+  "sitemapBreakdown": [
+    {
+      "sitemapUrl": "https://www.theblackdahlia.co.uk/portfolio-projects-sitemap.xml",
+      "pageCount": 3,
+      "imageCount": 35
+    },
+    {
+      "sitemapUrl": "https://www.theblackdahlia.co.uk/portfolio-collections-sitemap.xml",
+      "pageCount": 1,
+      "imageCount": 1
+    },
+    {
+      "sitemapUrl": "https://www.theblackdahlia.co.uk/pages-sitemap.xml",
+      "pageCount": 8,
+      "imageCount": 0
+    }
+  ],
+  "totals": {
+    "pageUrlsFromSitemaps": 12,
+    "crawledPages": 12,
+    "crawlErrors": 0,
+    "imageUrls": 299,
+    "videoUrls": 0,
+    "socialLinks": 12
+  }
+}

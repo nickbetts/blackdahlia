@@ -1,0 +1,1604 @@
+{
+  "generatedAt": "2026-05-16T08:40:41.589Z",
+  "limits": {
+    "maxImages": 160,
+    "maxVideos": 2,
+    "maxVideoBytes": 41943040
+  },
+  "images": [
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg/v1/fill/w_1536,h_2048,al_c/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg",
+      "localPath": "/media/crawl/images/ghost-rider-tattoo-627d5b3c33.jpg",
+      "title": "ghost rider tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/caitlintattooartist",
+      "artist": "caitlin",
+      "hash": "627d5b3c332881cea1947623c015403ad60f5954",
+      "bytes": 330596,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg/v1/fill/w_1536,h_2048,al_c/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg",
+      "localPath": "/media/crawl/images/ghost-rider-tattoo-c8e885564e.jpeg",
+      "title": "ghost rider tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/caitlintattooartist",
+      "artist": "caitlin",
+      "hash": "c8e885564e3ddab2e270d63e4c5f16d1a11cfb18",
+      "bytes": 502300,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f6dab374b3094deda343658f54109837~mv2.jpeg/v1/fill/w_1536,h_2048,al_c/666766_f6dab374b3094deda343658f54109837~mv2.jpeg",
+      "localPath": "/media/crawl/images/pet-portrait-tattoo-816e0bea0c.jpeg",
+      "title": "pet portrait tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/caitlintattooartist",
+      "artist": "caitlin",
+      "hash": "816e0bea0ccf2aa199c01d2a3e2a289b4a0432c4",
+      "bytes": 373563,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg/v1/fill/w_1536,h_2048,al_c/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg",
+      "localPath": "/media/crawl/images/bird-and-heart-tattoo-f9fe9ad3b4.jpeg",
+      "title": "bird and heart tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/caitlintattooartist",
+      "artist": "caitlin",
+      "hash": "f9fe9ad3b4642cd87766190ef6a9bdf97e3367a2",
+      "bytes": 425654,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg/v1/fill/w_1536,h_2048,al_c/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg",
+      "localPath": "/media/crawl/images/snake-and-eagle-aa806ac24e.jpeg",
+      "title": "snake and eagle",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/caitlintattooartist",
+      "artist": "caitlin",
+      "hash": "aa806ac24e0c2a165317031cd421b817efdc0400",
+      "bytes": 442006,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg/v1/fill/w_1639,h_2048,al_c/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg",
+      "localPath": "/media/crawl/images/collage-of-caitlin-s-work-81f9af13da.jpeg",
+      "title": "collage of Caitlin's work",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/caitlintattooartist",
+      "artist": "caitlin",
+      "hash": "81f9af13da25927ee6109437f812d5ab65478396",
+      "bytes": 620548,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fill/w_3024,h_4032,al_c/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg",
+      "localPath": "/media/crawl/images/jack-the-ripper-inspired-tattoo-fd3d09cff6.jpg",
+      "title": "Jack the Ripper inspired tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "fd3d09cff608e67e2cfa86d7a314454370fce01c",
+      "bytes": 2704940,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg/v1/fill/w_1536,h_2048,al_c/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg",
+      "localPath": "/media/crawl/images/black-and-grey-realism-tattoo-portrait-by-sharnia-bb51ffea2e.jpeg",
+      "title": "Black and grey realism tattoo portrait by Sharnia",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "bb51ffea2eecbc79b8e7a16313a24ca1d86922e3",
+      "bytes": 339345,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fill/w_2348,h_3131,al_c/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg",
+      "localPath": "/media/crawl/images/sculpture-angel-tattoo-56b1a0f78c.jpeg",
+      "title": "sculpture angel tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "56b1a0f78c81adeaf23d2467cbc04b24065fd3cc",
+      "bytes": 1267347,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fill/w_3024,h_4032,al_c/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg",
+      "localPath": "/media/crawl/images/hannya-mask-lady-tattoo-c573da356c.jpeg",
+      "title": "Hannya mask lady tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "c573da356c285637a5720f47df5d82a3acd6003b",
+      "bytes": 1429663,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fill/w_3024,h_4032,al_c/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg",
+      "localPath": "/media/crawl/images/elephant-tattoo-6a55a6915a.jpeg",
+      "title": "Elephant tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "6a55a6915a6e1cfbb4f902b70d06e74f0ddc92ef",
+      "bytes": 2763270,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fill/w_3024,h_4032,al_c/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg",
+      "localPath": "/media/crawl/images/lioness-and-cub-tattoo-2774ede494.jpeg",
+      "title": "Lioness and cub tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "2774ede49454a075c9ba9e991f81d5e4e1cbf224",
+      "bytes": 1647883,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fill/w_3024,h_4032,al_c/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg",
+      "localPath": "/media/crawl/images/ram-skull-tattoo-34fa2158d3.jpeg",
+      "title": "Ram skull tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "34fa2158d3c91599ec9397d7f75d132d6b6de545",
+      "bytes": 2468942,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg/v1/fill/w_1565,h_1956,al_c/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg",
+      "localPath": "/media/crawl/images/realistic-owl-tattoo-2c5e19fcec.jpeg",
+      "title": "Realistic owl tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "2c5e19fcecc7651a96a32d38711cbcef00d8e8a4",
+      "bytes": 521332,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fill/w_3024,h_4032,al_c/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg",
+      "localPath": "/media/crawl/images/nirvana-led-zeppelin-tattoo-2adb643e74.jpeg",
+      "title": "nirvana / led zeppelin tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "2adb643e74d8bdf480073209d7f71b7d26b6e7e2",
+      "bytes": 2450298,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fill/w_2494,h_3326,al_c/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg",
+      "localPath": "/media/crawl/images/coffin-and-flowers-tattoo-cf0b423378.jpeg",
+      "title": "coffin and flowers tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "cf0b423378051e86d90e9de4b0167b2c3e1f636c",
+      "bytes": 1488089,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fill/w_2320,h_3094,al_c/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg",
+      "localPath": "/media/crawl/images/honey-badger-tattoo-22d2a8f83d.jpg",
+      "title": "Honey badger tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "22d2a8f83d9d43eeef40842a04b39030188cee5f",
+      "bytes": 1089943,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_5df653c2155b4608aa2aa77352b431e2~mv2.jpeg/v1/fill/w_3024,h_4032,al_c/666766_5df653c2155b4608aa2aa77352b431e2~mv2.jpeg",
+      "localPath": "/media/crawl/images/duskull-pokemon-tattoo-a3a28624f0.jpeg",
+      "title": "Duskull pokemon tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "a3a28624f02d211c0ec310ab7e75d3d093954b52",
+      "bytes": 2621517,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f19a784eb21d4e94976affea3a16367d~mv2.jpeg/v1/fill/w_2526,h_3368,al_c/666766_f19a784eb21d4e94976affea3a16367d~mv2.jpeg",
+      "localPath": "/media/crawl/images/mimikyu-pokemon-tattoo-6729294a5e.jpeg",
+      "title": "Mimikyu pokemon tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "6729294a5e5e53fd4686f51853e072ff506f1f61",
+      "bytes": 1343053,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_b4ca3538abb84d278fcadfc7aa7cfa26~mv2.jpg/v1/fill/w_3024,h_4032,al_c/666766_b4ca3538abb84d278fcadfc7aa7cfa26~mv2.jpg",
+      "localPath": "/media/crawl/images/hercules-beetle-on-flower-95e79e6660.jpg",
+      "title": "Hercules Beetle on flower",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "95e79e6660ffdc7c87d28b1a60b76180fef552b5",
+      "bytes": 2095618,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_87e06e1670604929918fbf1ca9eb773c~mv2.jpeg/v1/fill/w_2385,h_3180,al_c/666766_87e06e1670604929918fbf1ca9eb773c~mv2.jpeg",
+      "localPath": "/media/crawl/images/rainbow-cloud-with-lightening-tattoo-588535e0e7.jpeg",
+      "title": "Rainbow cloud with lightening tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/sharniatattooartist",
+      "artist": "sharnia",
+      "hash": "588535e0e71f77ddccee139ba622ac9c48be0766",
+      "bytes": 1296742,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_eb40cd6928e74650a5235dce34772d6f~mv2.jpg/v1/fill/w_1151,h_1600,al_c/666766_eb40cd6928e74650a5235dce34772d6f~mv2.jpg",
+      "localPath": "/media/crawl/images/geometric-dotwork-tattoo-design-by-laura-688f0d2e28.jpg",
+      "title": "Geometric dotwork tattoo design by Laura",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "688f0d2e28e919230afabf59cbb7a6e535b42e37",
+      "bytes": 192742,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_59a1313fbe5e45669e2e422bc159f2a5~mv2.jpg/v1/fill/w_1200,h_1600,al_c/666766_59a1313fbe5e45669e2e422bc159f2a5~mv2.jpg",
+      "localPath": "/media/crawl/images/intricate-dotwork-tattoo-pattern-by-laura-f6e764ea88.jpg",
+      "title": "Intricate dotwork tattoo pattern by Laura",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "f6e764ea88c580f59d95cdb8b716bb51055a52e8",
+      "bytes": 263264,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_057d4c1ca58740f8afdf921d1b75b401~mv2.jpg/v1/fill/w_1295,h_1600,al_c/666766_057d4c1ca58740f8afdf921d1b75b401~mv2.jpg",
+      "localPath": "/media/crawl/images/pattern-work-arm-sleeve-tattoo-b5459d77e7.jpg",
+      "title": "pattern work arm sleeve tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "b5459d77e7704fb2ec76696741aaaaf6c96ed080",
+      "bytes": 388974,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f03b154908bf43c285f5f777e0234da3~mv2.jpg/v1/fill/w_1339,h_1600,al_c/666766_f03b154908bf43c285f5f777e0234da3~mv2.jpg",
+      "localPath": "/media/crawl/images/mario-calf-tattoo-f870816f4a.jpg",
+      "title": "Mario calf tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "f870816f4a5ed4e323d8c7de8f9b3fc04ae8b833",
+      "bytes": 319119,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_8f7d2d5eec8a44ada4da9453b0721796~mv2.jpg/v1/fill/w_1600,h_1600,al_c/666766_8f7d2d5eec8a44ada4da9453b0721796~mv2.jpg",
+      "localPath": "/media/crawl/images/floral-knee-tattoo-4f36e49493.jpg",
+      "title": "floral knee tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "4f36e4949300b9e9021af0711a494393c07552f9",
+      "bytes": 333970,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_845f188042224c6c85d6d1617ab0b988~mv2.jpg/v1/fill/w_1367,h_1600,al_c/666766_845f188042224c6c85d6d1617ab0b988~mv2.jpg",
+      "localPath": "/media/crawl/images/chest-medusa-tattoo-aa53837cf9.jpg",
+      "title": "chest medusa tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "aa53837cf9f4819c5819afe8731b0b9c464b76f7",
+      "bytes": 351020,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e9c716de37e24badb97c250924e0af3d~mv2.jpg/v1/fill/w_1200,h_1600,al_c/666766_e9c716de37e24badb97c250924e0af3d~mv2.jpg",
+      "localPath": "/media/crawl/images/front-of-leg-pattern-work-tattoo-27e9fc0d8b.jpg",
+      "title": "front of leg pattern work tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "27e9fc0d8b0f22f9f934fc0fcbac5deaf0704508",
+      "bytes": 268762,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_3982f9f540824556a3d12156697c3cb9~mv2.jpg/v1/fill/w_1198,h_1600,al_c/666766_3982f9f540824556a3d12156697c3cb9~mv2.jpg",
+      "localPath": "/media/crawl/images/robot-gaming-tattoo-9173bbfce8.jpg",
+      "title": "robot gaming tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "9173bbfce87807325c84dbb77c01a8cf2e2bd09c",
+      "bytes": 276552,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_dd5b85f74f2d48faa3f9e7267ebe22a8~mv2.jpg/v1/fill/w_1409,h_1600,al_c/666766_dd5b85f74f2d48faa3f9e7267ebe22a8~mv2.jpg",
+      "localPath": "/media/crawl/images/shin-pattern-work-tattoo-0580d4e3cd.jpg",
+      "title": "shin pattern work tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "0580d4e3cd62b525c77f62f204bf2b4ec5828a18",
+      "bytes": 255575,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_99b4aed524874011bf3e30057fdf2ebb~mv2.jpg/v1/fill/w_1200,h_1600,al_c/666766_99b4aed524874011bf3e30057fdf2ebb~mv2.jpg",
+      "localPath": "/media/crawl/images/leopard-pattern-work-tattoo-a0d49b3e40.jpg",
+      "title": "leopard pattern work tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "a0d49b3e4086cca04baa1250b3ab1988ec1fdcda",
+      "bytes": 237224,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_45b3d9dfc9574e4f9f295cf9cf3063b3~mv2.jpg/v1/fill/w_1150,h_1600,al_c/666766_45b3d9dfc9574e4f9f295cf9cf3063b3~mv2.jpg",
+      "localPath": "/media/crawl/images/harry-potter-inspired-tattoo-6cf3718490.jpg",
+      "title": "Harry Potter inspired tattoo",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "6cf3718490f365eb3b96aab373083beb69a2c613",
+      "bytes": 291331,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e979bec215d04b5a91a5a38f648d0d1b~mv2.jpg/v1/fill/w_1375,h_1600,al_c/666766_e979bec215d04b5a91a5a38f648d0d1b~mv2.jpg",
+      "localPath": "/media/crawl/images/matching-animal-calf-tattoo-s-36ef934601.jpg",
+      "title": "matching animal calf tattoo's",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio/lauratattooartist",
+      "artist": "laura",
+      "hash": "36ef934601397e8a852106ba8642f9fd145a809f",
+      "bytes": 371520,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_14b260747f6d4bb68343d8efc16b054c~mv2.jpg/v1/fill/w_1600,h_1067,al_c/666766_14b260747f6d4bb68343d8efc16b054c~mv2.jpg",
+      "localPath": "/media/crawl/images/the-tattoo-studio-ec25997a39.jpg",
+      "title": "The tattoo studio",
+      "pageUrl": "https://www.theblackdahlia.co.uk/portfolio-collections/our-artists-portfolio",
+      "artist": null,
+      "hash": "ec25997a394a810c1ac37718b4aafd99e40c6788",
+      "bytes": 341550,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1502e55d0718432f8b094fde0138aa49%7Emv2.png/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/666766_1502e55d0718432f8b094fde0138aa49%7Emv2.png",
+      "localPath": "/media/crawl/images/asset-d1a370085c-d1a370085c.png",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "d1a370085ced51183b7dd5dcf44736a602872418",
+      "bytes": 31174,
+      "contentType": "image/png"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1502e55d0718432f8b094fde0138aa49%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/666766_1502e55d0718432f8b094fde0138aa49%7Emv2.png",
+      "localPath": "/media/crawl/images/asset-ab6c8f3e3e-ab6c8f3e3e.png",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "ab6c8f3e3e690af549d2903d29028f9ae909719c",
+      "bytes": 2278,
+      "contentType": "image/png"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1502e55d0718432f8b094fde0138aa49%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/666766_1502e55d0718432f8b094fde0138aa49%7Emv2.png",
+      "localPath": "/media/crawl/images/asset-ada7cb0e6a-ada7cb0e6a.png",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "ada7cb0e6a7e0e9b13a3bb12fb8321008f410f76",
+      "bytes": 27981,
+      "contentType": "image/png"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/11062b_1f7ed8bc7b004201970df69f9eeda689~mv2.png/v1/fill/w_40,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_1f7ed8bc7b004201970df69f9eeda689~mv2.png",
+      "localPath": "/media/crawl/images/asset-534891db95-534891db95.png",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "534891db9555d23bfe8433b0b9599590a96350c6",
+      "bytes": 1526,
+      "contentType": "image/png"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/11062b_1f7ed8bc7b004201970df69f9eeda689~mv2.png/v1/fill/w_80,h_80,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_1f7ed8bc7b004201970df69f9eeda689~mv2.png",
+      "localPath": "/media/crawl/images/asset-6b447e6223-6b447e6223.png",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "6b447e622366f9186e61603f55449813dca676a1",
+      "bytes": 2653,
+      "contentType": "image/png"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/11062b_084cbbff6ae446c1b03dc3637193e77a~mv2.png/v1/fill/w_40,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_084cbbff6ae446c1b03dc3637193e77a~mv2.png",
+      "localPath": "/media/crawl/images/asset-aa3c510247-aa3c510247.png",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "aa3c51024767922a2a13db5097021cc499282cbf",
+      "bytes": 1736,
+      "contentType": "image/png"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/11062b_084cbbff6ae446c1b03dc3637193e77a~mv2.png/v1/fill/w_80,h_80,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_084cbbff6ae446c1b03dc3637193e77a~mv2.png",
+      "localPath": "/media/crawl/images/asset-77f39f6fde-77f39f6fde.png",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "77f39f6fdeb760eaafbedce8a03b59143ea4a18d",
+      "bytes": 3460,
+      "contentType": "image/png"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg/v1/fill/w_1,h_1,q_90/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.webp",
+      "localPath": "/media/crawl/images/asset-eace7e7096-eace7e7096.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "eace7e7096745100e401296f14aa3deef87186a7",
+      "bytes": 268,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg/v1/fill/w_1,h_1,q_90/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-61b4328e27-61b4328e27.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "61b4328e2712106dcf46593f767d7c2964aa2e78",
+      "bytes": 692,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg/v1/fit/w_1440,h_735,q_90,enc_avif,quality_auto/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-8f5adbe711-8f5adbe711.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "8f5adbe71130344187289a130ad6400651c419ee",
+      "bytes": 48102,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg/v1/fit/w_2482,h_1266,q_90,enc_avif,quality_auto/666766_ecd277030b8544fbb5e37012ae69bed1~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-9152a2d79c-9152a2d79c.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9152a2d79c7522122e925599528e5e79fac0f194",
+      "bytes": 124039,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_f277249c24774b8fb8abe0f64950818a~mv2.webp",
+      "localPath": "/media/crawl/images/asset-22b0b56b75-22b0b56b75.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "22b0b56b753c2b88f858bf53ed6cd1057a5ba204",
+      "bytes": 270,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-4713401710-4713401710.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "4713401710972caed0f1ccf305aed07e796c3325",
+      "bytes": 691,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-4e7e0f7127-4e7e0f7127.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "4e7e0f7127b3bc1d58f39c4629e74cd767bfa162",
+      "bytes": 56794,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-1dcbf929f3-1dcbf929f3.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "1dcbf929f31ec5446c13b8d5cc63782590804203",
+      "bytes": 185596,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-6ed4c24e1c-6ed4c24e1c.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "6ed4c24e1c0369bbd48fb7c97fd98cf43313ee86",
+      "bytes": 369378,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg/v1/fit/w_1537,h_2046,q_90,enc_avif,quality_auto/666766_f277249c24774b8fb8abe0f64950818a~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-0dc0e4c566-0dc0e4c566.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "0dc0e4c566aa90111e1e4762b0a382a763b03f0e",
+      "bytes": 405755,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f6dab374b3094deda343658f54109837~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_f6dab374b3094deda343658f54109837~mv2.webp",
+      "localPath": "/media/crawl/images/asset-aa16215a28-aa16215a28.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "aa16215a284b2b64db2cd1c5b40758fd14679d1b",
+      "bytes": 264,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f6dab374b3094deda343658f54109837~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_f6dab374b3094deda343658f54109837~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-eb85c20894-eb85c20894.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "eb85c20894400c693f5766f266a4db255e8dc08b",
+      "bytes": 690,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f6dab374b3094deda343658f54109837~mv2.jpeg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_f6dab374b3094deda343658f54109837~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-b67764a6a5-b67764a6a5.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "b67764a6a504980fbb504fd3cb910c4c1f2d3f69",
+      "bytes": 45701,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f6dab374b3094deda343658f54109837~mv2.jpeg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_f6dab374b3094deda343658f54109837~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-614e52bdb6-614e52bdb6.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "614e52bdb60d991fbf8ceff3aad784e38ac0f550",
+      "bytes": 141574,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f6dab374b3094deda343658f54109837~mv2.jpeg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_f6dab374b3094deda343658f54109837~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-336e104916-336e104916.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "336e104916ff033b51ff9df9142579a60dac9d1e",
+      "bytes": 276123,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_f6dab374b3094deda343658f54109837~mv2.jpeg/v1/fit/w_1537,h_2046,q_90,enc_avif,quality_auto/666766_f6dab374b3094deda343658f54109837~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-7988f6e309-7988f6e309.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "7988f6e309bbd070780a5c34dd92f85000ff15ff",
+      "bytes": 305335,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.webp",
+      "localPath": "/media/crawl/images/asset-48a3e8083f-48a3e8083f.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "48a3e8083f0f91f5a9d7b1e641c3026aab5b8a27",
+      "bytes": 264,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-261d436127-261d436127.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "261d4361271711020e291be1f2a4cbfedf496213",
+      "bytes": 690,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-147bbe4082-147bbe4082.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "147bbe4082145c62c340d02ec1b953a64b3ec79e",
+      "bytes": 46946,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-a5c0e4f916-a5c0e4f916.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "a5c0e4f916b3914b6ce4cb8e8db336abcde90153",
+      "bytes": 156140,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-a02bcfcc3c-a02bcfcc3c.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "a02bcfcc3ce53738d55c3d2e4a860dc400511909",
+      "bytes": 311484,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg/v1/fit/w_1537,h_2046,q_90,enc_avif,quality_auto/666766_16fef92e45164b3a86215b8172ceb7ff~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-c1581835a3-c1581835a3.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "c1581835a3d33f92125acbeb5e998f39bbd26774",
+      "bytes": 344291,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_e60a8c0eae294185a113173b99ec8072~mv2.webp",
+      "localPath": "/media/crawl/images/asset-a722b1f6cc-a722b1f6cc.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "a722b1f6ccd88ea1aa946b5fdc789f181543fff2",
+      "bytes": 262,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-16abe39d7c-16abe39d7c.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "16abe39d7c6483cb0b985520ff737d08d36d3070",
+      "bytes": 691,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg/v1/fit/w_480,h_648,q_90,enc_avif,quality_auto/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-b44cb12efd-b44cb12efd.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "b44cb12efd111cfcf426c379a6549e25f52fb342",
+      "bytes": 49901,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg/v1/fit/w_960,h_1296,q_90,enc_avif,quality_auto/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-1b4bdc49df-1b4bdc49df.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "1b4bdc49df5ad0fb64aeea6b94d212f7426bf565",
+      "bytes": 164569,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg/v1/fit/w_1440,h_1944,q_90,enc_avif,quality_auto/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-83ef3591ce-83ef3591ce.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "83ef3591ce507bf5ee4dab5dcd14cf4c1a477813",
+      "bytes": 328715,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg/v1/fit/w_1526,h_2060,q_90,enc_avif,quality_auto/666766_e60a8c0eae294185a113173b99ec8072~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-631f3bfdc6-631f3bfdc6.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "631f3bfdc6cb50183abb0b3545e23c0d0f51bb96",
+      "bytes": 363524,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.webp",
+      "localPath": "/media/crawl/images/asset-214767f56f-214767f56f.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "214767f56f1a9d0e6fede659a8465c4f971ecf47",
+      "bytes": 266,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-d8f826dc1a-d8f826dc1a.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "d8f826dc1a2aa73939f457f03fbb7b77ae1f0371",
+      "bytes": 691,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg/v1/fit/w_480,h_600,q_90,enc_avif,quality_auto/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-82ceb6da52-82ceb6da52.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "82ceb6da5223d909113edf37241bb6ffb3a9aaf5",
+      "bytes": 74129,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg/v1/fit/w_960,h_1200,q_90,enc_avif,quality_auto/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-eb1ff8f465-eb1ff8f465.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "eb1ff8f4650a2d445875d0551020504b4da2c86b",
+      "bytes": 222093,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg/v1/fit/w_1440,h_1800,q_90,enc_avif,quality_auto/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-cf44b68e43-cf44b68e43.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "cf44b68e43039b3c0611eff1236af5652de6dde1",
+      "bytes": 412588,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg/v1/fit/w_1638,h_2047,q_90,enc_avif,quality_auto/666766_0fccb75afaf74372948c06406e2e2bb3~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-bf17685a8d-bf17685a8d.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "bf17685a8d4c874213ece0f1163d965f824c8345",
+      "bytes": 494742,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_d7994504b2d644f3a0fbc698d6615435~mv2.webp",
+      "localPath": "/media/crawl/images/asset-9835c69f5f-9835c69f5f.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9835c69f5fbdc3f6f4c53a5beb21dd08ef633709",
+      "bytes": 728,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-518a4dfbeb-518a4dfbeb.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "518a4dfbeb4ca2bf61e7af2e1b624f39b64e1945",
+      "bytes": 1164,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg/v1/fit/w_1440,h_735,q_90,enc_avif,quality_auto/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-72c6e04b56-72c6e04b56.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "72c6e04b567cef509c7844a581276e5492ffaff2",
+      "bytes": 70078,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg/v1/fit/w_2880,h_1470,q_90,enc_avif,quality_auto/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-8b24029e1b-8b24029e1b.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "8b24029e1b67a3195b7d1ee1375adb33740df57f",
+      "bytes": 215072,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg/v1/fit/w_4137,h_2111,q_90,enc_avif,quality_auto/666766_d7994504b2d644f3a0fbc698d6615435~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-9a73d6d005-9a73d6d005.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9a73d6d00550ef2cb9146f8da1fb2f28b3281bf0",
+      "bytes": 395786,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fill/w_1,h_1,q_90/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.webp",
+      "localPath": "/media/crawl/images/asset-17fd2355cd-17fd2355cd.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "17fd2355cdbb13f0c7b454018bacb40a9bd007bc",
+      "bytes": 722,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fill/w_1,h_1,q_90/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-3231e58a78-3231e58a78.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "3231e58a78bc4018ee156d9b0aadc4e8ef35a220",
+      "bytes": 1165,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-37c8160b77-37c8160b77.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "37c8160b77df9140f36f1eb3572d4a9206dc556d",
+      "bytes": 47950,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-f70f8f9be1-f70f8f9be1.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "f70f8f9be18e29e4d9a2838f5624a3275d8da336",
+      "bytes": 182222,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-174224a3fa-174224a3fa.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "174224a3fad0875b5660bd9379a25852a1849e02",
+      "bytes": 418625,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fit/w_1920,h_2556,q_90,enc_avif,quality_auto/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-e88aaf689b-e88aaf689b.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "e88aaf689b8fece46a6bf898f9b4219b7844667f",
+      "bytes": 718828,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg/v1/fit/w_2400,h_3195,q_90,enc_avif,quality_auto/666766_a2e995f976364d2599006b4be4f0f5e8~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-979fa2c8db-979fa2c8db.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "979fa2c8db08ed56566b49c3e8e319fe0666b001",
+      "bytes": 1026242,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.webp",
+      "localPath": "/media/crawl/images/asset-270391131f-270391131f.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "270391131f7a39454cdfb3153d3084a1e44b85a2",
+      "bytes": 264,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-b2c1489f8a-b2c1489f8a.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "b2c1489f8a9df23c246defbb1f61e2bfdbc2c7c1",
+      "bytes": 690,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-f517341534-f517341534.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "f5173415348198b8edfc73f85e32a97c6b706ee4",
+      "bytes": 40826,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-27f2a4be60-27f2a4be60.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "27f2a4be600e3aac7d257017c2f95014a4bc5ace",
+      "bytes": 127588,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-6cfea9ce4f-6cfea9ce4f.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "6cfea9ce4f421f782ccac45d751f8b771713fd7f",
+      "bytes": 249625,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg/v1/fit/w_1537,h_2046,q_90,enc_avif,quality_auto/666766_ad9bb57412d24ef3a4e81e537f237926~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-78e726317f-78e726317f.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "78e726317f149745adb176a3d8dda506515663a2",
+      "bytes": 274754,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.webp",
+      "localPath": "/media/crawl/images/asset-ee61eef174-ee61eef174.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "ee61eef17472fd6ab69ce1657ea91fe842b2e8cd",
+      "bytes": 728,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-f31b377edd-f31b377edd.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "f31b377edd8f100d44e318849987d1aa5fa90cea",
+      "bytes": 1164,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-5eac9b6a69-5eac9b6a69.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "5eac9b6a69df32c97ce407355280d78406ee8cdd",
+      "bytes": 53185,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-54f8c78fb3-54f8c78fb3.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "54f8c78fb3db18c453aa0ab9ce9ae83796d4eb0d",
+      "bytes": 190391,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-28b4c8488f-28b4c8488f.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "28b4c8488f7581508fde11279bf97e00ec8daec4",
+      "bytes": 395834,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fit/w_1920,h_2556,q_90,enc_avif,quality_auto/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-4d55a94680-4d55a94680.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "4d55a946802916208a3d5b76cf7cc88cf68c06ad",
+      "bytes": 639111,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg/v1/fit/w_2349,h_3127,q_90,enc_avif,quality_auto/666766_0b18f3af1d7f40e0a5791c1db2dd947b~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-d55af41e0e-d55af41e0e.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "d55af41e0e195a82b3c74a1e5268fb24b2722435",
+      "bytes": 886833,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.webp",
+      "localPath": "/media/crawl/images/asset-71089abc05-71089abc05.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "71089abc05a08032af99d8009bac314eba7911fd",
+      "bytes": 728,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-9da805c9e2-9da805c9e2.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9da805c9e2bbdc43f7bb57ee5f74064ac5b5ad04",
+      "bytes": 1165,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fit/w_480,h_645,q_90,enc_avif,quality_auto/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-cba6872c45-cba6872c45.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "cba6872c45602a54e0623f95c1baa53f69ca65a7",
+      "bytes": 37421,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fit/w_960,h_1290,q_90,enc_avif,quality_auto/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-5d7a544a87-5d7a544a87.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "5d7a544a87e6b14b6ef7267b5124e07e4514b989",
+      "bytes": 120953,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fit/w_1440,h_1935,q_90,enc_avif,quality_auto/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-9406cd102b-9406cd102b.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9406cd102b1de0cca9c533e234676dfc97f06e38",
+      "bytes": 248563,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fit/w_1920,h_2580,q_90,enc_avif,quality_auto/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-7a674113ca-7a674113ca.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "7a674113cabb6471df81e8e2f05ceb227d4cd3ad",
+      "bytes": 423788,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg/v1/fit/w_2400,h_3225,q_90,enc_avif,quality_auto/666766_bcaf33b351a14ca8adb96277f7a464da~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-b66486a454-b66486a454.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "b66486a454348fcc228485f9a1bcb145eafed4d9",
+      "bytes": 639001,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.webp",
+      "localPath": "/media/crawl/images/asset-5682fb97fd-5682fb97fd.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "5682fb97fdcb288bd0837d78897c4052ec1bcdf9",
+      "bytes": 728,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-b8470736cd-b8470736cd.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "b8470736cd7972dcfa3c53a6ddd6dfc72e6b1960",
+      "bytes": 1165,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-e99a93d054-e99a93d054.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "e99a93d05483eaee3f9902cd7cfaa30018de4ad4",
+      "bytes": 47694,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fit/w_960,h_1280,q_90,enc_avif,quality_auto/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-62f291fc37-62f291fc37.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "62f291fc374d908a45b190f81c94a7a378724361",
+      "bytes": 156547,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fit/w_1440,h_1920,q_90,enc_avif,quality_auto/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-3439e92613-3439e92613.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "3439e926133755708ad9668f907bf95323aacf0a",
+      "bytes": 341695,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fit/w_1920,h_2560,q_90,enc_avif,quality_auto/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-fe2a39d909-fe2a39d909.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "fe2a39d9097aef2b19382e9e6506f340d966d45a",
+      "bytes": 626743,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg/v1/fit/w_2400,h_3200,q_90,enc_avif,quality_auto/666766_1d8fb60d975d440b8c33bd07dfecaa36~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-6cdac35380-6cdac35380.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "6cdac35380476ebd11c15214cdcc892deab1a8ec",
+      "bytes": 932450,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.webp",
+      "localPath": "/media/crawl/images/asset-4a5e79f80c-4a5e79f80c.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "4a5e79f80cd9c1579c02884f1b83abe883b0bf46",
+      "bytes": 726,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-00de12b003-00de12b003.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "00de12b0034cd4052831fa69de89ab2e158820fb",
+      "bytes": 1166,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-15b4960f6f-15b4960f6f.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "15b4960f6f7ebca5c00b5e68110923c1614528b3",
+      "bytes": 42551,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fit/w_960,h_1280,q_90,enc_avif,quality_auto/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-42b0f4c315-42b0f4c315.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "42b0f4c3156d1f217ff72af5853ff75eaa18af95",
+      "bytes": 144547,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fit/w_1440,h_1920,q_90,enc_avif,quality_auto/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-e35acb97b4-e35acb97b4.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "e35acb97b45b59c8c3be1262383711d73900912b",
+      "bytes": 302124,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fit/w_1920,h_2560,q_90,enc_avif,quality_auto/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-fb51b2626a-fb51b2626a.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "fb51b2626ab44e424e49ee0ee91574e77af998f3",
+      "bytes": 498840,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg/v1/fit/w_2400,h_3200,q_90,enc_avif,quality_auto/666766_c128e2fdc4014f0b96ec0039af2ed72c~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-026c29a69b-026c29a69b.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "026c29a69b0e727830749c941177e868006eb618",
+      "bytes": 725090,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.webp",
+      "localPath": "/media/crawl/images/asset-8e469309a5-8e469309a5.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "8e469309a5cd5bf218dbf20cdafbee1dce7bc049",
+      "bytes": 726,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-5d38c5e074-5d38c5e074.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "5d38c5e074f86c4a47898f6e0d55d862534410c1",
+      "bytes": 1165,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-f698d19892-f698d19892.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "f698d198926eae91ec51b6fc19cad10b00247e70",
+      "bytes": 53312,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fit/w_960,h_1280,q_90,enc_avif,quality_auto/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-15ad70aebf-15ad70aebf.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "15ad70aebfae55861188e3379591267bf89c6f6e",
+      "bytes": 180142,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fit/w_1440,h_1920,q_90,enc_avif,quality_auto/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-c3b652ea17-c3b652ea17.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "c3b652ea171ad36e9244aaf44d1ddf2d51a2edf3",
+      "bytes": 369768,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fit/w_1920,h_2560,q_90,enc_avif,quality_auto/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-744a0edc2a-744a0edc2a.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "744a0edc2a0ab59f7928f24cf6dcdfbac07d66eb",
+      "bytes": 622733,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg/v1/fit/w_2400,h_3200,q_90,enc_avif,quality_auto/666766_7f7adce79fb2449393572fb8e3dc0e05~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-32c0308eff-32c0308eff.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "32c0308eff68f14759ed4b56e811aa4d378586d6",
+      "bytes": 894055,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.webp",
+      "localPath": "/media/crawl/images/asset-70e3dbbfec-70e3dbbfec.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "70e3dbbfec366873c50fa260683ba14b8911fdb2",
+      "bytes": 264,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-09f2a54686-09f2a54686.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "09f2a54686367244ddb7f46f39af1e0f3ac5edcd",
+      "bytes": 690,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg/v1/fit/w_480,h_605,q_90,enc_avif,quality_auto/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-f7989ac985-f7989ac985.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "f7989ac985cde4419413b1adbb2fa0353d43f448",
+      "bytes": 52347,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg/v1/fit/w_960,h_1210,q_90,enc_avif,quality_auto/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-9bde25a47c-9bde25a47c.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9bde25a47cd3ceb69bc45d21fe3efd74b627d102",
+      "bytes": 156565,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg/v1/fit/w_1440,h_1815,q_90,enc_avif,quality_auto/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-b07051a649-b07051a649.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "b07051a649f8ffa6e10e6a86ca134b4cf2d66812",
+      "bytes": 301320,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg/v1/fit/w_1558,h_1963,q_90,enc_avif,quality_auto/666766_e89cb16a12e34e4186db12a652e9c7e6~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-f9d3eb3962-f9d3eb3962.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "f9d3eb3962fd91892d04c381c1599525241a3b2b",
+      "bytes": 342693,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.webp",
+      "localPath": "/media/crawl/images/asset-5de5380ac8-5de5380ac8.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "5de5380ac8b5c941ecec7c0173a0dbb566464bf5",
+      "bytes": 730,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-cc7bc7f8eb-cc7bc7f8eb.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "cc7bc7f8eb801c6d58a87dfa82d97ac64a068013",
+      "bytes": 1164,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-071d63144e-071d63144e.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "071d63144e9ad34e638ca9177532951297104534",
+      "bytes": 47597,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-9432adb91d-9432adb91d.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9432adb91da927faffd5cb919719c5c12406f3c7",
+      "bytes": 145310,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-aa0dc4bfe4-aa0dc4bfe4.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "aa0dc4bfe45d0c94e953b02386571ee995e9df3b",
+      "bytes": 291330,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fit/w_1920,h_2556,q_90,enc_avif,quality_auto/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-0743071e80-0743071e80.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "0743071e8092af57dbe4dd851928d90f80dbcf5b",
+      "bytes": 514127,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg/v1/fit/w_2400,h_3195,q_90,enc_avif,quality_auto/666766_77c27eb92d4c4ed08dc9b9bbfb66ac4d~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-3762126110-3762126110.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "3762126110db81c2be1f28471ef4b595d6c22238",
+      "bytes": 825336,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_a9111e9240fc4dca8408efda0f51d506~mv2.webp",
+      "localPath": "/media/crawl/images/asset-64a727304f-64a727304f.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "64a727304f73242b7026b95a431551416fed79a0",
+      "bytes": 730,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-80285ddbb1-80285ddbb1.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "80285ddbb1db87d3104f60c93afc567763d02e07",
+      "bytes": 1165,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-cb99b43f3c-cb99b43f3c.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "cb99b43f3c60ad48f709d21a82a5f8bdd4d614ac",
+      "bytes": 52385,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-9bcfacabf7-9bcfacabf7.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "9bcfacabf7732112ff16736d6e622da02964135b",
+      "bytes": 163149,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-a98fdf3f1f-a98fdf3f1f.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "a98fdf3f1f6dde5cf4cf47f1802106721c222e41",
+      "bytes": 326699,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fit/w_1920,h_2556,q_90,enc_avif,quality_auto/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-cda9e28d13-cda9e28d13.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "cda9e28d137f7c4aed943d6b0f1bc3304857fc51",
+      "bytes": 549385,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg/v1/fit/w_2400,h_3195,q_90,enc_avif,quality_auto/666766_a9111e9240fc4dca8408efda0f51d506~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-be1a7c8ddd-be1a7c8ddd.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "be1a7c8ddd33838243763372de653f83b5dfc582",
+      "bytes": 829399,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fill/w_1,h_1,q_90/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.webp",
+      "localPath": "/media/crawl/images/asset-d1b972e8ba-d1b972e8ba.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "d1b972e8ba97a04510647f2e9035cc5a1e4841a5",
+      "bytes": 730,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fill/w_1,h_1,q_90/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-5db6ca17b2-5db6ca17b2.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "5db6ca17b2f31219316ac4a2025666cc5b7b3018",
+      "bytes": 1165,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fit/w_480,h_639,q_90,enc_avif,quality_auto/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-644bb78ae0-644bb78ae0.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "644bb78ae062305bda07bc82027bf4d52dd675d5",
+      "bytes": 34245,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fit/w_960,h_1278,q_90,enc_avif,quality_auto/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-6964715dfe-6964715dfe.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "6964715dfe3828cb5c7b1506a37232d26df01954",
+      "bytes": 124923,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fit/w_1440,h_1917,q_90,enc_avif,quality_auto/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-3cd58e4416-3cd58e4416.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "3cd58e441617240748390480c4327139de7f62f8",
+      "bytes": 274624,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fit/w_1920,h_2556,q_90,enc_avif,quality_auto/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-58916ab5fa-58916ab5fa.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "58916ab5fa5ca1a9db3ab5fe522bb319cfcd5f8d",
+      "bytes": 463888,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg/v1/fit/w_2322,h_3091,q_90,enc_avif,quality_auto/666766_89b8a431dc694ab09d7d448c3af77ef3~mv2.jpg",
+      "localPath": "/media/crawl/images/asset-285ee6b630-285ee6b630.jpg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "285ee6b630c834c5d65c4d3c48bd674077fbaee4",
+      "bytes": 630667,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_5df653c2155b4608aa2aa77352b431e2~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_5df653c2155b4608aa2aa77352b431e2~mv2.webp",
+      "localPath": "/media/crawl/images/asset-752b5043d4-752b5043d4.webp",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "752b5043d40f4f3c71e485320a1e24c2672576af",
+      "bytes": 732,
+      "contentType": "image/webp"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_5df653c2155b4608aa2aa77352b431e2~mv2.jpeg/v1/fill/w_1,h_1,q_90/666766_5df653c2155b4608aa2aa77352b431e2~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-89e79182dd-89e79182dd.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "89e79182dddc0e15aba13e6ac682587273b92ffd",
+      "bytes": 1166,
+      "contentType": "image/jpeg"
+    },
+    {
+      "sourceUrl": "https://static.wixstatic.com/media/666766_5df653c2155b4608aa2aa77352b431e2~mv2.jpeg/v1/fit/w_480,h_648,q_90,enc_avif,quality_auto/666766_5df653c2155b4608aa2aa77352b431e2~mv2.jpeg",
+      "localPath": "/media/crawl/images/asset-b673ca337e-b673ca337e.jpeg",
+      "title": "",
+      "pageUrl": "",
+      "artist": null,
+      "hash": "b673ca337e8c8d27356917129b8ccd2fd02591f8",
+      "bytes": 36488,
+      "contentType": "image/jpeg"
+    }
+  ],
+  "videos": [],
+  "failures": {
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/d82ab79d-d848-4383-a05c-09fdd42fe9c0/v1/fill/w_2560,h_3413,al_c/d82ab79d-d848-4383-a05c-09fdd42fe9c0",
+        "reason": "Failed request 403"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/0d5e09e3-f50c-4b81-a2dc-720831bbe786/v1/fill/w_1355,h_1600,al_c/0d5e09e3-f50c-4b81-a2dc-720831bbe786",
+        "reason": "Failed request 403"
+      }
+    ],
+    "videos": []
+  }
+}
