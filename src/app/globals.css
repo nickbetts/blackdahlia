@@ -2473,165 +2473,555 @@ details > *:not(summary) {
 }
 
 
+
+
 /* ===========================================================
-   Black & White Palette Refresh
-   Overrides the warm/gold scheme with a clean monochrome system.
-   Placed last so it wins the cascade without !important.
+   Light Editorial Refresh + Bento Layout System
+   - Pure light theme: warm-white paper bg, ink black text
+   - Alternating section bands for rhythm (light / tinted / inverted)
+   - Bento-style asymmetric grids
+   - Last in the cascade — wins without !important except where
+     overriding earlier inline color forces.
    =========================================================== */
 
 :root {
-  --bg-950: #050505;
-  --bg-900: #0c0c0c;
-  --bg-850: #141414;
-  --surface-900: #0e0e0e;
-  --surface-800: #181818;
-  --text-100: #ffffff;
-  --text-200: #d9d9d9;
-  --text-300: #9a9a9a;
-  --accent-gold: #ffffff;
-  --accent-red: #ffffff;
-  --border-soft: rgba(255, 255, 255, 0.12);
-  --shadow-deep: 0 30px 80px rgba(0, 0, 0, 0.6);
+  --bg-950: #ffffff;
+  --bg-900: #faf8f3;
+  --bg-850: #f1ede4;
+  --surface-900: #ffffff;
+  --surface-800: #faf8f3;
+  --text-100: #0a0a0a;
+  --text-200: #2a2a2a;
+  --text-300: #6b6b6b;
+  --accent-gold: #0a0a0a;
+  --accent-red: #0a0a0a;
+  --border-soft: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.22);
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --paper-tint: #f4f1ea;
+  --paper-deep: #ebe7dc;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05), 0 18px 48px -12px rgba(0, 0, 0, 0.18);
+  --shadow-deep: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
 }
 
 body {
-  color: var(--text-100);
-  background: radial-gradient(1100px 640px at 8% -10%, #1a1a1a 0%, transparent 64%),
-    radial-gradient(900px 580px at 92% 0%, #161616 0%, transparent 66%),
-    linear-gradient(165deg, #0a0a0a 0%, #000000 70%);
+  background:
+    radial-gradient(1200px 700px at 8% -10%, #f4f0e6 0%, transparent 60%),
+    radial-gradient(900px 600px at 92% 0%, #f6f3eb 0%, transparent 64%),
+    linear-gradient(180deg, #ffffff 0%, #fbf9f3 100%);
 }
 
-.ambientMesh {
-  background: radial-gradient(circle at 82% 20%, rgba(255, 255, 255, 0.05), transparent 38%),
-    radial-gradient(circle at 15% 74%, rgba(255, 255, 255, 0.035), transparent 34%);
-}
+/* Kill the dark ambient mesh, soften grain so paper reads clean */
+.ambientMesh { display: none; }
+.ambientGrain { opacity: 0.035; mix-blend-mode: multiply; }
 
-/* Buttons — white-on-black, with inverse hover */
+/* ---------- Header ---------- */
+.siteHeader {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px) saturate(1.05);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--ink);
+}
+.siteHeader a { color: var(--ink); }
+.siteHeader > div[aria-hidden],
+.siteHeader::after {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.18), transparent);
+}
+.brandSymbol {
+  background: var(--ink);
+  color: #ffffff;
+}
+.brandSymbol::before { background: transparent; }
+
+/* ---------- Buttons ---------- */
 .headerCta,
 .primaryButton {
-  background: #ffffff;
+  background: var(--ink);
   background-image: none;
-  color: #000000;
-  border: 1px solid #ffffff;
+  color: #ffffff;
+  border: 1px solid var(--ink);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 12px 28px -12px rgba(0,0,0,0.4);
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease, box-shadow 220ms ease;
 }
-
+.headerCta::before,
+.primaryButton::before { display: none; }
 .headerCta:hover,
 .primaryButton:hover {
-  background: #000000;
-  color: #ffffff;
-  border-color: #ffffff;
+  background: #ffffff;
+  color: var(--ink);
+  border-color: var(--ink);
+  transform: translateY(-1px);
 }
 
 .ghostButton {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-100);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.ghostButton:hover {
+  background: var(--ink);
+  color: #ffffff;
 }
 
-.ghostButton:hover {
-  background: rgba(255, 255, 255, 0.1);
+.inlineAction {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  font-weight: 600;
+}
+.inlineAction:hover { opacity: 0.7; }
+
+/* ---------- Typography accents on light ---------- */
+.heroDisplay,
+.displayMix,
+.sectionTitle,
+h1, h2, h3, h4 { color: var(--ink); }
+
+.heroDisplay em,
+.displayMix em,
+.sectionTitle em,
+h1 em, h2 em, h3 em { color: var(--ink); }
+
+.lede,
+.sectionIntro,
+p { color: var(--text-200); }
+
+.eyebrow,
+.eyebrowTypewriter {
+  color: var(--ink);
+}
+.eyebrowNumber {
+  color: var(--ink);
+  border-right-color: rgba(0, 0, 0, 0.22);
+}
+
+/* ---------- Hero ---------- */
+.homeHeroEditorial {
+  border-radius: var(--radius-card);
+}
+
+.heroCopy,
+.heroCopyEditorial {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+}
+.heroMedia {
+  background: var(--paper-tint);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+}
+.heroVerticalTag {
+  color: rgba(0, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.4rem 0.5rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Section rhythm via full-bleed bands ---------- */
+.pageStack { position: relative; }
+.pageStack > section { position: relative; }
+
+/* Full-bleed background hook */
+.pageStack > section.bandFill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  z-index: -1;
+}
+
+/* Tinted paper band (warm off-white) */
+.pageStack > section.sectionSpacing:nth-of-type(4)::before,
+.pageStack > section.sectionSpacing:nth-of-type(8)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  background: var(--paper-tint);
+  z-index: -1;
+}
+
+/* ---------- Marquee — invert to ink band ---------- */
+.marqueeBand {
+  background: var(--ink);
+  color: #ffffff;
+  border-top: none;
+  border-bottom: none;
+  position: relative;
+}
+.marqueeBand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  background: var(--ink);
+  z-index: -1;
+}
+.marqueeItem { color: #ffffff; }
+.marqueeDot { color: rgba(255, 255, 255, 0.5); }
+
+/* ---------- Cards (default light) ---------- */
+.artistFeatureCard,
+.artistAtlasCard,
+.artistPreviewCard,
+.artistIndexCard,
+.faqPreviewCard,
+.trustItem,
+.trustPanel,
+.processPanel,
+.portfolioLeadTile,
+.portfolioTile,
+.signaturePill,
+.pageHeroCompact,
+.bookingCard,
+.bookingGuidance,
+.bookingSummary {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  color: var(--ink);
+  box-shadow: var(--shadow-soft);
+}
+
+.artistFeatureCard:hover,
+.artistAtlasCard:hover,
+.artistPreviewCard:hover,
+.artistIndexCard:hover,
+.faqPreviewCard:hover {
+  border-color: var(--ink);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+.signaturePill {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  box-shadow: none;
+}
+.signaturePill::before { display: none; }
+
+/* ---------- Bento: artist editorial grid ---------- */
+.artistEditorialGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+  grid-auto-flow: dense;
+}
+.artistEditorialGrid > * { grid-column: span 6; }
+@media (min-width: 720px) {
+  .artistEditorialGrid > *:nth-child(3n+1) { grid-column: span 3; }
+  .artistEditorialGrid > *:nth-child(3n+2) { grid-column: span 3; }
+  .artistEditorialGrid > *:nth-child(3n+3) { grid-column: span 6; }
+}
+@media (min-width: 1080px) {
+  .artistEditorialGrid > *:nth-child(3n+1) { grid-column: span 3; }
+  .artistEditorialGrid > *:nth-child(3n+2) { grid-column: span 2; }
+  .artistEditorialGrid > *:nth-child(3n+3) { grid-column: span 1; min-height: 100%; }
+  /* Tall, hero-style artist card */
+  .artistEditorialGrid > *:nth-child(3n+1) { min-height: 26rem; }
+}
+
+.artistFeatureCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  position: relative;
+}
+.artistFeatureCard::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--ink);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.artistFeatureCard:hover::after { opacity: 1; }
+
+/* ---------- Bento: trust + process band ---------- */
+.trustProcessGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 880px) {
+  .trustProcessGrid {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: stretch;
+  }
+}
+.trustPanel, .processPanel {
+  padding: 2rem 2rem 2.25rem;
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.trustGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.trustItem {
+  padding: 1.1rem 1.15rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.trustItem h3, .trustItem .trustTitle {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Process panel inverted for contrast */
+.processPanel {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+.processPanel h2,
+.processPanel h3,
+.processPanel .eyebrow,
+.processPanel .eyebrowNumber,
+.processPanel p,
+.processPanel li { color: #ffffff; }
+.processPanel .eyebrowNumber { border-right-color: rgba(255,255,255,0.35); }
+.processPanel .primaryButton {
+  background: #ffffff;
+  color: var(--ink);
   border-color: #ffffff;
 }
-
-/* Cards & panels — strip warm tints, use neutral grayscale */
-.heroCopy {
-  background: linear-gradient(155deg, rgba(28, 28, 28, 0.9), rgba(10, 10, 10, 0.96));
+.processPanel .primaryButton:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
 }
+.processList li { border-color: rgba(255,255,255,0.18); }
+.processList li::before { color: rgba(255,255,255,0.6); }
 
-.heroCopyEditorial {
-  background: linear-gradient(155deg, rgba(22, 22, 22, 0.9), rgba(8, 8, 8, 0.96));
-}
-
-.artistFeatureCard,
-.artistAtlasCard {
-  background: linear-gradient(160deg, rgba(22, 22, 22, 0.9), rgba(10, 10, 10, 0.96));
-}
-
+/* ---------- Portfolio story band — inverted feature ---------- */
 .portfolioStoryBand {
-  background: linear-gradient(155deg, rgba(18, 18, 18, 0.85), rgba(8, 8, 8, 0.94));
+  position: relative;
+  border-radius: var(--radius-card);
+  background: var(--ink);
+  color: #ffffff;
+  padding: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  border: 1px solid var(--ink);
+}
+@media (min-width: 980px) {
+  .portfolioStoryBand {
+    grid-template-columns: minmax(280px, 360px) 1fr;
+    align-items: start;
+    gap: 2.5rem;
+  }
+}
+.portfolioStoryBand .portfolioStoryPanel { color: #ffffff; }
+.portfolioStoryBand h2,
+.portfolioStoryBand .sectionTitle,
+.portfolioStoryBand .eyebrow,
+.portfolioStoryBand .eyebrowNumber,
+.portfolioStoryBand p { color: #ffffff; }
+.portfolioStoryBand .eyebrowNumber { border-right-color: rgba(255,255,255,0.35); }
+.portfolioStoryBand .inlineAction {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+.portfolioStoryBand .portfolioLeadTile,
+.portfolioStoryBand .portfolioTile {
+  background: #161616;
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
 }
 
-.artistPreviewCard,
-.artistIndexCard {
-  background: linear-gradient(160deg, rgba(24, 24, 24, 0.9), rgba(12, 12, 12, 0.96));
+.portfolioGalleryCluster {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 720px) {
+  .portfolioGalleryCluster {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1rem;
+  }
+}
+.portfolioLeadTile {
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.portfolioTileGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+.portfolioTile {
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
+/* ---------- FAQ bento ---------- */
 .faqPreviewSection {
-  background: linear-gradient(160deg, rgba(20, 20, 20, 0.85), rgba(10, 10, 10, 0.94));
+  background: transparent;
+  border: none;
+}
+.faqPreviewGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 720px) {
+  .faqPreviewGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1080px) {
+  .faqPreviewGrid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
+  }
+  .faqPreviewGrid > *:nth-child(4n+1) { grid-column: span 2; }
+}
+.faqPreviewCard {
+  padding: 1.5rem 1.5rem 1.6rem;
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  transition: transform 220ms ease, border-color 200ms ease, box-shadow 220ms ease;
+}
+.faqPreviewCard::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 1.5rem; right: 1.5rem;
+  height: 2px;
+  background: var(--ink);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.faqPreviewCard:hover::before { opacity: 1; }
+
+/* ---------- Signature strip (style chips) ---------- */
+.signatureStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+}
+.signaturePill {
+  padding: 0.5rem 0.95rem;
+  font-family: var(--font-accent), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
+/* ---------- CTA band — inverted ink panel ---------- */
+.ctaBand {
+  position: relative;
+}
 .ctaBandInner {
-  background: linear-gradient(130deg, #ffffff 0%, #e5e5e5 100%);
-  border: 1px solid #ffffff;
-  color: #000000;
+  background: var(--ink);
+  background-image: none;
+  color: #ffffff;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-card);
+  padding: clamp(2.25rem, 5vw, 3.5rem);
+  box-shadow: var(--shadow-deep);
 }
-
 .ctaBandInner h2,
 .ctaBandInner h2 em,
 .ctaBandInner p,
-.ctaBandInner .eyebrow {
-  color: #000000 !important;
+.ctaBandInner .eyebrow,
+.ctaBandInner .eyebrowTypewriter {
+  color: #ffffff !important;
 }
-
 .ctaBandInner .primaryButton {
-  background: #000000;
-  color: #ffffff;
-  border-color: #000000;
-}
-
-.ctaBandInner .primaryButton:hover {
   background: #ffffff;
-  color: #000000;
-  border-color: #000000;
+  color: var(--ink);
+  border-color: #ffffff;
 }
-
+.ctaBandInner .primaryButton:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
 .ctaBandInner .ghostButton {
   background: transparent;
-  color: #000000;
-  border-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+.ctaBandInner .ghostButton:hover {
+  background: #ffffff;
+  color: var(--ink);
 }
 
-.ctaBandInner .ghostButton:hover {
-  background: #000000;
+/* ---------- Page hero (subpages) ---------- */
+.pageHeroCompact {
+  background: linear-gradient(180deg, #ffffff 0%, var(--paper-tint) 100%);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  color: var(--ink);
+}
+
+/* ---------- Section header w/ action ---------- */
+.sectionHeaderWithAction {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* ---------- Footer ---------- */
+footer, .siteFooter {
+  background: var(--ink);
   color: #ffffff;
 }
+footer a, .siteFooter a { color: #ffffff; }
+footer p, .siteFooter p { color: rgba(255,255,255,0.7); }
 
-.pageHeroCompact {
-  background: linear-gradient(160deg, rgba(20, 20, 20, 0.9), rgba(8, 8, 8, 0.95));
+/* ---------- Booking form on light ---------- */
+input, textarea, select {
+  background: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
 }
-
-.siteHeader {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.65) 100%);
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
 }
+label { color: var(--ink); }
 
-.brandSymbol {
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12), transparent 70%);
-}
-
-/* Signature pill gold halo → white halo */
-.signaturePill::before {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent 55%);
-}
-
-/* Hairline header underline */
-.siteHeader > div[aria-hidden] ,
-.siteHeader::after {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-}
-
-/* Tone down grain so it doesn't muddy the monochrome */
-.ambientGrain {
-  opacity: 0.05;
-}
-
-/* Eyebrow number divider in white */
-.eyebrowNumber {
-  border-right-color: rgba(255, 255, 255, 0.35);
-}
-
-/* Marquee separator hairlines */
-.marqueeBand {
-  border-top-color: rgba(255, 255, 255, 0.18);
-  border-bottom-color: rgba(255, 255, 255, 0.18);
-}
-
+/* ---------- Misc cleanups ---------- */
+hr { border-color: var(--border-soft); }
+::selection { background: var(--ink); color: #ffffff; }
