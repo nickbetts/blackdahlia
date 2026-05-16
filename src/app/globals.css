@@ -2530,7 +2530,7 @@ body {
   border-bottom: 1px solid var(--border-soft);
   color: var(--ink);
 }
-.siteHeader a { color: var(--ink); }
+.siteHeader a:not(.headerCta) { color: var(--ink); }
 .siteHeader > div[aria-hidden],
 .siteHeader::after {
   background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.18), transparent);
@@ -3516,6 +3516,15 @@ input[type="email"],
 input[type="tel"],
 input[type="date"],
 textarea {
+  background: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 8px;
+  color: var(--ink) !important;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.65rem 0.85rem;
+  width: 100%;
+  box-sizing: border-box;
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
@@ -3526,6 +3535,13 @@ textarea:focus {
   outline: none;
   border-color: var(--ink) !important;
   box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.08);
+}
+
+.bookingFormField input::placeholder,
+.bookingFormField textarea::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: rgba(10, 10, 10, 0.35);
 }
 
 /* ---------- FAQ accordion transition ---------- */
@@ -3681,3 +3697,19 @@ details > *:not(summary) {
 }
 .artistDetailSidebar a { color: var(--text-200); }
 .artistDetailSidebar .artistRole { color: var(--text-200); }
+
+/* ---------- Fix: Booking form — override dark-theme input styling ---------- */
+.bookingForm input,
+.bookingForm select,
+.bookingForm textarea {
+  background: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--ink) !important;
+}
+
+.bookingForm input:focus,
+.bookingForm select:focus,
+.bookingForm textarea:focus {
+  border-color: var(--ink) !important;
+  box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.08) !important;
+}
