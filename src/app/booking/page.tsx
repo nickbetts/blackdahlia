@@ -13,21 +13,35 @@ export default function BookingPage() {
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Booking Form</p>
-          <h1>Start your tattoo brief.</h1>
+          <p className="eyebrow">Consultation Booking</p>
+          <h1>Build your tattoo brief in four steps.</h1>
           <p className="lede">
-            Share as much detail as possible so the team can quote accurately and match you with the
-            right artist.
+            This flow is designed to match you with the right artist quickly, quote accurately, and
+            keep communication clean from the first message.
           </p>
         </Reveal>
       </section>
 
-      <section className="container sectionSpacing">
-        <Reveal className="bookingCard">
-          <h2>Request An Appointment</h2>
+      <section className="container sectionSpacing bookingIntroGrid">
+        <Reveal className="bookingGuidance" delay={0.05}>
+          <h2>Before you submit</h2>
           <p>
-            Include style, references, placement, and any timeline constraints. The static form opens
-            your email app with all details prefilled.
+            Include references, placement, scale, and style intent. Detailed briefs move faster and
+            reduce revision rounds.
+          </p>
+          <ol className="bookingChecklist">
+            <li>Describe the concept and mood, not just the object.</li>
+            <li>Add size and placement so we can estimate timing correctly.</li>
+            <li>Share links to references or inspirations where possible.</li>
+            <li>Tell us if this is a cover-up or rework from existing ink.</li>
+          </ol>
+        </Reveal>
+
+        <Reveal className="bookingCard bookingCardExpanded" delay={0.1}>
+          <h2>Request a consultation</h2>
+          <p>
+            The form is step-based and ends in a prefilled email draft so your details are delivered
+            in one structured message.
           </p>
           <BookingForm />
         </Reveal>

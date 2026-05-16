@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, Clock3, MapPin, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Award, CheckCircle2, Clock3, MapPin, ShieldCheck, Sparkles, Star } from "lucide-react";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { Reveal } from "@/components/reveal";
-import { artists, faqSections, homeIntro, services, studioInfo } from "@/content/studio";
+import { artists, faqSections, homeIntro, studioInfo } from "@/content/studio";
 import { getLeadImage, heroImages, studioGallery } from "@/lib/media";
 
 export default function Home() {
@@ -11,12 +11,40 @@ export default function Home() {
     alt: image.title || "Tattoo portfolio image",
   }));
 
+  const signatureStyles = Array.from(new Set(artists.flatMap((artist) => artist.specialities))).slice(0, 9);
+  const portfolioLead = studioGallery[0] ?? null;
+  const portfolioTiles = studioGallery.slice(1, 7);
+
+  const trustPoints = [
+    {
+      icon: ShieldCheck,
+      title: "Private, appointment-only room",
+      body: "Sessions are paced deliberately to protect comfort, focus, and design quality.",
+    },
+    {
+      icon: Award,
+      title: "Experienced resident artists",
+      body: "Each artist works in a distinct visual lane and handles direct consultation with clients.",
+    },
+    {
+      icon: CheckCircle2,
+      title: "Clear process, no guesswork",
+      body: "From concept to aftercare, expectations are laid out before needles ever touch skin.",
+    },
+  ];
+
+  const processSteps = [
+    "Share concept, placement, and references through the booking form.",
+    "Get matched to the right artist with quote and timeline guidance.",
+    "Lock your date with a deposit and prepare using studio guidance.",
+  ];
+
   const faqPreview = faqSections.flatMap((section) => section.items).slice(0, 4);
 
   return (
     <div className="pageStack">
-      <section className="container heroSection">
-        <Reveal className="heroCopy" delay={0.1}>
+      <section className="container homeHeroEditorial">
+        <Reveal className="heroCopy heroCopyEditorial" delay={0.1}>
           <p className="eyebrow">Littleport, Cambridgeshire</p>
           <h1>{homeIntro.headline}</h1>
           <p className="lede">{homeIntro.subhead}</p>
@@ -47,13 +75,14 @@ export default function Home() {
 
       <section className="container sectionSpacing">
         <Reveal delay={0.05}>
-          <h2 className="sectionTitle">What The Studio Delivers</h2>
+          <p className="eyebrow">Signature Styles</p>
+          <h2 className="sectionTitle">Crafted across realism, blackwork, and illustrative lineages.</h2>
         </Reveal>
-        <div className="serviceGrid">
-          {services.map((service, index) => (
-            <Reveal key={service} delay={0.08 + index * 0.04} className="serviceCard">
-              <Sparkles size={18} />
-              <p>{service}</p>
+        <div className="signatureStrip">
+          {signatureStyles.map((style, index) => (
+            <Reveal key={style} delay={0.08 + index * 0.04} className="signaturePill">
+              <Sparkles size={15} />
+              <span>{style}</span>
             </Reveal>
           ))}
         </div>
@@ -62,18 +91,22 @@ export default function Home() {
       <section className="container sectionSpacing">
         <Reveal>
           <div className="sectionHeaderWithAction">
-            <h2 className="sectionTitle">Meet The Artists</h2>
+            <h2 className="sectionTitle">Choose your artist by style, not by chance.</h2>
             <Link href="/artists" className="inlineAction">
-              View Full Portfolios <ArrowRight size={16} />
+              View artist atlas <ArrowRight size={16} />
             </Link>
           </div>
         </Reveal>
 
-        <div className="artistPreviewGrid">
+        <div className="artistEditorialGrid">
           {artists.map((artist, index) => {
             const image = getLeadImage(artist.slug);
             return (
-              <Reveal key={artist.slug} delay={0.1 + index * 0.08} className="artistPreviewCard">
+              <Reveal
+                key={artist.slug}
+                delay={0.1 + index * 0.08}
+                className={`artistFeatureCard${index === 0 ? " primary" : ""}`}
+              >
                 {image ? <img src={image.localPath} alt={image.title || artist.name} loading="lazy" /> : null}
                 <div>
                   <p className="artistRole">{artist.role}</p>
@@ -84,7 +117,9 @@ export default function Home() {
                       <span key={tag}>{tag}</span>
                     ))}
                   </div>
-                  <Link href={`/artists/${artist.slug}`}>Explore {artist.name}&apos;s work</Link>
+                  <Link href={`/artists/${artist.slug}`} className="inlineAction">
+                    Explore {artist.name}&apos;s work <ArrowRight size={15} />
+                  </Link>
                 </div>
               </Reveal>
             );
@@ -92,25 +127,66 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container sectionSpacing">
-        <Reveal>
-          <h2 className="sectionTitle">Recent Work Snapshot</h2>
+      <section className="container sectionSpacing portfolioStoryBand">
+        <Reveal className="portfolioStoryPanel">
+          <p className="eyebrow">Curated Work</p>
+          <h2 className="sectionTitle">A tighter edit of recent pieces from the studio floor.</h2>
           <p className="sectionIntro">
-            A fast look at the style range across the studio, from heavy blackwork to intricate
-            realism and geometric detail.
+            Instead of a noisy feed, this is a measured snapshot of line quality, black saturation,
+            texture, and healed composition across artists.
           </p>
+          <Link href="/artists" className="inlineAction">
+            Browse full portfolios <ArrowRight size={16} />
+          </Link>
         </Reveal>
 
-        <div className="galleryGrid">
-          {studioGallery.slice(0, 15).map((image, index) => (
-            <Reveal key={image.hash} delay={0.04 * (index % 5)} className="galleryCard">
-              <img src={image.localPath} alt={image.title || "Tattoo portfolio"} loading="lazy" />
-              <div>
-                <p>{image.title || "Portfolio Piece"}</p>
-                <small>{image.artist ? image.artist : "Studio"}</small>
-              </div>
+        <div className="portfolioGalleryCluster">
+          {portfolioLead ? (
+            <Reveal className="portfolioLeadTile" delay={0.06}>
+              <img src={portfolioLead.localPath} alt={portfolioLead.title || "Lead portfolio piece"} loading="lazy" />
             </Reveal>
-          ))}
+          ) : null}
+
+          <div className="portfolioTileGrid">
+            {portfolioTiles.map((image, index) => (
+              <Reveal key={image.hash} delay={0.08 + index * 0.04} className="portfolioTile">
+                <img src={image.localPath} alt={image.title || "Tattoo portfolio"} loading="lazy" />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container sectionSpacing">
+        <div className="trustProcessGrid">
+          <Reveal className="trustPanel" delay={0.03}>
+            <p className="eyebrow">Studio Standard</p>
+            <h2 className="sectionTitle">Why people trust the room.</h2>
+            <div className="trustGrid">
+              {trustPoints.map((point) => (
+                <article key={point.title} className="trustItem">
+                  <point.icon size={18} />
+                  <div>
+                    <h3>{point.title}</h3>
+                    <p>{point.body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal className="processPanel" delay={0.12}>
+            <p className="eyebrow">Consultation Flow</p>
+            <h2>How booking runs here</h2>
+            <ol className="processList">
+              {processSteps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+            <Link href="/booking" className="primaryButton">
+              Start consultation brief
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -139,19 +215,19 @@ export default function Home() {
       <section className="container ctaBand">
         <Reveal className="ctaBandInner">
           <div>
-            <p className="eyebrow">Ready when you are</p>
-            <h2>Bring your idea in and build it properly.</h2>
+            <p className="eyebrow">Private consultation</p>
+            <h2>Bring the concept, we&apos;ll shape the final tattoo with you.</h2>
             <p>
-              Fill in the booking form with references, size, placement, and style direction.
-              The team will come back with next steps.
+              Fill in the guided booking brief with references, style direction, and placement.
+              You&apos;ll get matched to the right artist with clear next steps.
             </p>
           </div>
           <div className="ctaBandLinks">
             <Link href="/booking" className="primaryButton">
-              Start Booking
+              Start consultation
             </Link>
             <a href={studioInfo.mapUrl} target="_blank" rel="noreferrer" className="ghostButton">
-              Find The Studio
+              Visit the studio
             </a>
           </div>
         </Reveal>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, CircleAlert } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { policySections } from "@/content/studio";
 
@@ -11,12 +11,18 @@ export const metadata: Metadata = {
 };
 
 export default function PoliciesPage() {
+  const keyTerms = [
+    "Deposits are non-refundable and reserve artist time.",
+    "One transfer is usually possible with appropriate notice.",
+    "Late cancellations and no-shows may lose deposit and slot priority.",
+  ];
+
   return (
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Studio Policies</p>
-          <h1>Clear terms so your appointment runs smoothly.</h1>
+          <p className="eyebrow">Policy Framework</p>
+          <h1>Clear terms that protect client care and artist time.</h1>
           <p className="lede">
             Please read these before booking. They are designed to protect artists, clients, and
             session quality.
@@ -24,13 +30,30 @@ export default function PoliciesPage() {
         </Reveal>
       </section>
 
-      <section className="container sectionSpacing policyGrid">
+      <section className="container sectionSpacing">
+        <Reveal className="policyKeyTerms">
+          <h2>Key terms at a glance</h2>
+          <div>
+            {keyTerms.map((term) => (
+              <p key={term}>
+                <CircleAlert size={15} />
+                <span>{term}</span>
+              </p>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="container sectionSpacing policyEditorialStack">
         {policySections.map((section, index) => (
-          <Reveal key={section.title} delay={0.06 + index * 0.05} className="policyCard">
+          <Reveal key={section.title} delay={0.06 + index * 0.05} className="policyCard policyCardEditorial">
             <h2>{section.title}</h2>
             <ul>
               {section.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
+                <li key={bullet}>
+                  <CheckCircle2 size={15} />
+                  <span>{bullet}</span>
+                </li>
               ))}
             </ul>
           </Reveal>
@@ -46,6 +69,9 @@ export default function PoliciesPage() {
           </p>
           <Link href="/contact" className="inlineAction">
             Ask a policy question <ArrowRight size={16} />
+          </Link>
+          <Link href="/booking" className="primaryButton">
+            Continue to booking
           </Link>
         </Reveal>
       </section>
