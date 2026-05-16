@@ -13,35 +13,35 @@ export default function BookingPage() {
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Consultation Booking</p>
-          <h1>Build your tattoo brief in four steps.</h1>
+          <p className="eyebrow eyebrowTypewriter">Booking</p>
+          <h1 className="heroDisplay">Send your idea. <em>We&apos;ll take it from there.</em></h1>
           <p className="lede">
-            This flow is designed to match you with the right artist quickly, quote accurately, and
-            keep communication clean from the first message.
+            Four short steps. The form ends in a prefilled email so everything lands in one
+            clean message — no back-and-forth, no missing details.
           </p>
         </Reveal>
       </section>
 
       <section className="container sectionSpacing bookingIntroGrid">
         <Reveal className="bookingGuidance" delay={0.05}>
-          <h2>Before you submit</h2>
+          <h2 className="displayMix">Before you <em>hit send</em></h2>
           <p>
-            Include references, placement, scale, and style intent. Detailed briefs move faster and
-            reduce revision rounds.
+            The more we know, the faster we can match you with the right artist and quote the
+            piece properly. A couple of minutes here saves a week of emails.
           </p>
           <ol className="bookingChecklist">
-            <li>Describe the concept and mood, not just the object.</li>
-            <li>Add size and placement so we can estimate timing correctly.</li>
-            <li>Share links to references or inspirations where possible.</li>
-            <li>Tell us if this is a cover-up or rework from existing ink.</li>
+            <li>Describe the idea — mood, story, references, not just the object.</li>
+            <li>Tell us where it goes and roughly how big you want it.</li>
+            <li>Drop any Instagram, Pinterest or image links you’re drawing from.</li>
+            <li>Flag cover-ups, existing ink, or anything tricky about the placement.</li>
           </ol>
         </Reveal>
 
         <Reveal className="bookingCard bookingCardExpanded" delay={0.1}>
-          <h2>Request a consultation</h2>
+          <h2 className="displayMix">The <em>booking form</em></h2>
           <p>
-            The form is step-based and ends in a prefilled email draft so your details are delivered
-            in one structured message.
+            Four steps. We open your mail app at the end with the brief already written — you
+            just hit send.
           </p>
           <BookingForm />
         </Reveal>

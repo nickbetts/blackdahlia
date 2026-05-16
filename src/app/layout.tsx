@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Cinzel, Manrope } from "next/font/google";
+import { Fraunces, Manrope, Special_Elite } from "next/font/google";
 import { studioInfo } from "@/content/studio";
 import { SiteNav } from "@/components/site-nav";
 import "./globals.css";
 
-const headingFont = Cinzel({
+const headingFont = Fraunces({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"],
+  display: "swap",
 });
 
 const bodyFont = Manrope({
@@ -17,13 +19,19 @@ const bodyFont = Manrope({
   weight: ["400", "500", "600", "700"],
 });
 
+const accentFont = Special_Elite({
+  variable: "--font-accent",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 const navLinks = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Studio" },
   { href: "/about", label: "About" },
   { href: "/artists", label: "Artists" },
   { href: "/faq", label: "FAQ" },
   { href: "/policies", label: "Policies" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Visit" },
   { href: "/booking", label: "Booking" },
 ];
 
@@ -59,7 +67,7 @@ export default function RootLayout({
   const currentYear = new Date().getFullYear();
 
   return (
-    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable}`}>
+    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} ${accentFont.variable}`}>
       <body>
         <a className="skipLink" href="#main-content">
           Skip to content
@@ -67,6 +75,7 @@ export default function RootLayout({
 
         <div className="ambientGradient" aria-hidden="true" />
         <div className="ambientMesh" aria-hidden="true" />
+        <div className="ambientGrain" aria-hidden="true" />
 
         <header className="siteHeader">
           <div className="container headerInner">
@@ -83,7 +92,7 @@ export default function RootLayout({
             <SiteNav items={navLinks} />
 
             <Link className="headerCta" href="/booking">
-              <span>Book consultation</span>
+              <span>Book a session</span>
             </Link>
           </div>
         </header>
@@ -98,8 +107,8 @@ export default function RootLayout({
               <span className="brandSymbol" aria-hidden="true">BD</span>
               <h2>{studioInfo.name}</h2>
               <p>
-                Appointment-only private tattoo studio in {studioInfo.city}. Custom design,
-                collaborative sessions, and specialist artists.
+                Private tattoo studio in {studioInfo.city}. Three artists, custom work only,
+                inked by appointment since {studioInfo.founded}.
               </p>
             </section>
 
@@ -131,7 +140,7 @@ export default function RootLayout({
             <p>&copy; {currentYear} {studioInfo.name}. All rights reserved.</p>
             <div className="footerBottomLinks">
               <Link href="/policies">Studio policies</Link>
-              <Link href="/booking">Book a consultation</Link>
+              <Link href="/booking">Book a session</Link>
             </div>
           </div>
         </footer>

@@ -14,29 +14,30 @@ export default function Home() {
   const signatureStyles = Array.from(new Set(artists.flatMap((artist) => artist.specialities))).slice(0, 9);
   const portfolioLead = studioGallery[0] ?? null;
   const portfolioTiles = studioGallery.slice(1, 7);
+  const marqueeItems = [...homeIntro.marquee, ...homeIntro.marquee];
 
   const trustPoints = [
     {
       icon: ShieldCheck,
-      title: "Private, appointment-only room",
-      body: "Sessions are paced deliberately to protect comfort, focus, and design quality.",
+      title: "Private room, no walk-ins",
+      body: "One client at a time. No queue, no rush, no flash wall — just your session.",
     },
     {
       icon: Award,
-      title: "Experienced resident artists",
-      body: "Each artist works in a distinct visual lane and handles direct consultation with clients.",
+      title: "Three artists, three hands",
+      body: "Pick the artist whose line work matches your idea, not whoever happens to be free.",
     },
     {
       icon: CheckCircle2,
-      title: "Clear process, no guesswork",
-      body: "From concept to aftercare, expectations are laid out before needles ever touch skin.",
+      title: "Straight answers, no surprises",
+      body: "Quote, timing, deposit and aftercare are agreed before the machine ever turns on.",
     },
   ];
 
   const processSteps = [
-    "Share concept, placement, and references through the booking form.",
-    "Get matched to the right artist with quote and timeline guidance.",
-    "Lock your date with a deposit and prepare using studio guidance.",
+    "Send the idea — placement, size, references, anything that matters.",
+    "We match you to the right artist and come back with a quote and a date.",
+    "Deposit holds it. We draw, you sit, we send you home with aftercare that works.",
   ];
 
   const faqPreview = faqSections.flatMap((section) => section.items).slice(0, 4);
@@ -45,8 +46,12 @@ export default function Home() {
     <div className="pageStack">
       <section className="container homeHeroEditorial">
         <Reveal className="heroCopy heroCopyEditorial" delay={0.1}>
-          <p className="eyebrow">Littleport, Cambridgeshire</p>
-          <h1>{homeIntro.headline}</h1>
+          <p className="eyebrow eyebrowTypewriter">{homeIntro.eyebrow}</p>
+          <h1 className="heroDisplay">
+            Custom tattoos. <em>Hand drawn.</em>
+            <br />
+            Appointment <em>only.</em>
+          </h1>
           <p className="lede">{homeIntro.subhead}</p>
 
           <div className="heroActions">
@@ -60,23 +65,41 @@ export default function Home() {
 
           <div className="heroMeta">
             <span>
-              <Clock3 size={16} /> Appointment only
+              <Clock3 size={16} /> Tue – Sat &middot; by appointment
             </span>
             <span>
-              <MapPin size={16} /> 17 Granby Street, CB6 1NE
+              <MapPin size={16} /> 17 Granby Street, Littleport &middot; CB6 1NE
             </span>
           </div>
         </Reveal>
 
         <Reveal className="heroMedia" delay={0.25}>
+          <span className="heroVerticalTag" aria-hidden="true">
+            Est. {studioInfo.founded} &middot; The Black Dahlia
+          </span>
           <HeroCarousel slides={slides} />
         </Reveal>
       </section>
 
+      <section className="marqueeBand" aria-hidden="true">
+        <div className="marqueeTrack">
+          {marqueeItems.map((item, index) => (
+            <span key={`${item}-${index}`} className="marqueeItem">
+              <span>{item}</span>
+              <span className="marqueeDot">✦</span>
+            </span>
+          ))}
+        </div>
+      </section>
+
       <section className="container sectionSpacing">
         <Reveal delay={0.05}>
-          <p className="eyebrow">Signature Styles</p>
-          <h2 className="sectionTitle">Crafted across realism, blackwork, and illustrative lineages.</h2>
+          <p className="eyebrow">
+            <span className="eyebrowNumber">No. 01</span> What we do
+          </p>
+          <h2 className="sectionTitle displayMix">
+            Built across <em>blackwork</em>, realism, traditional &amp; illustrative.
+          </h2>
         </Reveal>
         <div className="signatureStrip">
           {signatureStyles.map((style, index) => (
@@ -91,9 +114,16 @@ export default function Home() {
       <section className="container sectionSpacing">
         <Reveal>
           <div className="sectionHeaderWithAction">
-            <h2 className="sectionTitle">Choose your artist by style, not by chance.</h2>
+            <div>
+              <p className="eyebrow">
+                <span className="eyebrowNumber">No. 02</span> The artists
+              </p>
+              <h2 className="sectionTitle displayMix">
+                Three artists. <em>Three distinct hands.</em>
+              </h2>
+            </div>
             <Link href="/artists" className="inlineAction">
-              View artist atlas <ArrowRight size={16} />
+              See all artists <ArrowRight size={16} />
             </Link>
           </div>
         </Reveal>
@@ -118,7 +148,7 @@ export default function Home() {
                     ))}
                   </div>
                   <Link href={`/artists/${artist.slug}`} className="inlineAction">
-                    Explore {artist.name}&apos;s work <ArrowRight size={15} />
+                    See {artist.name}&apos;s work <ArrowRight size={15} />
                   </Link>
                 </div>
               </Reveal>
@@ -129,14 +159,18 @@ export default function Home() {
 
       <section className="container sectionSpacing portfolioStoryBand">
         <Reveal className="portfolioStoryPanel">
-          <p className="eyebrow">Curated Work</p>
-          <h2 className="sectionTitle">A tighter edit of recent pieces from the studio floor.</h2>
+          <p className="eyebrow">
+            <span className="eyebrowNumber">No. 03</span> Recent work
+          </p>
+          <h2 className="sectionTitle displayMix">
+            Fresh <em>off the floor.</em>
+          </h2>
           <p className="sectionIntro">
-            Instead of a noisy feed, this is a measured snapshot of line quality, black saturation,
-            texture, and healed composition across artists.
+            Not a noisy feed — a tighter cut of line quality, black saturation and healed
+            composition across the team.
           </p>
           <Link href="/artists" className="inlineAction">
-            Browse full portfolios <ArrowRight size={16} />
+            See full portfolios <ArrowRight size={16} />
           </Link>
         </Reveal>
 
@@ -160,8 +194,12 @@ export default function Home() {
       <section className="container sectionSpacing">
         <div className="trustProcessGrid">
           <Reveal className="trustPanel" delay={0.03}>
-            <p className="eyebrow">Studio Standard</p>
-            <h2 className="sectionTitle">Why people trust the room.</h2>
+            <p className="eyebrow">
+              <span className="eyebrowNumber">No. 04</span> The house
+            </p>
+            <h2 className="sectionTitle displayMix">
+              Why people <em>sit with us.</em>
+            </h2>
             <div className="trustGrid">
               {trustPoints.map((point) => (
                 <article key={point.title} className="trustItem">
@@ -176,15 +214,19 @@ export default function Home() {
           </Reveal>
 
           <Reveal className="processPanel" delay={0.12}>
-            <p className="eyebrow">Consultation Flow</p>
-            <h2>How booking runs here</h2>
+            <p className="eyebrow">
+              <span className="eyebrowNumber">No. 05</span> How it goes
+            </p>
+            <h2 className="displayMix">
+              From idea <em>to skin.</em>
+            </h2>
             <ol className="processList">
               {processSteps.map((step) => (
                 <li key={step}>{step}</li>
               ))}
             </ol>
             <Link href="/booking" className="primaryButton">
-              Start consultation brief
+              Send your idea
             </Link>
           </Reveal>
         </div>
@@ -193,9 +235,16 @@ export default function Home() {
       <section className="container sectionSpacing faqPreviewSection">
         <Reveal>
           <div className="sectionHeaderWithAction">
-            <h2 className="sectionTitle">Quick Answers</h2>
+            <div>
+              <p className="eyebrow">
+                <span className="eyebrowNumber">No. 06</span> Quick questions
+              </p>
+              <h2 className="sectionTitle displayMix">
+                Before you <em>sit down.</em>
+              </h2>
+            </div>
             <Link href="/faq" className="inlineAction">
-              Open Full FAQ <ArrowRight size={16} />
+              Read the full FAQ <ArrowRight size={16} />
             </Link>
           </div>
         </Reveal>
@@ -215,19 +264,21 @@ export default function Home() {
       <section className="container ctaBand">
         <Reveal className="ctaBandInner">
           <div>
-            <p className="eyebrow">Private consultation</p>
-            <h2>Bring the concept, we&apos;ll shape the final tattoo with you.</h2>
+            <p className="eyebrow eyebrowTypewriter">Ready when you are</p>
+            <h2 className="displayMix">
+              Got an idea? <em>Let&apos;s draw it.</em>
+            </h2>
             <p>
-              Fill in the guided booking brief with references, style direction, and placement.
-              You&apos;ll get matched to the right artist with clear next steps.
+              Send placement, references and the rough shape of what you want.
+              We&apos;ll come back with the artist, the date and the price.
             </p>
           </div>
           <div className="ctaBandLinks">
             <Link href="/booking" className="primaryButton">
-              Start consultation
+              Book a session
             </Link>
             <a href={studioInfo.mapUrl} target="_blank" rel="noreferrer" className="ghostButton">
-              Visit the studio
+              Find the studio
             </a>
           </div>
         </Reveal>

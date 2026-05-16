@@ -13,30 +13,30 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   const addressOneLine = studioInfo.addressLines.join(", ");
   const responseExpectations = [
-    "Booking briefs are prioritised over generic enquiries.",
-    "Share references and placement details for faster replies.",
-    "Policy and aftercare questions are answered directly by the team.",
+    "Booking briefs jump the queue — use the booking form if it’s a real piece.",
+    "Drop references and placement up front — it saves three emails.",
+    "Policy, aftercare and visit questions go straight to the team.",
   ];
 
   return (
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Studio Contact</p>
-          <h1>Need guidance before you book? Start here.</h1>
+          <p className="eyebrow eyebrowTypewriter">Get in touch</p>
+          <h1 className="heroDisplay">Questions first? <em>Drop us a line.</em></h1>
           <p className="lede">
-            For tattoo requests, the consultation form is still the fastest route. This page is best
-            for direct questions and visit planning.
+            For an actual booking, the form is faster. For anything else — visit planning, policy,
+            aftercare, cover-up assessments — use the channels below.
           </p>
         </Reveal>
       </section>
 
       <section className="container sectionSpacing contactEditorialGrid">
         <Reveal className="contactChannelPanel">
-          <h2>Direct channels</h2>
+          <h2 className="displayMix">Direct <em>channels</em></h2>
           <p>
-            If your message is not a full booking brief, use one of the channels below and the team
-            will point you to the right next step.
+            Pick whichever’s easiest. Email is best for anything detailed, socials are best for
+            quick questions.
           </p>
 
           <div className="contactLinkStack">
@@ -44,10 +44,10 @@ export default function ContactPage() {
               <Mail size={16} /> {studioInfo.email}
             </a>
             <a href={studioInfo.social.instagram} target="_blank" rel="noreferrer">
-              <Camera size={16} /> Instagram
+              <Camera size={16} /> @theblackdahliastudio
             </a>
             <a href={studioInfo.social.facebook} target="_blank" rel="noreferrer">
-              <Users size={16} /> Facebook
+              <Users size={16} /> Facebook page
             </a>
           </div>
 
@@ -61,8 +61,8 @@ export default function ContactPage() {
         </Reveal>
 
         <Reveal delay={0.1} className="contactLocationPanel">
-          <h2>Visit planning</h2>
-          <p className="artistRole">Private studio / appointment only</p>
+          <h2 className="displayMix">Find <em>the studio</em></h2>
+          <p className="artistRole">Private — appointment only</p>
           <p>
             <MapPin size={16} /> {addressOneLine}
           </p>
@@ -72,10 +72,10 @@ export default function ContactPage() {
 
           <div className="contactLocationActions">
             <Link href="/booking" className="primaryButton">
-              Start consultation form
+              Book a session
             </Link>
             <Link href="/faq" className="ghostButton">
-              Read common questions
+              Read the FAQ
             </Link>
           </div>
         </Reveal>
@@ -83,16 +83,15 @@ export default function ContactPage() {
 
       <section className="container sectionSpacing">
         <Reveal className="contactMailtoBox">
-          <h2>Quick message template</h2>
+          <h2 className="displayMix">Quick email <em>template</em></h2>
           <p>
-            Need to send a fast note first? Use this prefilled subject line and include your key
-            question.
+            Just need to ask something fast? This opens your mail app with the subject already set.
           </p>
           <a
             className="ghostButton"
-            href={`mailto:${studioInfo.email}?subject=${encodeURIComponent("General enquiry - The Black Dahlia")}`}
+            href={`mailto:${studioInfo.email}?subject=${encodeURIComponent("Question — The Black Dahlia")}`}
           >
-            Draft email
+            Open email draft
           </a>
         </Reveal>
       </section>
@@ -100,15 +99,14 @@ export default function ContactPage() {
       <section className="container sectionSpacing">
         <Reveal className="contactBookingBand">
           <div>
-            <p className="eyebrow">For tattoo requests</p>
-            <h2>The booking route gets the fastest, most accurate response.</h2>
+            <p className="eyebrow">For actual bookings</p>
+            <h2 className="displayMix">The form gets the <em>fastest reply.</em></h2>
             <p>
-              Include style direction, placement, references, and preferred artist to avoid back and
-              forth.
+              Style direction, placement, references, preferred artist — send it once, properly.
             </p>
           </div>
           <Link href="/booking" className="primaryButton">
-            Open booking flow
+            Book a session
           </Link>
         </Reveal>
       </section>

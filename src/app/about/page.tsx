@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const studioValues = [
-    "Private appointment pacing over high-volume turnover",
-    "Artist-led consultations with direct communication",
-    "Strict hygiene and aftercare expectations",
+    "One client at a time — no overlap, no shared chair, no rush.",
+    "Direct contact with your artist from brief to healed skin.",
+    "Strict hygiene, single-use kit, aftercare you can actually follow.",
   ];
 
   const studioFrames = studioGallery.slice(0, 8);
@@ -24,21 +24,20 @@ export default function AboutPage() {
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Studio Ethos</p>
-          <h1>A private tattoo studio built for deliberate craft.</h1>
+          <p className="eyebrow eyebrowTypewriter">About the studio</p>
+          <h1 className="heroDisplay">A private room <em>for proper</em> tattoos.</h1>
           <p className="lede">
-            The Black Dahlia is designed to feel calm, focused, and collaborative from first brief
-            through healed result.
+            Three artists, custom work only, no flash wall. Built for long sessions and considered
+            pieces — the kind you want to live with for a while.
           </p>
         </Reveal>
       </section>
 
       <section className="container sectionSpacing aboutEditorialGrid">
         <Reveal className="aboutManifestoCard">
-          <h2>{aboutCopy.title}</h2>
+          <h2 className="displayMix">{aboutCopy.title}</h2>
           <p className="aboutSectionIntro">
-            Tattooing here is consultation-first and artist-led, with room for intention at every
-            stage.
+            Tattooing here is artist-led, custom first, and paced to the work — not the diary.
           </p>
 
           <div className="aboutCopyStack">
@@ -58,7 +57,7 @@ export default function AboutPage() {
         </Reveal>
 
         <Reveal delay={0.12} className="aboutTimelineCard">
-          <h2>How the studio evolved</h2>
+          <h2 className="displayMix">How the studio <em>came together.</em></h2>
           <ol>
             {aboutCopy.story.map((step) => (
               <li key={step}>{step}</li>
@@ -67,15 +66,15 @@ export default function AboutPage() {
 
           <div className="aboutTimelineMeta">
             <p>
-              <Users size={16} /> Three resident artists, each with a distinct visual lane.
+              <Users size={16} /> Three resident artists, each working in their own lane.
             </p>
             <p>
-              <Sparkles size={16} /> Custom commissions and tailored placement planning.
+              <Sparkles size={16} /> Custom commissions — placement and composition planned with you.
             </p>
           </div>
 
           <Link href="/booking" className="primaryButton">
-            Book a consultation
+            Book a session
           </Link>
         </Reveal>
       </section>
@@ -83,9 +82,9 @@ export default function AboutPage() {
       <section className="container sectionSpacing">
         <Reveal>
           <div className="sectionHeaderWithAction">
-            <h2 className="sectionTitle">Resident Team</h2>
+            <h2 className="sectionTitle displayMix">The <em>resident</em> team</h2>
             <Link href="/artists" className="inlineAction">
-              Open artist atlas <ArrowRight size={16} />
+              See all artists <ArrowRight size={16} />
             </Link>
           </div>
         </Reveal>
@@ -110,7 +109,7 @@ export default function AboutPage() {
                     ))}
                   </div>
                   <Link href={`/artists/${artist.slug}`} className="inlineAction">
-                    View portfolio <ArrowRight size={15} />
+                    See portfolio <ArrowRight size={15} />
                   </Link>
                 </div>
               </Reveal>
@@ -121,11 +120,11 @@ export default function AboutPage() {
 
       <section className="container sectionSpacing aboutGalleryBand">
         <Reveal className="aboutGalleryIntro">
-          <p className="eyebrow">Inside The Room</p>
-          <h2 className="sectionTitle">Quiet space, high-focus sessions.</h2>
+          <p className="eyebrow">Inside the room</p>
+          <h2 className="sectionTitle displayMix">Quiet space. <em>High-focus sessions.</em></h2>
           <p className="sectionIntro">
-            The atmosphere is intentional: slower pacing, fewer interruptions, and enough room to
-            collaborate properly on design and placement.
+            Low traffic, low noise, and enough room to actually collaborate on placement and
+            composition without anyone breathing down your neck.
           </p>
         </Reveal>
 
@@ -141,19 +140,19 @@ export default function AboutPage() {
       <section className="container ctaBand">
         <Reveal className="ctaBandInner">
           <div>
-            <p className="eyebrow">Ready to start</p>
-            <h2>Bring your references, placement, and style direction.</h2>
+            <p className="eyebrow eyebrowTypewriter">Ready when you are</p>
+            <h2 className="displayMix">Bring references, placement, <em>and an open mind.</em></h2>
             <p>
-              Use the guided consultation form so the team can match you to the right artist and
-              session format.
+              Send your idea through the booking form so we can pair you with the right artist
+              and a session that actually suits the piece.
             </p>
           </div>
           <div className="ctaBandLinks">
             <Link href="/booking" className="primaryButton">
-              Start consultation
+              Book a session
             </Link>
             <Link href="/contact" className="ghostButton">
-              Ask a question
+              Ask first
             </Link>
           </div>
         </Reveal>

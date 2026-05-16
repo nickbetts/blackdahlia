@@ -27,30 +27,39 @@ export const services = [
 ];
 
 export const homeIntro = {
-  headline: "Appointment-only tattooing built around your idea.",
+  eyebrow: `Est. ${2019} — Littleport, Cambridgeshire`,
+  headline: "Custom tattoos. Hand drawn. Appointment only.",
   subhead:
-    "The Black Dahlia is a private studio in Littleport where every design is hand-drawn and every session is shaped around comfort, collaboration, and craft.",
+    "A three-artist room making blackwork, realism, illustrative and traditional work — built one brief at a time, never off a flash wall.",
   ctaPrimary: {
-    label: "Request A Booking",
+    label: "Book a session",
     href: "/booking",
   },
   ctaSecondary: {
-    label: "Explore Artists",
+    label: "Meet the artists",
     href: "/artists",
   },
+  marquee: [
+    "Custom work only",
+    "Appointment only",
+    "Hand drawn",
+    "Blackwork · Realism · Illustrative",
+    `Est. ${2019}`,
+    "Littleport · Ely",
+  ],
 };
 
 export const aboutCopy = {
-  title: "About The Studio",
+  title: "About the studio",
   paragraphs: [
-    "At The Black Dahlia, we love creating unique designs with you and turning them into the perfect tattoo. We are passionate about our craft and enjoy working from a brief to bring your vision to life.",
-    "Our studio is designed to feel welcoming and calm for people from all walks of life. We offer custom commissions and pre-drawn pieces, then adapt every design to suit your style and placement.",
-    "Located in Littleport, we specialize across blackwork, realism B&G, traditional, color, and illustrative styles. We follow strict hygiene and aftercare practices to keep your experience safe and comfortable.",
+    "We design custom tattoos with you and bring them to skin properly — from a rough idea to a piece that fits the placement, your story and how you sit.",
+    "The room is quiet, low-traffic and built for long sessions. You won’t share it with a queue, and your artist won’t share their head with another booking.",
+    "We specialise across blackwork, black-and-grey realism, traditional, colour and illustrative work — and we don’t take pieces we can’t do right.",
   ],
   story: [
-    "The studio opened in 2019 by co-owners Laura and Sharnia after years of working together in the industry.",
-    "Their goal was to build a creative appointment-only space that feels like an escape for artists and clients alike.",
-    "The team now includes three artists, each with a distinct style and active portfolio across social channels.",
+    `Opened in ${2019} by Laura and Sharnia after years working together in larger shops.`,
+    "Built as an appointment-only space — calmer pacing, less noise, more headspace for the work.",
+    "Three resident artists now share the floor, each with their own lane and full books.",
   ],
 };
 

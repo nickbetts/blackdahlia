@@ -15,11 +15,11 @@ export default function FaqPage() {
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Studio FAQ</p>
-          <h1>Everything clients ask before they sit in the chair.</h1>
+          <p className="eyebrow eyebrowTypewriter">FAQ</p>
+          <h1 className="heroDisplay">Everything <em>before you sit down.</em></h1>
           <p className="lede">
-            This is the fastest way to understand booking, deposits, preparation, and healing
-            expectations before your appointment.
+            Booking, deposits, prep, healing, cover-ups — the questions we get every week, answered
+            once, clearly.
           </p>
         </Reveal>
       </section>
@@ -61,11 +61,11 @@ export default function FaqPage() {
       <section className="container ctaBand">
         <Reveal className="ctaBandInner">
           <div>
-            <p className="eyebrow">Still unsure?</p>
-            <h2>Ask directly before you place a deposit.</h2>
+            <p className="eyebrow eyebrowTypewriter">Still unsure?</p>
+            <h2 className="displayMix">Ask us <em>before you pay.</em></h2>
             <p>
-              If your question is specific to your concept or timeline, contact the studio and
-              include enough detail for a useful reply.
+              If the answer’s tied to your piece, your skin or your timeline, drop us a line with
+              the detail. We’ll come back to you properly.
             </p>
           </div>
           <div className="ctaBandLinks">
@@ -73,7 +73,7 @@ export default function FaqPage() {
               Ask a question
             </Link>
             <Link href="/booking" className="ghostButton">
-              Start booking flow <ArrowRight size={15} />
+              Book a session <ArrowRight size={15} />
             </Link>
           </div>
         </Reveal>

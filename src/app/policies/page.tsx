@@ -12,27 +12,27 @@ export const metadata: Metadata = {
 
 export default function PoliciesPage() {
   const keyTerms = [
-    "Deposits are non-refundable and reserve artist time.",
-    "One transfer is usually possible with appropriate notice.",
-    "Late cancellations and no-shows may lose deposit and slot priority.",
+    "Deposits are non-refundable — they hold the artist’s time.",
+    "One reschedule with 7+ days’ notice. After that the deposit’s gone.",
+    "No-shows lose the deposit and slot priority on future bookings.",
   ];
 
   return (
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Policy Framework</p>
-          <h1>Clear terms that protect client care and artist time.</h1>
+          <p className="eyebrow eyebrowTypewriter">Studio policies</p>
+          <h1 className="heroDisplay">The <em>house rules.</em></h1>
           <p className="lede">
-            Please read these before booking. They are designed to protect artists, clients, and
-            session quality.
+            Read these before you book. They keep the room running properly — fair on artists,
+            fair on clients, and clear from the start.
           </p>
         </Reveal>
       </section>
 
       <section className="container sectionSpacing">
         <Reveal className="policyKeyTerms">
-          <h2>Key terms at a glance</h2>
+          <h2 className="displayMix">Quick <em>read first</em></h2>
           <div>
             {keyTerms.map((term) => (
               <p key={term}>
@@ -62,16 +62,16 @@ export default function PoliciesPage() {
 
       <section className="container sectionSpacing">
         <Reveal className="policyReminder">
-          <h2>Need clarification before paying a deposit?</h2>
+          <h2 className="displayMix">Not sure something applies <em>to your piece?</em></h2>
           <p>
-            Send details on your idea, timeline, and artist preference so the studio can guide you on
-            next steps.
+            Tell us the idea, timing and artist you’re leaning toward and we’ll walk you through
+            what it means for you specifically.
           </p>
           <Link href="/contact" className="inlineAction">
             Ask a policy question <ArrowRight size={16} />
           </Link>
           <Link href="/booking" className="primaryButton">
-            Continue to booking
+            Book a session
           </Link>
         </Reveal>
       </section>

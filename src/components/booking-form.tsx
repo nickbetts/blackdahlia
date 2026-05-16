@@ -41,7 +41,7 @@ const initialState: BookingState = {
   concept: "",
 };
 
-const steps = ["Contact", "Tattoo Direction", "Session Logistics", "Review & Send"] as const;
+const steps = ["Your details", "The tattoo", "Scheduling", "Send it"] as const;
 
 export function BookingForm() {
   const [form, setForm] = useState<BookingState>(initialState);
@@ -108,7 +108,7 @@ export function BookingForm() {
     }
 
     const lines = [
-      "Tattoo consultation brief",
+      "Booking enquiry",
       "",
       `Name: ${form.firstName} ${form.lastName}`,
       `Email: ${form.email}`,
@@ -128,10 +128,10 @@ export function BookingForm() {
       "Tattoo concept:",
       form.concept,
       "",
-      "Submitted from The Black Dahlia guided booking flow.",
+      "Sent from The Black Dahlia booking form.",
     ];
 
-    const subject = `Consultation request - ${form.preferredArtist || "The Black Dahlia"}`;
+    const subject = `Booking enquiry — ${form.preferredArtist || "The Black Dahlia"}`;
     const mailto = `mailto:${studioInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
       lines.join("\n")
     )}`;
@@ -386,18 +386,17 @@ export function BookingForm() {
           </button>
         ) : (
           <button type="submit" className="primaryButton" disabled={!isReadyToSend}>
-            Open Consultation Email
+            Send my brief
           </button>
         )}
       </div>
 
       <p className="bookingHint">
-        This remains a static mailto flow for reliable deployment. Your email app opens with the
-        full consultation brief prefilled.
+        This stays a simple mailto flow — your mail app opens with the full brief written for you.
       </p>
 
       {submitted ? (
-        <p className="bookingSuccess">Email draft opened. If nothing happened, please email us manually.</p>
+        <p className="bookingSuccess">Draft opened. If nothing happened, email us directly.</p>
       ) : null}
     </form>
   );

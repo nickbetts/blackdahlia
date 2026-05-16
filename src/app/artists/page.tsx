@@ -18,18 +18,18 @@ export default function ArtistsPage() {
     <div className="pageStack">
       <section className="container pageHeroCompact">
         <Reveal>
-          <p className="eyebrow">Artist Atlas</p>
-          <h1>Find the right hand for your concept.</h1>
+          <p className="eyebrow eyebrowTypewriter">The artists</p>
+          <h1 className="heroDisplay">Find <em>the right hand</em> for your piece.</h1>
           <p className="lede">
-            Every artist carries a different line language, pace, and composition preference. Start
-            here before you send your booking brief.
+            Different lines, different pace, different way of building a composition. Read the room
+            before you send the brief.
           </p>
         </Reveal>
       </section>
 
       <section className="container sectionSpacing">
         <Reveal className="artistStyleRibbon" delay={0.04}>
-          <p className="artistRole">Common Requests</p>
+          <p className="artistRole">What gets asked for</p>
           <div className="artistStylePills">
             {styleIndex.map((style) => (
               <span key={style}>{style}</span>
@@ -66,18 +66,18 @@ export default function ArtistsPage() {
                   </div>
 
                   <p className="artistAtlasMeta">
-                    Best for clients looking for {artist.specialities.slice(0, 2).join(" and ").toLowerCase()}.
+                    Best if you’re after {artist.specialities.slice(0, 2).join(" or ").toLowerCase()}.
                   </p>
 
                   <div className="artistActionsRow">
                     <Link href={`/artists/${artist.slug}`} className="inlineAction">
-                      Open full profile <ExternalLink size={15} />
+                      Full profile <ExternalLink size={15} />
                     </Link>
                     <a href={artist.social.instagram} target="_blank" rel="noreferrer" className="inlineAction">
                       Instagram <Camera size={15} />
                     </a>
                     <Link href="/booking" className="inlineAction">
-                      Start consultation
+                      Book with {artist.name}
                     </Link>
                   </div>
 
