@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cinzel, Manrope } from "next/font/google";
 import { studioInfo } from "@/content/studio";
+import { SiteNav } from "@/components/site-nav";
 import "./globals.css";
 
 const headingFont = Cinzel({
@@ -79,16 +80,10 @@ export default function RootLayout({
               </span>
             </Link>
 
-            <nav className="siteNav" aria-label="Primary">
-              {navLinks.map((item) => (
-                <Link href={item.href} key={item.href}>
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            <SiteNav items={navLinks} />
 
             <Link className="headerCta" href="/booking">
-              Book Now
+              <span>Book consultation</span>
             </Link>
           </div>
         </header>
@@ -99,7 +94,8 @@ export default function RootLayout({
 
         <footer className="siteFooter">
           <div className="container footerGrid">
-            <section>
+            <section className="footerBrand">
+              <span className="brandSymbol" aria-hidden="true">BD</span>
               <h2>{studioInfo.name}</h2>
               <p>
                 Appointment-only private tattoo studio in {studioInfo.city}. Custom design,
@@ -108,16 +104,19 @@ export default function RootLayout({
             </section>
 
             <section>
-              <h3>Visit</h3>
+              <p className="footerEyebrow">Visit</p>
               <address>
                 {studioInfo.addressLines.map((line) => (
                   <span key={line}>{line}</span>
                 ))}
               </address>
+              <a href={studioInfo.mapUrl} target="_blank" rel="noreferrer" className="footerInlineLink">
+                Open in Google Maps
+              </a>
             </section>
 
             <section>
-              <h3>Contact</h3>
+              <p className="footerEyebrow">Contact</p>
               <a href={`mailto:${studioInfo.email}`}>{studioInfo.email}</a>
               <a href={studioInfo.social.instagram} target="_blank" rel="noreferrer">
                 Instagram
@@ -129,10 +128,11 @@ export default function RootLayout({
           </div>
 
           <div className="container footerBottom">
-            <p>{currentYear} The Black Dahlia. All rights reserved.</p>
-            <a href={studioInfo.mapUrl} target="_blank" rel="noreferrer">
-              Open Map
-            </a>
+            <p>&copy; {currentYear} {studioInfo.name}. All rights reserved.</p>
+            <div className="footerBottomLinks">
+              <Link href="/policies">Studio policies</Link>
+              <Link href="/booking">Book a consultation</Link>
+            </div>
           </div>
         </footer>
       </body>

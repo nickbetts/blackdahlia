@@ -1655,3 +1655,648 @@ h3 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================================
+   Polish Layer — refined tokens, motion, micro-interactions, focus rings
+   (Appended last so cascade naturally elevates baseline rules.)
+   ===================================================================== */
+
+:root {
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 220ms var(--ease-out-soft);
+  --transition-slow: 520ms var(--ease-out-soft);
+  --accent-gold-soft: rgba(201, 162, 107, 0.22);
+  --accent-gold-glow: rgba(201, 162, 107, 0.45);
+  --hairline: 1px solid rgba(255, 255, 255, 0.08);
+  --hairline-strong: 1px solid rgba(255, 255, 255, 0.16);
+  --shadow-card: 0 18px 44px rgba(0, 0, 0, 0.42), 0 2px 0 rgba(255, 255, 255, 0.03) inset;
+  --shadow-card-hover: 0 30px 70px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  --focus-ring: 0 0 0 2px var(--bg-950), 0 0 0 4px var(--accent-gold);
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-feature-settings: "ss01", "liga", "calt";
+}
+
+::selection {
+  background: var(--accent-gold-soft);
+  color: var(--text-100);
+}
+
+*:focus {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 12px;
+}
+
+/* Header --------------------------------------------------------------- */
+
+.siteHeader {
+  background: linear-gradient(180deg, rgba(9, 12, 18, 0.88) 0%, rgba(9, 12, 18, 0.62) 100%);
+  border-bottom: 1px solid transparent;
+  background-clip: padding-box;
+  position: sticky;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.siteHeader::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 162, 107, 0.35) 50%,
+    transparent 100%
+  );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.brandWordmark {
+  transition: transform var(--transition-base);
+}
+
+.brandWordmark:hover {
+  transform: translateY(-1px);
+}
+
+.brandSymbol {
+  background: radial-gradient(circle at 30% 30%, rgba(201, 162, 107, 0.18), transparent 70%);
+  transition: border-color var(--transition-base), color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.brandWordmark:hover .brandSymbol {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 4px var(--accent-gold-soft);
+}
+
+.siteNav {
+  gap: 0.4rem;
+}
+
+.siteNavLink {
+  color: var(--text-200);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.85rem;
+  position: relative;
+  border-radius: 999px;
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+.siteNavLink span {
+  position: relative;
+  display: inline-block;
+}
+
+.siteNavLink span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  height: 1px;
+  width: 0;
+  background: var(--accent-gold);
+  transform: translateX(-50%);
+  transition: width var(--transition-base);
+}
+
+.siteNavLink:hover {
+  color: var(--text-100);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.siteNavLink:hover span::after,
+.siteNavLink.isActive span::after {
+  width: 100%;
+}
+
+.siteNavLink.isActive {
+  color: var(--text-100);
+}
+
+/* Buttons -------------------------------------------------------------- */
+
+.headerCta,
+.primaryButton {
+  background-image: linear-gradient(120deg, #c2814f 0%, #9e3f38 55%, #7a2e2a 100%);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  box-shadow: 0 14px 30px rgba(119, 50, 42, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  padding: 0.78rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-base), background-position 600ms var(--ease-out-soft),
+    box-shadow var(--transition-base);
+}
+
+.headerCta::after,
+.primaryButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 700ms var(--ease-out-soft);
+  pointer-events: none;
+}
+
+.headerCta:hover,
+.primaryButton:hover {
+  transform: translateY(-2px);
+  background-position: 100% 50%;
+  box-shadow: 0 20px 40px rgba(119, 50, 42, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+
+.headerCta:hover::after,
+.primaryButton:hover::after {
+  transform: translateX(120%);
+}
+
+.headerCta:active,
+.primaryButton:active {
+  transform: translateY(0);
+}
+
+.ghostButton {
+  backdrop-filter: blur(6px);
+  transition: transform var(--transition-base), background var(--transition-base),
+    border-color var(--transition-base), color var(--transition-base);
+}
+
+.ghostButton:hover {
+  border-color: rgba(201, 162, 107, 0.6);
+  transform: translateY(-1px);
+}
+
+.inlineAction {
+  transition: color var(--transition-base), transform var(--transition-base);
+}
+
+.inlineAction svg {
+  transition: transform var(--transition-base);
+}
+
+.inlineAction:hover {
+  color: #e7c187;
+}
+
+.inlineAction:hover svg {
+  transform: translateX(3px);
+}
+
+/* Eyebrows & section titles -------------------------------------------- */
+
+.eyebrow {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.6rem;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--accent-gold);
+  opacity: 0.7;
+}
+
+.sectionTitle {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  letter-spacing: -0.005em;
+}
+
+/* Hero carousel — soft ken-burns drift --------------------------------- */
+
+.heroCarouselSlide {
+  overflow: hidden;
+}
+
+.heroCarouselSlide img {
+  transform: scale(1.04);
+  transition: transform 8000ms linear, filter 1200ms var(--ease-out-soft);
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.heroCarouselSlide[data-active="true"] img {
+  transform: scale(1.12) translate(-0.6%, -0.4%);
+}
+
+.heroCarouselOverlay {
+  background:
+    radial-gradient(120% 80% at 20% 100%, rgba(3, 3, 5, 0.65), transparent 55%),
+    linear-gradient(to top, rgba(3, 3, 5, 0.5), transparent 50%);
+}
+
+.heroCarouselControls button {
+  backdrop-filter: blur(8px);
+  transition: transform var(--transition-base), background var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.heroCarouselControls button:hover {
+  background: rgba(201, 162, 107, 0.18);
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+.heroCarouselDot {
+  transition: width var(--transition-base), background var(--transition-base);
+}
+
+/* Cards: universal hover lift + image treatment ------------------------ */
+
+.artistEditorialGrid > *,
+.artistAtlasCard,
+.portfolioTile,
+.aboutGalleryTile,
+.aboutManifestoCard,
+.aboutTimelineCard,
+.contactChannelPanel,
+.contactLocationPanel,
+.faqSectionCardEditorial,
+.policyCardEditorial,
+.faqCategoryStrip > *,
+.signaturePill,
+.trustItem,
+.bookingGuidance,
+.bookingChecklist,
+.bookingSummary,
+.contactMailtoBox,
+.contactBookingBand,
+.policyReminder,
+.policyKeyTerms,
+.heroCopy,
+.heroMedia {
+  transition: transform var(--transition-base), border-color var(--transition-base),
+    box-shadow var(--transition-base), background var(--transition-base);
+}
+
+.artistAtlasCard,
+.portfolioTile,
+.aboutGalleryTile,
+.aboutManifestoCard,
+.aboutTimelineCard,
+.contactChannelPanel,
+.contactLocationPanel,
+.faqSectionCardEditorial,
+.policyCardEditorial,
+.trustItem,
+.signaturePill {
+  box-shadow: var(--shadow-card);
+}
+
+.artistAtlasCard:hover,
+.aboutManifestoCard:hover,
+.aboutTimelineCard:hover,
+.contactChannelPanel:hover,
+.contactLocationPanel:hover,
+.faqSectionCardEditorial:hover,
+.policyCardEditorial:hover,
+.trustItem:hover,
+.signaturePill:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 162, 107, 0.35);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Image tiles: zoom + warmth on hover */
+.portfolioTile,
+.aboutGalleryTile,
+.artistAtlasMedia,
+.artistAtlasGallery a {
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolioTile img,
+.aboutGalleryTile img,
+.artistAtlasMedia img,
+.artistAtlasGallery img {
+  transition: transform 900ms var(--ease-out-soft), filter 600ms var(--ease-out-soft);
+  filter: saturate(0.95);
+  will-change: transform;
+}
+
+.portfolioTile:hover img,
+.aboutGalleryTile:hover img,
+.artistAtlasCard:hover .artistAtlasMedia img,
+.artistAtlasGallery a:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.portfolioTile::after,
+.aboutGalleryTile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.45));
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.portfolioTile:hover::after,
+.aboutGalleryTile:hover::after {
+  opacity: 0.55;
+}
+
+/* Trust / process iconography ----------------------------------------- */
+
+.trustItem svg,
+.aboutTimelineMeta svg,
+.contactExpectationList svg,
+.faqSectionHeading svg,
+.policyKeyTerms svg,
+.policyCardEditorial svg {
+  color: var(--accent-gold);
+  transition: transform var(--transition-base);
+}
+
+.trustItem:hover svg {
+  transform: rotate(-4deg) scale(1.08);
+}
+
+/* Signature pills ------------------------------------------------------ */
+
+.signaturePill {
+  position: relative;
+  isolation: isolate;
+}
+
+.signaturePill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(201, 162, 107, 0.5), transparent 55%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.signaturePill:hover::before {
+  opacity: 1;
+}
+
+/* Booking stepper polish ---------------------------------------------- */
+
+.bookingStepper li,
+.bookingStepper button,
+.bookingStepper [data-step] {
+  transition: background var(--transition-base), border-color var(--transition-base),
+    color var(--transition-base), transform var(--transition-base);
+}
+
+.bookingStepper .active,
+.bookingStepper [data-state="active"] {
+  box-shadow: 0 0 0 1px var(--accent-gold), 0 0 0 4px var(--accent-gold-soft);
+}
+
+.bookingControls button[type="submit"],
+.bookingControls .primaryButton {
+  letter-spacing: 0.02em;
+}
+
+input,
+textarea,
+select {
+  transition: border-color var(--transition-base), background var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: var(--accent-gold) !important;
+  box-shadow: 0 0 0 3px var(--accent-gold-soft) !important;
+}
+
+/* Accordion / details polish ------------------------------------------ */
+
+details {
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+details summary {
+  cursor: pointer;
+  transition: color var(--transition-base);
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] summary {
+  color: var(--text-100);
+}
+
+details[open] {
+  border-color: rgba(201, 162, 107, 0.3) !important;
+}
+
+details > *:not(summary) {
+  animation: detailsFade 320ms var(--ease-out-soft);
+}
+
+@keyframes detailsFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer polish -------------------------------------------------------- */
+
+.siteFooter {
+  margin-top: 4rem;
+  padding: 3rem 0 1.6rem;
+  position: relative;
+}
+
+.siteFooter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 162, 107, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+.footerGrid {
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footerBrand .brandSymbol {
+  margin-bottom: 0.2rem;
+}
+
+.footerBrand h2 {
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.footerEyebrow {
+  color: var(--accent-gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.footerGrid section a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  transition: color var(--transition-base);
+}
+
+.footerGrid section a:not(.footerInlineLink)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--accent-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+}
+
+.footerGrid section a:hover {
+  color: var(--text-100);
+}
+
+.footerGrid section a:hover::after {
+  transform: scaleX(1);
+}
+
+.footerInlineLink {
+  margin-top: 0.4rem;
+  color: var(--accent-gold) !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.footerBottomLinks {
+  display: inline-flex;
+  gap: 1.2rem;
+}
+
+.footerBottomLinks a {
+  transition: color var(--transition-base);
+}
+
+.footerBottomLinks a:hover {
+  color: var(--accent-gold);
+}
+
+/* CTA bands ------------------------------------------------------------ */
+
+.ctaBand {
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaBand::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(
+    600px 200px at 50% 0%,
+    rgba(201, 162, 107, 0.12),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Subtle anchor-link underline animation in long-form copy ------------- */
+
+.lede a,
+.sectionIntro a,
+.aboutManifestoCard a,
+.policyCardEditorial a {
+  color: var(--accent-gold);
+  background-image: linear-gradient(var(--accent-gold), var(--accent-gold));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--transition-base);
+}
+
+.lede a:hover,
+.sectionIntro a:hover,
+.aboutManifestoCard a:hover,
+.policyCardEditorial a:hover {
+  background-size: 100% 1px;
+}
+
+/* Reduced motion overrides for new animations -------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroCarouselSlide img,
+  .heroCarouselSlide[data-active="true"] img {
+    transform: none !important;
+  }
+
+  .portfolioTile:hover img,
+  .aboutGalleryTile:hover img,
+  .artistAtlasCard:hover .artistAtlasMedia img,
+  .artistAtlasGallery a:hover img {
+    transform: none !important;
+  }
+}
+

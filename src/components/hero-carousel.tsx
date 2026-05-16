@@ -50,8 +50,12 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
     <div className="heroCarousel">
       <div className="heroCarouselViewport" ref={emblaRef}>
         <div className="heroCarouselTrack">
-          {slides.map((slide) => (
-            <div className="heroCarouselSlide" key={`${slide.src}-${slide.alt}`}>
+          {slides.map((slide, index) => (
+            <div
+              className="heroCarouselSlide"
+              key={`${slide.src}-${slide.alt}`}
+              data-active={index === selectedIndex ? "true" : "false"}
+            >
               <img src={slide.src} alt={slide.alt} loading="eager" />
             </div>
           ))}
