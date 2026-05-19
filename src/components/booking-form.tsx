@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { bookingArtists, studioInfo } from "@/content/studio";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 type BookingState = {
   firstName: string;
@@ -385,9 +386,13 @@ export function BookingForm() {
             Continue
           </button>
         ) : (
-          <button type="submit" className="primaryButton" disabled={!isReadyToSend}>
+          <ShimmerButton
+            type="submit"
+            disabled={!isReadyToSend}
+            className="disabled:opacity-40 disabled:cursor-not-allowed w-full"
+          >
             Send my brief
-          </button>
+          </ShimmerButton>
         )}
       </div>
 

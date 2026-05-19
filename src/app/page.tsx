@@ -12,6 +12,12 @@ import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { HeroCarousel } from "@/components/hero-carousel";
+import { LightRays } from "@/components/ui/light-rays";
+import { Lens } from "@/components/ui/lens";
+import { LineShadowText } from "@/components/ui/line-shadow-text";
+import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
+import { MagicCard } from "@/components/ui/magic-card";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 export default function Home() {
   const signatureStyles = Array.from(
@@ -80,6 +86,7 @@ export default function Home() {
       <section className="heroFull">
         <HeroCarousel slides={heroSlides} />
         <div className="heroBgOverlay" />
+        <LightRays color="rgba(255,255,255,0.1)" count={5} speed={14} length="80vh" className="z-2" />
         <BackgroundBeams className="absolute inset-0 z-1 pointer-events-none opacity-40" />
         <Particles
           className="absolute inset-0 pointer-events-none"
@@ -94,7 +101,7 @@ export default function Home() {
         <div className="container heroContent">
           <p className="eyebrow">{homeIntro.eyebrow}</p>
           <h1 className="displayXXL">
-            Custom tattoos.<br />
+            <LineShadowText shadowColor="rgba(255,255,255,0.2)">Custom tattoos.</LineShadowText><br />
             <em>Drawn with intent.</em>
           </h1>
           <p className="lede">{homeIntro.subhead}</p>
@@ -128,7 +135,7 @@ export default function Home() {
         {/* ── SIGNATURE STYLES ─────────────────────────────────────── */}
         <section className="container sectionSpacing">
           <div>
-            <p className="eyebrow">What we do</p>
+            <p className="eyebrow"><AnimatedShinyText>What we do</AnimatedShinyText></p>
             <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.2rem" }}>
               Built across <em>blackwork</em>, realism,<br />
               traditional &amp; illustrative.
@@ -150,7 +157,7 @@ export default function Home() {
         <section className="container sectionSpacing">
           <div className="sectionHeaderWithAction">
             <div>
-              <p className="eyebrow">The artists</p>
+              <p className="eyebrow"><AnimatedShinyText>The artists</AnimatedShinyText></p>
               <h2 className="displayLg" style={{ marginTop: "0.4rem" }}>
                 Three artists.<br /><em>Three distinct hands.</em>
               </h2>
@@ -222,7 +229,9 @@ export default function Home() {
           <div className="portfolioGrid">
             {portfolioImages.map((img, i) => (
               <div key={img.hash} className={`portfolioCell${i === 2 || i === 6 ? " tall" : ""}`}>
-                <img src={img.localPath} alt={img.title || "Tattoo"} loading="lazy" />
+                <Lens zoomFactor={1.5} lensSize={150} ariaLabel="Zoom tattoo">
+                  <img src={img.localPath} alt={img.title || "Tattoo"} loading="lazy" />
+                </Lens>
               </div>
             ))}
           </div>
@@ -233,7 +242,7 @@ export default function Home() {
         {/* ── TRUST ────────────────────────────────────────────────── */}
         <section className="container sectionSpacing">
           <div>
-            <p className="eyebrow">The house</p>
+            <p className="eyebrow"><AnimatedShinyText>The house</AnimatedShinyText></p>
             <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.4rem" }}>
               Why people <em>sit with us.</em>
             </h2>
@@ -246,7 +255,7 @@ export default function Home() {
         {/* ── PROCESS ──────────────────────────────────────────────── */}
         <section className="container sectionSpacing">
           <div>
-            <p className="eyebrow">How it goes</p>
+            <p className="eyebrow"><AnimatedShinyText>How it goes</AnimatedShinyText></p>
             <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.4rem" }}>
               From idea <em>to skin.</em>
             </h2>
@@ -281,19 +290,20 @@ export default function Home() {
           </div>
           <div className="faqPreviewGrid">
             {faqPreview.map((item) => (
-              <div key={item.question} className="faqPreviewCard">
+              <MagicCard key={item.question} className="faqPreviewCard" gradientColor="#e0e0e0" gradientOpacity={0.5}>
                 <h3>
                   <SealWarning weight="fill" size={15} style={{ display: "inline", marginRight: "0.35rem", color: "var(--accent-gold)" }} />
                   {item.question}
                 </h3>
                 <p>{item.answer}</p>
-              </div>
+              </MagicCard>
             ))}
           </div>
         </section>
 
         {/* ── CTA BAND ─────────────────────────────────────────────── */}
         <section className="container ctaBand">
+          <BorderBeam colorFrom="#111111" colorTo="#555555" size={80} duration={10} />
           <ShootingStars
             className="absolute inset-0 rounded-[inherit]"
             starColor="#c9a26b"

@@ -6,6 +6,9 @@ import { SiteNav } from "@/components/site-nav";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CommandPalette } from "@/components/command-palette";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -75,6 +78,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(headingFont.variable, bodyFont.variable, accentFont.variable, "font-sans", geist.variable)}>
       <body>
+        <ScrollProgress className="bg-linear-to-r from-black via-neutral-400 to-black" />
+        <SmoothCursor />
         <a className="skipLink" href="#main-content">
           Skip to content
         </a>
@@ -98,6 +103,7 @@ export default function RootLayout({
             <SiteNav items={navLinks} />
 
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+              <AnimatedThemeToggler className="themeToggler" variant="circle" />
               <button
                 type="button"
                 className="cmdHint"

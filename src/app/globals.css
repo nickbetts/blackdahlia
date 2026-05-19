@@ -1565,3 +1565,127 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ── MAGIC UI KEYFRAMES ────────────────────────────────────────── */
+
+@keyframes shimmer-slide {
+  to { transform: translate(calc(100cqw - 100%), 0); }
+}
+
+@keyframes spin-around {
+  0%           { transform: translateZ(0) rotate(0deg); }
+  15%, 35%     { transform: translateZ(0) rotate(90deg); }
+  65%, 85%     { transform: translateZ(0) rotate(270deg); }
+  100%         { transform: translateZ(0) rotate(360deg); }
+}
+
+@keyframes shiny-text {
+  0%, 90%, 100% { background-position: calc(-100% - var(--shiny-width, 100px)) 0; }
+  30%, 60%      { background-position: calc(100% + var(--shiny-width, 100px)) 0; }
+}
+
+@keyframes line-shadow {
+  0%   { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+@theme {
+  --animate-shimmer-slide: shimmer-slide 1s ease-in-out infinite alternate;
+  --animate-spin-around:   spin-around calc(var(--speed, 3s) * 2) infinite linear;
+  --animate-shiny-text:    shiny-text 8s infinite;
+  --animate-line-shadow:   line-shadow 15s linear infinite;
+}
+
+/* ── ANIMATED THEME TOGGLER — VIEW TRANSITIONS ─────────────────── */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+[data-magicui-theme-vt="active"]::view-transition-new(root) {
+  clip-path: var(--magicui-theme-vt-clip-from, circle(0 at 50% 50%));
+  animation: none;
+}
+
+/* ── THEME TOGGLER BUTTON ──────────────────────────────────────── */
+
+.themeToggler {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--text-200);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.themeToggler:hover {
+  background: var(--bg-850);
+  color: var(--text-100);
+  border-color: var(--border-gold);
+}
+
+/* ── DARK MODE TOKENS ──────────────────────────────────────────── */
+
+.dark {
+  --bg-950: #0c0c0c;
+  --bg-900: #141414;
+  --bg-850: #1e1e1e;
+  --surface-800: rgba(20, 20, 20, 0.92);
+  --surface-700: rgba(30, 30, 30, 0.8);
+  --text-100: #f0f0f0;
+  --text-200: #c0c0c0;
+  --text-300: #888888;
+  --accent-gold: #f0f0f0;
+  --accent-red: #f0f0f0;
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-gold: rgba(255, 255, 255, 0.14);
+  --shadow-deep: 0 32px 80px rgba(0, 0, 0, 0.6);
+  --shadow-gold: 0 0 60px rgba(255, 255, 255, 0.03);
+  --background: #0c0c0c;
+  --foreground: #f0f0f0;
+  --card: #141414;
+  --card-foreground: #f0f0f0;
+  --popover: #141414;
+  --popover-foreground: #f0f0f0;
+  --primary: #f0f0f0;
+  --primary-foreground: #0c0c0c;
+  --secondary: #1e1e1e;
+  --secondary-foreground: #f0f0f0;
+  --muted: #1e1e1e;
+  --muted-foreground: #888888;
+  --accent: #1e1e1e;
+  --accent-foreground: #f0f0f0;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: #f0f0f0;
+}
+
+.dark .siteHeader {
+  background: rgba(12, 12, 12, 0.85);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .primaryButton {
+  background: #f0f0f0;
+  color: #0c0c0c;
+}
+
+.dark .primaryButton:hover {
+  background: #ffffff;
+}
+
+.dark body {
+  background: var(--bg-950);
+  color: var(--text-100);
+}
+
+.dark .ambientGrain {
+  opacity: 0.04;
+}
