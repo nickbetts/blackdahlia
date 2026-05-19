@@ -88,7 +88,7 @@ export default function RootLayout({
           <div className="container headerInner">
             <Link href="/" className="brandWordmark">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/dahlialogo-light.svg" className="brandLogo" alt="" aria-hidden="true" />
+              <img src="/dahlialogo-dark.svg" className="brandLogo" alt="" aria-hidden="true" />
               <span>
                 <strong>{studioInfo.name}</strong>
                 <small>{studioInfo.strapline}</small>
@@ -124,7 +124,7 @@ export default function RootLayout({
           <div className="container footerGrid">
             <section className="footerBrand">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/dahlialogo-light.svg" className="brandLogo brandLogoFooter" alt="" aria-hidden="true" />
+              <img src="/dahlialogo-dark.svg" className="brandLogo brandLogoFooter" alt="" aria-hidden="true" />
               <h2>{studioInfo.name}</h2>
               <p>
                 Private tattoo studio in {studioInfo.city}. Three artists, custom work only,
