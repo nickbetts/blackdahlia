@@ -5,16 +5,8 @@ import { ShieldCheck, Sparkle, Users } from "@phosphor-icons/react/dist/ssr";
 import { GiInkSwirl, GiSkullCrossedBones } from "react-icons/gi";
 import { aboutCopy, artists } from "@/content/studio";
 import { getLeadImage, studioGallery } from "@/lib/media";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
-import { BorderBeam } from "@/components/ui/border-beam";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
-import { Meteors } from "@/components/ui/meteors";
-import { Particles } from "@/components/ui/particles";
-import { FocusCards } from "@/components/ui/focus-cards";
-import { MovingBorderLink } from "@/components/moving-border-link";
 
 export const metadata: Metadata = {
   title: "About",
@@ -24,187 +16,176 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const studioValues = [
-    "One client at a time — no overlap, no shared chair, no rush.",
-    "Direct contact with your artist from brief to healed skin.",
-    "Strict hygiene, single-use kit, aftercare you can actually follow.",
+    { icon: <ShieldCheck weight="fill" size={18} />, text: "One client at a time — no overlap, no shared chair, no rush." },
+    { icon: <GiSkullCrossedBones size={18} />, text: "Direct contact with your artist from brief to healed skin." },
+    { icon: <GiInkSwirl size={18} />, text: "Strict hygiene, single-use kit, aftercare you can actually follow." },
   ];
 
-  const galleryCards = studioGallery.slice(0, 6).map((img) => ({
-    title: img.title || "Studio",
-    src: img.localPath,
-  }));
+  const galleryImages = studioGallery.slice(0, 6);
 
   return (
     <div className="pageStack">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ paddingBlock: "clamp(2rem, 5vw, 3.5rem)" }}>
-        <Meteors number={10} color="#c9a26b" />
-        <Particles
-          className="absolute inset-0 pointer-events-none"
-          quantity={20}
-          color="#c9a26b"
-          size={0.35}
-          staticity={85}
-        />
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
-          <BlurFade inView direction="up" delay={0.05} className="pageHeroCompact">
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6} className="eyebrow eyebrowTypewriter">
-              About the studio
-            </AnimatedGradientText>
-            <h1 className="heroDisplay">A private room <em>for proper</em> tattoos.</h1>
-            <p className="lede">
-              Three artists, custom work only, no flash wall. Built for long sessions and considered
-              pieces — the kind you want to live with for a while.
-            </p>
-          </BlurFade>
+      <section className="pageHero">
+        <div className="container">
+          <div className="pageHeroDivider" />
+          <p className="eyebrow">About the studio</p>
+          <h1 className="displayXL">
+            A private room<br /><em>for proper tattoos.</em>
+          </h1>
+          <p className="lede">
+            Three artists, custom work only, no flash wall. Built for long sessions and considered
+            pieces — the kind you want to live with for a while.
+          </p>
         </div>
       </section>
 
-      {/* ── ABOUT EDITORIAL ──────────────────────────────────────────── */}
-      <section className="container sectionSpacing aboutEditorialGrid">
-        <BlurFade inView direction="up" delay={0.05}>
-          <div style={{ position: "relative", borderRadius: "18px", overflow: "hidden" }}>
-            <CardSpotlight
-              className="aboutManifestoCard border-0"
-              color="rgba(201,162,107,0.07)"
-              radius={420}
-            >
-              <h2 className="displayMix">{aboutCopy.title}</h2>
-              <p className="aboutSectionIntro">
-                Tattooing here is artist-led, custom first, and paced to the work — not the diary.
-              </p>
-              <div className="aboutCopyStack">
-                {aboutCopy.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-              <div className="aboutValueGrid">
-                {studioValues.map((value, i) => (
-                  <article key={value}>
-                    {i === 0 ? <ShieldCheck weight="fill" size={18} /> : i === 1 ? <GiSkullCrossedBones size={18} /> : <GiInkSwirl size={18} />}
-                    <p>{value}</p>
-                  </article>
-                ))}
-              </div>
-            </CardSpotlight>
-            <BorderBeam colorFrom="#c9a26b" colorTo="#9a4c3b" size={140} duration={9} borderWidth={1} />
-          </div>
-        </BlurFade>
-
-        <BlurFade inView direction="up" delay={0.12}>
-          <CardSpotlight
-            className="aboutTimelineCard"
-            color="rgba(154,76,59,0.08)"
-            radius={360}
-          >
-            <h2 className="displayMix">How the studio <em>came together.</em></h2>
-            <ol>
-              {aboutCopy.story.map((step) => (
-                <li key={step}>{step}</li>
+      {/* ── ABOUT SPLIT ──────────────────────────────────────────────── */}
+      <section className="container sectionSpacing">
+        <div className="aboutSplit">
+          <div>
+            <p className="eyebrow">The studio</p>
+            <h2 className="displayMix" style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
+              {aboutCopy.title}
+            </h2>
+            <p className="lede" style={{ marginBottom: "1.2rem" }}>
+              Tattooing here is artist-led, custom first, and paced to the work — not the diary.
+            </p>
+            <div className="aboutBodyText">
+              {aboutCopy.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
-            </ol>
-            <div className="aboutTimelineMeta">
-              <p>
-                <Users weight="fill" size={16} /> Three resident artists, each working in their own lane.
+            </div>
+          </div>
+
+          <div>
+            <p className="eyebrow">How the studio came together</p>
+            <h2 className="displayMix" style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
+              The <em>story so far.</em>
+            </h2>
+            <div className="aboutTimeline">
+              {aboutCopy.story.map((step, i) => (
+                <div key={step} className="aboutTimelineItem">
+                  <span style={{ color: "var(--accent-gold)", fontFamily: "var(--font-accent)", fontSize: "0.8rem" }}>
+                    0{i + 1}
+                  </span>
+                  <p>{step}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: "1.2rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <p style={{ color: "var(--text-200)", fontSize: "0.9rem" }}>
+                <Users weight="fill" size={15} style={{ display: "inline", marginRight: "0.4rem" }} />
+                Three resident artists, each working in their own lane.
               </p>
-              <p>
-                <Sparkle weight="fill" size={16} /> Custom commissions — placement and composition planned with you.
+              <p style={{ color: "var(--text-200)", fontSize: "0.9rem" }}>
+                <Sparkle weight="fill" size={15} style={{ display: "inline", marginRight: "0.4rem" }} />
+                Custom commissions — placement and composition planned with you.
               </p>
             </div>
-            <MovingBorderLink
+            <Link
               href="/booking"
-              containerClassName="h-auto w-auto py-0"
-              borderClassName="bg-[radial-gradient(#c9a26b_40%,transparent_60%)]"
-              className="primaryButton border-[rgba(201,162,107,0.25)] bg-[rgba(8,8,8,0.92)]"
-              borderRadius="0.5rem"
-              duration={3000}
+              className="primaryButton"
+              style={{ display: "inline-flex", marginTop: "1.5rem" }}
             >
-              Book a session
-            </MovingBorderLink>
-          </CardSpotlight>
-        </BlurFade>
+              Book a session <ArrowRight size={15} />
+            </Link>
+          </div>
+        </div>
       </section>
+
+      <hr className="sectionRule container" />
+
+      {/* ── VALUES ───────────────────────────────────────────────────── */}
+      <section className="container sectionSpacing">
+        <p className="eyebrow">The values</p>
+        <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.4rem" }}>
+          How we <em>run the room.</em>
+        </h2>
+        <div className="aboutValueGrid">
+          {studioValues.map((value) => (
+            <div key={value.text} className="aboutValueCard">
+              <span style={{ color: "var(--accent-gold)" }}>{value.icon}</span>
+              <p>{value.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr className="sectionRule container" />
 
       {/* ── RESIDENT TEAM ────────────────────────────────────────────── */}
       <section className="container sectionSpacing">
-        <BlurFade inView direction="up" delay={0.03}>
-          <div className="sectionHeaderWithAction">
-            <div>
-              <p className="eyebrow">
-                <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6}>
-                  <span className="eyebrowNumber">The team</span>
-                </AnimatedGradientText>
-              </p>
-              <h2 className="sectionTitle displayMix">The <em>resident</em> artists</h2>
-            </div>
-            <Link href="/artists" className="inlineAction">
-              See full profiles <ArrowRight size={16} />
-            </Link>
+        <div className="sectionHeaderWithAction">
+          <div>
+            <p className="eyebrow">The team</p>
+            <h2 className="displayLg" style={{ marginTop: "0.4rem" }}>
+              The <em>resident</em> artists
+            </h2>
           </div>
-        </BlurFade>
+          <Link href="/artists" className="inlineAction">
+            See full profiles <ArrowRight size={16} />
+          </Link>
+        </div>
 
-        <div className="artistEditorialGrid">
-          {artists.map((artist, index) => {
+        <div className="aboutGalleryGrid" style={{ marginTop: "1.6rem" }}>
+          {artists.map((artist) => {
             const image = getLeadImage(artist.slug);
             return (
-              <BlurFade
-                key={artist.slug}
-                delay={0.08 + index * 0.07}
-                inView
-                direction="up"
-                className={`artistFeatureCard${index === 0 ? " primary" : ""}`}
-                style={{ padding: 0 }}
-              >
-                <CardSpotlight
-                  className="p-0 rounded-[inherit] border-0 bg-transparent w-full h-full flex flex-col"
-                  color="rgba(201,162,107,0.07)"
-                  radius={380}
-                >
-                  {image ? (
-                    <img src={image.localPath} alt={image.title || artist.name} loading="lazy" />
-                  ) : null}
-                  <div>
-                    <p className="artistRole">{artist.role}</p>
-                    <h3>{artist.name}</h3>
-                    <p>{artist.shortBio}</p>
-                    <div className="artistTags">
-                      {artist.specialities.slice(0, 3).map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                    <Link href={`/artists/${artist.slug}`} className="inlineAction">
-                      See portfolio <ArrowRight size={15} />
-                    </Link>
-                  </div>
-                </CardSpotlight>
-              </BlurFade>
+              <Link key={artist.slug} href={`/artists/${artist.slug}`} style={{ display: "block", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
+                {image ? (
+                  <img
+                    src={image.localPath}
+                    alt={image.title || artist.name}
+                    loading="lazy"
+                    style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }}
+                  />
+                ) : null}
+                <div style={{ padding: "0.8rem", background: "var(--bg-900)", borderTop: "1px solid var(--border-soft)" }}>
+                  <p className="artistRole">{artist.role}</p>
+                  <p style={{ fontFamily: "var(--font-heading)", fontSize: "1.05rem", color: "var(--text-100)" }}>
+                    {artist.name}
+                  </p>
+                </div>
+              </Link>
             );
           })}
         </div>
       </section>
 
-      {/* ── GALLERY ──────────────────────────────────────────────────── */}
+      <hr className="sectionRule container" />
+
+      {/* ── STUDIO GALLERY ───────────────────────────────────────────── */}
       <section className="container sectionSpacing">
-        <BlurFade inView direction="up" delay={0.05} className="aboutGalleryIntro">
-          <p className="eyebrow">
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6}>
-              Inside the room
-            </AnimatedGradientText>
-          </p>
-          <h2 className="sectionTitle displayMix">Quiet space. <em>High-focus sessions.</em></h2>
-          <p className="sectionIntro">
-            Low traffic, low noise, and enough room to actually collaborate on placement and
-            composition without anyone breathing down your neck.
-          </p>
-        </BlurFade>
-        <BlurFade inView delay={0.15}>
-          <FocusCards cards={galleryCards} />
-        </BlurFade>
+        <p className="eyebrow">The work</p>
+        <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.4rem" }}>
+          From the <em>studio floor.</em>
+        </h2>
+        <div className="aboutGalleryGrid">
+          {galleryImages.map((img) => (
+            <div
+              key={img.hash}
+              style={{
+                borderRadius: "10px",
+                overflow: "hidden",
+                aspectRatio: "1",
+                background: "var(--bg-900)",
+              }}
+            >
+              <img
+                src={img.localPath}
+                alt={img.title || "Studio work"}
+                loading="lazy"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ── CTA BAND ─────────────────────────────────────────────────── */}
-      <section className="container ctaBand relative overflow-hidden" style={{ borderRadius: "22px" }}>
+      <section className="container ctaBand">
         <ShootingStars
           className="absolute inset-0 rounded-[inherit]"
           starColor="#c9a26b"
@@ -220,33 +201,22 @@ export default function AboutPage() {
           allStarsTwinkle
           twinkleProbability={0.5}
         />
-        <BlurFade className="ctaBandInner" inView direction="up" delay={0.05}>
+        <div className="ctaBandInner" style={{ position: "relative", zIndex: 2 }}>
           <div>
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.7} className="eyebrow eyebrowTypewriter">
-              Ready when you are
-            </AnimatedGradientText>
-            <h2 className="displayMix">Bring references, placement, <em>and an open mind.</em></h2>
-            <p>
-              Send your idea through the booking form so we can pair you with the right artist
-              and a session that actually suits the piece.
-            </p>
+            <p className="eyebrow">Come and sit</p>
+            <h2 className="displayMix">
+              Talk to us <em>before you book.</em>
+            </h2>
           </div>
           <div className="ctaBandLinks">
-            <MovingBorderLink
-              href="/booking"
-              containerClassName="h-auto w-auto py-0"
-              borderClassName="bg-[radial-gradient(#c9a26b_40%,transparent_60%)]"
-              className="primaryButton border-[rgba(201,162,107,0.25)] bg-[rgba(8,8,8,0.92)]"
-              borderRadius="0.5rem"
-              duration={2800}
-            >
-              Book a session
-            </MovingBorderLink>
+            <Link href="/booking" className="primaryButton">
+              Book a session <ArrowRight size={15} />
+            </Link>
             <Link href="/contact" className="ghostButton">
-              Ask first
+              Ask a question
             </Link>
           </div>
-        </BlurFade>
+        </div>
       </section>
 
     </div>

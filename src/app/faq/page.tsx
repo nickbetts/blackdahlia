@@ -2,14 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CircleHelp } from "lucide-react";
 import { faqSections } from "@/content/studio";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
-import { Meteors } from "@/components/ui/meteors";
-import { Particles } from "@/components/ui/particles";
-import { MovingBorderLink } from "@/components/moving-border-link";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -22,80 +16,47 @@ export default function FaqPage() {
     <div className="pageStack">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ paddingBlock: "clamp(2rem, 5vw, 3.5rem)" }}>
-        <Meteors number={10} color="#c9a26b" />
-        <Particles
-          className="absolute inset-0 pointer-events-none"
-          quantity={20}
-          color="#c9a26b"
-          size={0.35}
-          staticity={85}
-        />
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
-          <BlurFade inView direction="up" delay={0.05} className="pageHeroCompact">
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6} className="eyebrow eyebrowTypewriter">
-              FAQ
-            </AnimatedGradientText>
-            <h1 className="heroDisplay">Everything <em>before you sit down.</em></h1>
-            <p className="lede">
-              Booking, deposits, prep, healing, cover-ups — the questions we get every week, answered
-              once, clearly.
-            </p>
-          </BlurFade>
+      <section className="pageHero">
+        <div className="container">
+          <div className="pageHeroDivider" />
+          <p className="eyebrow">FAQ</p>
+          <h1 className="displayXL">
+            Everything <em>before<br />you sit down.</em>
+          </h1>
+          <p className="lede">
+            Booking, deposits, prep, healing, cover-ups — the questions we get every week, answered
+            once, clearly.
+          </p>
         </div>
-      </section>
-
-      {/* ── CATEGORY STRIP ───────────────────────────────────────────── */}
-      <section className="container sectionSpacing">
-        <BlurFade inView direction="up" delay={0.04}>
-          <div className="faqCategoryStrip">
-            {faqSections.map((section) => (
-              <CardSpotlight
-                key={section.title}
-                className="faqCategoryCard border-[rgba(255,255,255,0.07)]"
-                color="rgba(201,162,107,0.05)"
-                radius={240}
-              >
-                <p className="artistRole">Category</p>
-                <h2>{section.title}</h2>
-                <p>{section.items.length} answers</p>
-              </CardSpotlight>
-            ))}
-          </div>
-        </BlurFade>
       </section>
 
       {/* ── FAQ SECTIONS ─────────────────────────────────────────────── */}
       <section className="container sectionSpacing faqSectionStack">
-        {faqSections.map((section, sectionIndex) => (
-          <BlurFade key={section.title} inView direction="up" delay={sectionIndex * 0.06}>
-            <CardSpotlight
-              className="faqSectionCard faqSectionCardEditorial border-[rgba(255,255,255,0.08)]"
-              color="rgba(201,162,107,0.07)"
-              radius={400}
-            >
-              <div className="faqSectionHeading">
-                <h2>{section.title}</h2>
-                <p>{section.items.length} answers</p>
-              </div>
-              <div className="faqList">
-                {section.items.map((item) => (
-                  <details key={item.question}>
-                    <summary>
-                      <CircleHelp size={15} />
-                      <span>{item.question}</span>
-                    </summary>
-                    <p>{item.answer}</p>
-                  </details>
-                ))}
-              </div>
-            </CardSpotlight>
-          </BlurFade>
+        {faqSections.map((section) => (
+          <div key={section.title} className="faqSection">
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", marginBottom: "1rem" }}>
+              <h2 className="displayMix">{section.title}</h2>
+              <span style={{ color: "var(--text-300)", fontSize: "0.8rem", fontFamily: "var(--font-accent)", whiteSpace: "nowrap" }}>
+                {section.items.length} answers
+              </span>
+            </div>
+            <div className="faqList">
+              {section.items.map((item) => (
+                <details key={item.question}>
+                  <summary>
+                    <CircleHelp size={15} style={{ flexShrink: 0, color: "var(--accent-gold)" }} />
+                    <span>{item.question}</span>
+                  </summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
         ))}
       </section>
 
       {/* ── CTA BAND ─────────────────────────────────────────────────── */}
-      <section className="container ctaBand relative overflow-hidden" style={{ borderRadius: "22px" }}>
+      <section className="container ctaBand">
         <ShootingStars
           className="absolute inset-0 rounded-[inherit]"
           starColor="#c9a26b"
@@ -111,33 +72,26 @@ export default function FaqPage() {
           allStarsTwinkle
           twinkleProbability={0.5}
         />
-        <BlurFade className="ctaBandInner" inView direction="up" delay={0.05}>
+        <div className="ctaBandInner" style={{ position: "relative", zIndex: 2 }}>
           <div>
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.7} className="eyebrow eyebrowTypewriter">
-              Still unsure?
-            </AnimatedGradientText>
-            <h2 className="displayMix">Ask us <em>before you pay.</em></h2>
-            <p>
-              If the answer's tied to your piece, your skin or your timeline, drop us a line with
-              the detail. We'll come back to you properly.
+            <p className="eyebrow">Still unsure?</p>
+            <h2 className="displayMix">
+              Ask us <em>before you pay.</em>
+            </h2>
+            <p style={{ color: "var(--text-200)", fontSize: "0.95rem", lineHeight: 1.6 }}>
+              If the answer&apos;s tied to your piece, your skin or your timeline, drop us a line with
+              the detail. We&apos;ll come back to you properly.
             </p>
           </div>
           <div className="ctaBandLinks">
-            <MovingBorderLink
-              href="/contact"
-              containerClassName="h-auto w-auto py-0"
-              borderClassName="bg-[radial-gradient(#c9a26b_40%,transparent_60%)]"
-              className="primaryButton border-[rgba(201,162,107,0.25)] bg-[rgba(8,8,8,0.92)]"
-              borderRadius="0.5rem"
-              duration={2800}
-            >
-              Ask a question
-            </MovingBorderLink>
+            <Link href="/contact" className="primaryButton">
+              Ask a question <ArrowRight size={15} />
+            </Link>
             <Link href="/booking" className="ghostButton">
-              Book a session <ArrowRight size={15} />
+              Book a session
             </Link>
           </div>
-        </BlurFade>
+        </div>
       </section>
 
     </div>

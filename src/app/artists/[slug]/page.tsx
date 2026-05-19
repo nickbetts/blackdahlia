@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Camera, MoveLeft, Music4, Users } from "lucide-react";
+import { Camera, MoveLeft, Music4, Users, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { artists } from "@/content/studio";
 import { getArtistGallery, getLeadImage } from "@/lib/media";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
-import { BorderBeam } from "@/components/ui/border-beam";
-import { Particles } from "@/components/ui/particles";
-import { FocusCards } from "@/components/ui/focus-cards";
-import { MovingBorderLink } from "@/components/moving-border-link";
 
 type ArtistPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
@@ -25,13 +16,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: ArtistPageProps): Promise<Metadata> {
   const { slug } = await params;
   const artist = artists.find((entry) => entry.slug === slug);
-
-  if (!artist) {
-    return {
-      title: "Artist",
-    };
-  }
-
+  if (!artist) return { title: "Artist" };
   return {
     title: `${artist.name} Portfolio`,
     description: `${artist.name} at The Black Dahlia. ${artist.shortBio}`,
@@ -41,123 +26,119 @@ export async function generateMetadata({ params }: ArtistPageProps): Promise<Met
 export default async function ArtistDetailPage({ params }: ArtistPageProps) {
   const { slug } = await params;
   const artist = artists.find((entry) => entry.slug === slug);
-
-  if (!artist) {
-    notFound();
-  }
+  if (!artist) notFound();
 
   const leadImage = getLeadImage(artist.slug);
   const gallery = getArtistGallery(artist.slug, 18);
-  const galleryCards = gallery.map((img) => ({
-    title: img.title || `${artist.name} tattoo`,
-    src: img.localPath,
-  }));
 
   return (
     <div className="pageStack">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ paddingBlock: "clamp(2rem, 5vw, 3.5rem)" }}>
-        <Particles
-          className="absolute inset-0 pointer-events-none"
-          quantity={30}
-          color="#c9a26b"
-          size={0.4}
-          staticity={75}
-          ease={55}
-        />
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
-          <BlurFade inView direction="up" delay={0.05} className="pageHeroCompact">
-            <Link href="/artists" className="inlineAction" style={{ marginBottom: "0.5rem", display: "inline-flex" }}>
-              <MoveLeft size={14} /> Back to all artists
-            </Link>
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6} className="eyebrow">
-              Artist profile
-            </AnimatedGradientText>
-            <h1 className="heroDisplay">{artist.name}</h1>
-            <p className="lede">{artist.longBio}</p>
-          </BlurFade>
+      <section className="pageHero">
+        <div className="container">
+          <Link
+            href="/artists"
+            className="inlineAction"
+            style={{ marginBottom: "1.2rem", display: "inline-flex" }}
+          >
+            <MoveLeft size={14} /> Back to all artists
+          </Link>
+          <div className="pageHeroDivider" />
+          <p className="eyebrow">Artist profile</p>
+          <h1 className="displayXL">{artist.name}</h1>
+          <p className="lede">{artist.longBio}</p>
         </div>
       </section>
 
       {/* ── DETAIL LAYOUT ────────────────────────────────────────────── */}
-      <section className="container sectionSpacing artistDetailLayout">
-        <BlurFade inView direction="up" delay={0.05}>
-          <div className="artistDetailMain">
+      <section className="container sectionSpacing">
+        <div className="artistDetailGrid">
+
+          {/* Sidebar */}
+          <aside className="artistDetailSidebar">
             {leadImage ? (
-              <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden" }}>
-                <img
-                  src={leadImage.localPath}
-                  alt={leadImage.title || artist.name}
-                  loading="eager"
-                  className="artistDetailLead"
-                />
-                <BorderBeam colorFrom="#c9a26b" colorTo="#9a4c3b" size={180} duration={10} borderWidth={1.5} />
-              </div>
+              <img
+                src={leadImage.localPath}
+                alt={leadImage.title || artist.name}
+                loading="eager"
+                style={{ width: "100%", display: "block" }}
+              />
             ) : null}
-            <div className="artistTags">
-              {artist.specialities.map((item) => (
-                <span key={item}>{item}</span>
+            <div className="artistDetailSidebarBody">
+              <p className="artistRole">{artist.role}</p>
+              <div className="artistTags" style={{ marginBlock: "0.8rem" }}>
+                {artist.specialities.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                <a
+                  href={artist.social.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inlineAction"
+                >
+                  <Camera size={15} /> Instagram
+                </a>
+                {artist.social.facebook ? (
+                  <a
+                    href={artist.social.facebook}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inlineAction"
+                  >
+                    <Users size={15} /> Facebook
+                  </a>
+                ) : null}
+                {artist.social.tiktok ? (
+                  <a
+                    href={artist.social.tiktok}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inlineAction"
+                  >
+                    <Music4 size={15} /> TikTok
+                  </a>
+                ) : null}
+              </div>
+              <Link href="/booking" className="primaryButton" style={{ display: "inline-flex" }}>
+                Book with {artist.name} <ArrowRight size={14} />
+              </Link>
+            </div>
+          </aside>
+
+          {/* Main */}
+          <div className="artistDetailMain">
+            <div>
+              <p className="eyebrow">Portfolio</p>
+              <h2
+                className="displayMix"
+                style={{ marginTop: "0.4rem", marginBottom: "1.4rem" }}
+              >
+                {artist.name}&apos;s <em>gallery</em>
+              </h2>
+            </div>
+            <div className="galleryGrid">
+              {gallery.map((img) => (
+                <div key={img.hash} className="galleryCell">
+                  <img
+                    src={img.localPath}
+                    alt={img.title || `${artist.name} tattoo`}
+                    loading="lazy"
+                  />
+                </div>
               ))}
             </div>
           </div>
-        </BlurFade>
-
-        <BlurFade inView direction="up" delay={0.14}>
-          <CardSpotlight
-            className="artistDetailSidebar border-[rgba(255,255,255,0.1)]"
-            color="rgba(201,162,107,0.08)"
-            radius={320}
-          >
-            <p className="artistRole">{artist.role}</p>
-            <h2>Connect</h2>
-            <a href={artist.social.instagram} target="_blank" rel="noreferrer">
-              <Camera size={16} /> Instagram
-            </a>
-            {artist.social.facebook ? (
-              <a href={artist.social.facebook} target="_blank" rel="noreferrer">
-                <Users size={16} /> Facebook
-              </a>
-            ) : null}
-            {artist.social.tiktok ? (
-              <a href={artist.social.tiktok} target="_blank" rel="noreferrer">
-                <Music4 size={16} /> TikTok
-              </a>
-            ) : null}
-            <MovingBorderLink
-              href="/booking"
-              containerClassName="h-auto w-auto py-0"
-              borderClassName="bg-[radial-gradient(#c9a26b_40%,transparent_60%)]"
-              className="primaryButton sidebarButton border-[rgba(201,162,107,0.25)] bg-[rgba(8,8,8,0.92)]"
-              borderRadius="0.5rem"
-              duration={3000}
-            >
-              Book with {artist.name}
-            </MovingBorderLink>
-          </CardSpotlight>
-        </BlurFade>
-      </section>
-
-      {/* ── GALLERY ──────────────────────────────────────────────────── */}
-      <section className="container sectionSpacing">
-        <BlurFade inView direction="up" delay={0.04}>
-          <div className="sectionHeaderWithAction">
-            <div>
-              <p className="eyebrow">
-                <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6}>
-                  Portfolio
-                </AnimatedGradientText>
-              </p>
-              <h2 className="sectionTitle displayMix">{artist.name}&apos;s <em>gallery</em></h2>
-            </div>
-          </div>
-        </BlurFade>
-        <BlurFade inView delay={0.12}>
-          <FocusCards
-            cards={galleryCards}
-            className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-          />
-        </BlurFade>
+        </div>
       </section>
 
     </div>

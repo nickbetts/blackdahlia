@@ -2,15 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Camera, Mail, MapPin, ShieldCheck, Users } from "lucide-react";
 import { studioInfo } from "@/content/studio";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
-import { BorderBeam } from "@/components/ui/border-beam";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
-import { Meteors } from "@/components/ui/meteors";
-import { Particles } from "@/components/ui/particles";
-import { MovingBorderLink } from "@/components/moving-border-link";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -30,112 +23,95 @@ export default function ContactPage() {
     <div className="pageStack">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ paddingBlock: "clamp(2rem, 5vw, 3.5rem)" }}>
-        <Meteors number={10} color="#c9a26b" />
-        <Particles
-          className="absolute inset-0 pointer-events-none"
-          quantity={20}
-          color="#c9a26b"
-          size={0.35}
-          staticity={85}
-        />
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
-          <BlurFade inView direction="up" delay={0.05} className="pageHeroCompact">
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6} className="eyebrow eyebrowTypewriter">
-              Get in touch
-            </AnimatedGradientText>
-            <h1 className="heroDisplay">Questions first? <em>Drop us a line.</em></h1>
-            <p className="lede">
-              For an actual booking, the form is faster. For anything else — visit planning, policy,
-              aftercare, cover-up assessments — use the channels below.
-            </p>
-          </BlurFade>
+      <section className="pageHero">
+        <div className="container">
+          <div className="pageHeroDivider" />
+          <p className="eyebrow">Get in touch</p>
+          <h1 className="displayXL">
+            Questions first?<br /><em>Drop us a line.</em>
+          </h1>
+          <p className="lede">
+            For an actual booking, the form is faster. For anything else — visit planning, policy,
+            aftercare, cover-up assessments — use the channels below.
+          </p>
         </div>
       </section>
 
-      {/* ── EDITORIAL GRID ───────────────────────────────────────────── */}
-      <section className="container sectionSpacing contactEditorialGrid">
-        <BlurFade inView direction="up" delay={0.05}>
-          <div style={{ position: "relative", borderRadius: "18px", overflow: "hidden" }}>
-            <CardSpotlight
-              className="contactChannelPanel border-0"
-              color="rgba(201,162,107,0.07)"
-              radius={400}
-            >
-              <h2 className="displayMix">Direct <em>channels</em></h2>
-              <p>
-                Pick whichever's easiest. Email is best for anything detailed, socials are best for
-                quick questions.
-              </p>
+      {/* ── CONTACT GRID ─────────────────────────────────────────────── */}
+      <section className="container sectionSpacing contactGrid">
 
-              <div className="contactLinkStack">
-                <a href={`mailto:${studioInfo.email}`}>
-                  <Mail size={16} /> {studioInfo.email}
-                </a>
-                <a href={studioInfo.social.instagram} target="_blank" rel="noreferrer">
-                  <Camera size={16} /> @theblackdahliastudio
-                </a>
-                <a href={studioInfo.social.facebook} target="_blank" rel="noreferrer">
-                  <Users size={16} /> Facebook page
-                </a>
-              </div>
+        <div className="contactPanel">
+          <p className="eyebrow">Direct channels</p>
+          <h2 className="displayMix" style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
+            Reach us <em>directly.</em>
+          </h2>
+          <p style={{ color: "var(--text-200)", fontSize: "0.95rem", lineHeight: 1.65, marginBottom: "1.4rem" }}>
+            Pick whichever&apos;s easiest. Email is best for anything detailed, socials are best for
+            quick questions.
+          </p>
 
-              <div className="contactExpectationList">
-                {responseExpectations.map((item) => (
-                  <p key={item}>
-                    <ShieldCheck size={15} /> {item}
-                  </p>
-                ))}
-              </div>
-            </CardSpotlight>
-            <BorderBeam colorFrom="#c9a26b" colorTo="#9a4c3b" size={160} duration={10} borderWidth={1} />
-          </div>
-        </BlurFade>
-
-        <BlurFade inView direction="up" delay={0.1}>
-          <CardSpotlight
-            className="contactLocationPanel border-[rgba(255,255,255,0.08)]"
-            color="rgba(154,76,59,0.06)"
-            radius={380}
-          >
-            <h2 className="displayMix">Find <em>the studio</em></h2>
-            <p className="artistRole">Private — appointment only</p>
-            <p>
-              <MapPin size={16} /> {addressOneLine}
-            </p>
-            <a href={studioInfo.mapUrl} target="_blank" rel="noreferrer" className="inlineAction">
-              Open in Google Maps <ArrowRight size={15} />
+          <div className="contactLinkStack">
+            <a href={`mailto:${studioInfo.email}`}>
+              <Mail size={16} /> {studioInfo.email}
             </a>
+            <a href={studioInfo.social.instagram} target="_blank" rel="noreferrer">
+              <Camera size={16} /> @theblackdahliastudio
+            </a>
+            <a href={studioInfo.social.facebook} target="_blank" rel="noreferrer">
+              <Users size={16} /> Facebook page
+            </a>
+          </div>
 
-            <div className="contactLocationActions">
-              <MovingBorderLink
-                href="/booking"
-                containerClassName="h-auto w-auto py-0"
-                borderClassName="bg-[radial-gradient(#c9a26b_40%,transparent_60%)]"
-                className="primaryButton border-[rgba(201,162,107,0.25)] bg-[rgba(8,8,8,0.92)]"
-                borderRadius="0.5rem"
-                duration={3000}
+          <div style={{ marginTop: "1.4rem", display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+            {responseExpectations.map((item) => (
+              <p
+                key={item}
+                style={{
+                  display: "flex",
+                  gap: "0.5rem",
+                  color: "var(--text-200)",
+                  fontSize: "0.88rem",
+                  lineHeight: 1.5,
+                }}
               >
-                Book a session
-              </MovingBorderLink>
-              <Link href="/faq" className="ghostButton">
-                Read the FAQ
-              </Link>
-            </div>
-          </CardSpotlight>
-        </BlurFade>
-      </section>
+                <ShieldCheck size={14} style={{ flexShrink: 0, color: "var(--accent-gold)", marginTop: "0.15rem" }} />
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
 
-      {/* ── QUICK EMAIL ──────────────────────────────────────────────── */}
-      <section className="container sectionSpacing">
-        <BlurFade inView direction="up" delay={0.05}>
-          <CardSpotlight
-            className="contactMailtoBox border-[rgba(255,255,255,0.08)]"
-            color="rgba(201,162,107,0.06)"
-            radius={450}
+        <div className="contactPanel">
+          <p className="eyebrow">Find the studio</p>
+          <h2 className="displayMix" style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
+            Private <em>— appointment only.</em>
+          </h2>
+          <p
+            style={{
+              display: "flex",
+              gap: "0.5rem",
+              color: "var(--text-200)",
+              fontSize: "0.95rem",
+              marginBottom: "0.8rem",
+              alignItems: "flex-start",
+            }}
           >
-            <h2 className="displayMix">Quick email <em>template</em></h2>
-            <p>
+            <MapPin size={16} style={{ flexShrink: 0, color: "var(--accent-gold)", marginTop: "0.2rem" }} />
+            {addressOneLine}
+          </p>
+          <a
+            href={studioInfo.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inlineAction"
+            style={{ marginBottom: "1.4rem", display: "inline-flex" }}
+          >
+            Open in Google Maps <ArrowRight size={15} />
+          </a>
+
+          <div className="contactMailBox">
+            <p className="eyebrow">Quick email template</p>
+            <p style={{ color: "var(--text-200)", fontSize: "0.9rem", lineHeight: 1.6, margin: "0.5rem 0 0.9rem" }}>
               Just need to ask something fast? This opens your mail app with the subject already set.
             </p>
             <a
@@ -144,12 +120,22 @@ export default function ContactPage() {
             >
               Open email draft
             </a>
-          </CardSpotlight>
-        </BlurFade>
+          </div>
+
+          <div style={{ marginTop: "1.2rem", display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+            <Link href="/booking" className="primaryButton">
+              Book a session <ArrowRight size={14} />
+            </Link>
+            <Link href="/faq" className="ghostButton">
+              Read the FAQ
+            </Link>
+          </div>
+        </div>
+
       </section>
 
       {/* ── CTA BAND ─────────────────────────────────────────────────── */}
-      <section className="container ctaBand relative overflow-hidden" style={{ borderRadius: "22px" }}>
+      <section className="container ctaBand">
         <ShootingStars
           className="absolute inset-0 rounded-[inherit]"
           starColor="#c9a26b"
@@ -165,32 +151,22 @@ export default function ContactPage() {
           allStarsTwinkle
           twinkleProbability={0.5}
         />
-        <BlurFade className="ctaBandInner" inView direction="up" delay={0.05}>
+        <div className="ctaBandInner" style={{ position: "relative", zIndex: 2 }}>
           <div>
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.7} className="eyebrow eyebrowTypewriter">
-              For actual bookings
-            </AnimatedGradientText>
-            <h2 className="displayMix">The form gets the <em>fastest reply.</em></h2>
-            <p>
-              Style direction, placement, references, preferred artist — send it once, properly.
-            </p>
+            <p className="eyebrow">Prefer to just book?</p>
+            <h2 className="displayMix">
+              Use the form. <em>It&apos;s faster.</em>
+            </h2>
           </div>
           <div className="ctaBandLinks">
-            <MovingBorderLink
-              href="/booking"
-              containerClassName="h-auto w-auto py-0"
-              borderClassName="bg-[radial-gradient(#c9a26b_40%,transparent_60%)]"
-              className="primaryButton border-[rgba(201,162,107,0.25)] bg-[rgba(8,8,8,0.92)]"
-              borderRadius="0.5rem"
-              duration={2800}
-            >
-              Book a session
-            </MovingBorderLink>
-            <Link href="/faq" className="ghostButton">
-              Read the FAQ <ArrowRight size={15} />
+            <Link href="/booking" className="primaryButton">
+              Book a session <ArrowRight size={15} />
+            </Link>
+            <Link href="/artists" className="ghostButton">
+              Browse artists
             </Link>
           </div>
-        </BlurFade>
+        </div>
       </section>
 
     </div>

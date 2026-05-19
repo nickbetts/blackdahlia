@@ -2,15 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, CircleAlert } from "lucide-react";
 import { policySections } from "@/content/studio";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
-import { BorderBeam } from "@/components/ui/border-beam";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
-import { Meteors } from "@/components/ui/meteors";
-import { Particles } from "@/components/ui/particles";
-import { MovingBorderLink } from "@/components/moving-border-link";
 
 export const metadata: Metadata = {
   title: "Studio Policies",
@@ -29,78 +22,108 @@ export default function PoliciesPage() {
     <div className="pageStack">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ paddingBlock: "clamp(2rem, 5vw, 3.5rem)" }}>
-        <Meteors number={10} color="#c9a26b" />
-        <Particles
-          className="absolute inset-0 pointer-events-none"
-          quantity={20}
-          color="#c9a26b"
-          size={0.35}
-          staticity={85}
-        />
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
-          <BlurFade inView direction="up" delay={0.05} className="pageHeroCompact">
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.6} className="eyebrow eyebrowTypewriter">
-              Studio policies
-            </AnimatedGradientText>
-            <h1 className="heroDisplay">The <em>house rules.</em></h1>
-            <p className="lede">
-              Read these before you book. They keep the room running properly — fair on artists,
-              fair on clients, and clear from the start.
-            </p>
-          </BlurFade>
+      <section className="pageHero">
+        <div className="container">
+          <div className="pageHeroDivider" />
+          <p className="eyebrow">Studio policies</p>
+          <h1 className="displayXL">
+            The <em>house rules.</em>
+          </h1>
+          <p className="lede">
+            Read these before you book. They keep the room running properly — fair on artists,
+            fair on clients, and clear from the start.
+          </p>
         </div>
       </section>
 
       {/* ── KEY TERMS ────────────────────────────────────────────────── */}
       <section className="container sectionSpacing">
-        <BlurFade inView direction="up" delay={0.05}>
-          <div style={{ position: "relative", borderRadius: "18px", overflow: "hidden" }}>
-            <CardSpotlight
-              className="policyKeyTerms border-0"
-              color="rgba(154,76,59,0.09)"
-              radius={420}
+        <p className="eyebrow">Quick read first</p>
+        <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.2rem" }}>
+          Three things <em>you should know.</em>
+        </h2>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.7rem",
+            padding: "1.4rem 1.6rem",
+            background: "rgba(154,76,59,0.08)",
+            border: "1px solid rgba(154,76,59,0.25)",
+            borderRadius: "12px",
+          }}
+        >
+          {keyTerms.map((term) => (
+            <p
+              key={term}
+              style={{
+                display: "flex",
+                gap: "0.6rem",
+                color: "var(--text-100)",
+                fontSize: "0.95rem",
+                lineHeight: 1.55,
+                alignItems: "flex-start",
+              }}
             >
-              <h2 className="displayMix">Quick <em>read first</em></h2>
-              <div>
-                {keyTerms.map((term) => (
-                  <p key={term}>
-                    <CircleAlert size={15} />
-                    <span>{term}</span>
-                  </p>
-                ))}
-              </div>
-            </CardSpotlight>
-            <BorderBeam colorFrom="#9a4c3b" colorTo="#c9a26b" size={160} duration={9} borderWidth={1} />
-          </div>
-        </BlurFade>
+              <CircleAlert
+                size={15}
+                style={{ flexShrink: 0, color: "var(--accent-red)", marginTop: "0.2rem" }}
+              />
+              {term}
+            </p>
+          ))}
+        </div>
       </section>
 
       {/* ── POLICY CARDS ─────────────────────────────────────────────── */}
-      <section className="container sectionSpacing policyEditorialStack">
-        {policySections.map((section, index) => (
-          <BlurFade key={section.title} inView direction="up" delay={0.06 + index * 0.05}>
-            <CardSpotlight
-              className="policyCard policyCardEditorial border-[rgba(255,255,255,0.08)]"
-              color="rgba(154,76,59,0.07)"
-              radius={360}
-            >
-              <h2>{section.title}</h2>
-              <ul>
+      <section className="container sectionSpacing">
+        <p className="eyebrow">Full policies</p>
+        <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.4rem" }}>
+          Everything <em>in detail.</em>
+        </h2>
+        <div className="policyGrid">
+          {policySections.map((section) => (
+            <div key={section.title} className="policyCard">
+              <h3
+                style={{
+                  fontFamily: "var(--font-heading)",
+                  fontSize: "1.05rem",
+                  color: "var(--text-100)",
+                  marginBottom: "0.9rem",
+                  paddingBottom: "0.7rem",
+                  borderBottom: "1px solid var(--border-soft)",
+                }}
+              >
+                {section.title}
+              </h3>
+              <ul style={{ display: "flex", flexDirection: "column", gap: "0.55rem", margin: 0, padding: 0, listStyle: "none" }}>
                 {section.bullets.map((bullet) => (
-                  <li key={bullet}>
-                    <CheckCircle2 size={15} />
-                    <span>{bullet}</span>
+                  <li
+                    key={bullet}
+                    style={{
+                      display: "flex",
+                      gap: "0.5rem",
+                      color: "var(--text-200)",
+                      fontSize: "0.9rem",
+                      lineHeight: 1.55,
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <CheckCircle2
+                      size={14}
+                      style={{ flexShrink: 0, color: "var(--accent-gold)", marginTop: "0.2rem" }}
+                    />
+                    {bullet}
                   </li>
                 ))}
               </ul>
-            </CardSpotlight>
-          </BlurFade>
-        ))}
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ── CTA BAND ─────────────────────────────────────────────────── */}
-      <section className="container ctaBand relative overflow-hidden" style={{ borderRadius: "22px" }}>
+      <section className="container ctaBand">
         <ShootingStars
           className="absolute inset-0 rounded-[inherit]"
           starColor="#c9a26b"
@@ -116,32 +139,22 @@ export default function PoliciesPage() {
           allStarsTwinkle
           twinkleProbability={0.5}
         />
-        <BlurFade className="ctaBandInner" inView direction="up" delay={0.05}>
+        <div className="ctaBandInner" style={{ position: "relative", zIndex: 2 }}>
           <div>
-            <AnimatedGradientText colorFrom="#c9a26b" colorTo="#9a4c3b" speed={0.7} className="eyebrow eyebrowTypewriter">
-              Not sure something applies to your piece?
-            </AnimatedGradientText>
-            <h2 className="displayMix">Tell us the idea. <em>We'll walk you through it.</em></h2>
-            <p>
-              Timing, artist preference, cover-ups — drop us a line and we'll explain what any of these mean for you specifically.
-            </p>
+            <p className="eyebrow">Not sure something applies to your piece?</p>
+            <h2 className="displayMix">
+              Tell us the idea. <em>We&apos;ll walk you through it.</em>
+            </h2>
           </div>
           <div className="ctaBandLinks">
-            <MovingBorderLink
-              href="/booking"
-              containerClassName="h-auto w-auto py-0"
-              borderClassName="bg-[radial-gradient(#c9a26b_40%,transparent_60%)]"
-              className="primaryButton border-[rgba(201,162,107,0.25)] bg-[rgba(8,8,8,0.92)]"
-              borderRadius="0.5rem"
-              duration={2800}
-            >
-              Book a session
-            </MovingBorderLink>
+            <Link href="/booking" className="primaryButton">
+              Book a session <ArrowRight size={15} />
+            </Link>
             <Link href="/contact" className="ghostButton">
-              Ask a policy question <ArrowRight size={15} />
+              Ask a policy question
             </Link>
           </div>
-        </BlurFade>
+        </div>
       </section>
 
     </div>

@@ -5,7 +5,7 @@ import { studioInfo } from "@/content/studio";
 import { SiteNav } from "@/components/site-nav";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CommandPalette } from "@/components/command-palette";
-import { BorderBeam } from "@/components/ui/border-beam";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -82,7 +82,6 @@ export default function RootLayout({
         <SmoothScroll />
         <CommandPalette />
         <div className="ambientGradient" aria-hidden="true" />
-        <div className="ambientMesh" aria-hidden="true" />
         <div className="ambientGrain" aria-hidden="true" />
 
         <header className="siteHeader">
@@ -108,10 +107,10 @@ export default function RootLayout({
               >
                 <kbd>⌘</kbd><kbd>K</kbd>
               </button>
-              <Link className="headerCta" href="/booking" style={{ position: "relative", overflow: "hidden" }}>
-                <span>Book a session</span>
-                <BorderBeam colorFrom="#c9a26b" colorTo="#9a4c3b" size={60} duration={6} borderWidth={1} />
-              </Link>
+              <div style={{ position: "relative", display: "inline-flex", borderRadius: "8px" }}>
+                <GlowingEffect spread={28} borderWidth={1} disabled={false} proximity={50} />
+                <Link className="headerCta" href="/booking">Book a session</Link>
+              </div>
             </div>
           </div>
         </header>
@@ -121,6 +120,8 @@ export default function RootLayout({
         </main>
 
         <footer className="siteFooter">
+          <span className="footerWatermark" aria-hidden="true">The Black Dahlia</span>
+          <div className="footerContent">
           <div className="container footerGrid">
             <section className="footerBrand">
               <span className="brandSymbol" aria-hidden="true">BD</span>
@@ -161,6 +162,7 @@ export default function RootLayout({
               <Link href="/policies">Studio policies</Link>
               <Link href="/booking">Book a session</Link>
             </div>
+          </div>
           </div>
         </footer>
       </body>
