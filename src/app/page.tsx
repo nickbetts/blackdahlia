@@ -228,7 +228,7 @@ export default function Home() {
           </div>
           <div className="portfolioGrid">
             {portfolioImages.map((img, i) => (
-              <div key={img.hash} className={`portfolioCell${i === 2 || i === 6 ? " tall" : ""}`}>
+              <div key={img.hash} className="portfolioCell">
                 <Lens zoomFactor={1.5} lensSize={150} ariaLabel="Zoom tattoo">
                   <img src={img.localPath} alt={img.title || "Tattoo"} loading="lazy" />
                 </Lens>
