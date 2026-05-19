@@ -7,13 +7,13 @@
 /* ── TOKENS ────────────────────────────────────────────────────── */
 :root {
   --bg-950: #ffffff;
-  --bg-900: #f5f4f2;
-  --bg-850: #ece9e5;
-  --surface-800: rgba(245, 244, 242, 0.92);
-  --surface-700: rgba(236, 233, 229, 0.8);
-  --text-100: #111010;
-  --text-200: #3a3630;
-  --text-300: #7a726a;
+  --bg-900: #f6f6f6;
+  --bg-850: #ebebeb;
+  --surface-800: rgba(246, 246, 246, 0.92);
+  --surface-700: rgba(235, 235, 235, 0.8);
+  --text-100: #111111;
+  --text-200: #333333;
+  --text-300: #777777;
   --accent-gold: #a87840;
   --accent-red: #9a4c3b;
   --border-soft: rgba(0, 0, 0, 0.08);
@@ -23,30 +23,30 @@
   --shadow-gold: 0 0 60px rgba(168, 120, 64, 0.06);
   /* shadcn */
   --background: #ffffff;
-  --foreground: #111010;
-  --card: #f5f4f2;
-  --card-foreground: #111010;
-  --popover: #f5f4f2;
-  --popover-foreground: #111010;
+  --foreground: #111111;
+  --card: #f6f6f6;
+  --card-foreground: #111111;
+  --popover: #f6f6f6;
+  --popover-foreground: #111111;
   --primary: #a87840;
   --primary-foreground: #ffffff;
-  --secondary: #ece9e5;
-  --secondary-foreground: #111010;
-  --muted: #ece9e5;
-  --muted-foreground: #7a726a;
-  --accent: #ece9e5;
-  --accent-foreground: #111010;
+  --secondary: #ebebeb;
+  --secondary-foreground: #111111;
+  --muted: #ebebeb;
+  --muted-foreground: #777777;
+  --accent: #ebebeb;
+  --accent-foreground: #111111;
   --destructive: oklch(0.577 0.245 27.325);
   --border: rgba(0, 0, 0, 0.08);
   --input: rgba(0, 0, 0, 0.05);
   --ring: #a87840;
   --radius: 0.625rem;
-  --sidebar: #f5f4f2;
-  --sidebar-foreground: #111010;
+  --sidebar: #f6f6f6;
+  --sidebar-foreground: #111111;
   --sidebar-primary: #a87840;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #ece9e5;
-  --sidebar-accent-foreground: #111010;
+  --sidebar-accent: #ebebeb;
+  --sidebar-accent-foreground: #111111;
   --sidebar-border: rgba(0, 0, 0, 0.08);
   --sidebar-ring: #a87840;
 }
@@ -63,10 +63,7 @@ html, body {
 
 body {
   color: var(--text-100);
-  background:
-    radial-gradient(ellipse 1200px 700px at 5% -5%, rgba(220, 208, 190, 0.3) 0%, transparent 60%),
-    radial-gradient(ellipse 1000px 600px at 95% 0%, rgba(220, 200, 180, 0.2) 0%, transparent 58%),
-    var(--bg-950);
+  background: var(--bg-950);
   font-family: var(--font-body), sans-serif;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
@@ -85,9 +82,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 .ambientGradient {
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle at 80% 18%, rgba(180, 120, 58, 0.04), transparent 36%),
-    radial-gradient(circle at 14% 78%, rgba(120, 74, 50, 0.03), transparent 32%);
   pointer-events: none;
   z-index: -2;
 }
