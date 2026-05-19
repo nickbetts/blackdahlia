@@ -11,6 +11,7 @@ import { Particles } from "@/components/ui/particles";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { HeroCarousel } from "@/components/hero-carousel";
 
 export default function Home() {
   const signatureStyles = Array.from(
@@ -20,7 +21,16 @@ export default function Home() {
   const portfolioImages = studioGallery.slice(0, 8);
   const marqueeItems = homeIntro.marquee;
   const faqPreview = faqSections.flatMap((s) => s.items).slice(0, 4);
-  const heroImg = heroImages[0];
+  const heroSlides = heroImages.slice(0, 5).map((image) => ({
+    src: image.localPath,
+    alt: image.title || "The Black Dahlia tattoo studio",
+  }));
+
+  const heroLedger = [
+    "Private studio sessions",
+    `${artists.length} resident artists`,
+    `Custom work since ${studioInfo.founded}`,
+  ];
 
   const trustPoints: TrustPoint[] = [
     {
@@ -68,18 +78,9 @@ export default function Home() {
 
       {/* ── HERO — FULL SCREEN ─────────────────────────────────────── */}
       <section className="heroFull">
-        <div className="heroBg">
-          {heroImg ? (
-            <img
-              src={heroImg.localPath}
-              alt={heroImg.title || "The Black Dahlia tattoo studio"}
-              loading="eager"
-              fetchPriority="high"
-            />
-          ) : null}
-        </div>
+        <HeroCarousel slides={heroSlides} />
         <div className="heroBgOverlay" />
-        <BackgroundBeams className="absolute inset-0 z-[1] pointer-events-none opacity-40" />
+        <BackgroundBeams className="absolute inset-0 z-1 pointer-events-none opacity-40" />
         <Particles
           className="absolute inset-0 pointer-events-none"
           style={{ zIndex: 1 }}
@@ -94,9 +95,14 @@ export default function Home() {
           <p className="eyebrow">{homeIntro.eyebrow}</p>
           <h1 className="displayXXL">
             Custom tattoos.<br />
-            <em>Hand drawn.</em>
+            <em>Drawn with intent.</em>
           </h1>
           <p className="lede">{homeIntro.subhead}</p>
+          <div className="heroLedger" aria-label="Studio highlights">
+            {heroLedger.map((fact) => (
+              <span key={fact}>{fact}</span>
+            ))}
+          </div>
           <div className="heroActions">
             <Link href={homeIntro.ctaPrimary.href} className="primaryButton">
               {homeIntro.ctaPrimary.label} <ArrowRight size={16} />
@@ -117,7 +123,7 @@ export default function Home() {
         <MarqueeGsap items={marqueeItems} speed={70} />
       </section>
 
-      <div className="pageStack" style={{ paddingTop: "5rem" }}>
+      <div className="pageStack pageStack--home" style={{ paddingTop: "5rem" }}>
 
         {/* ── SIGNATURE STYLES ─────────────────────────────────────── */}
         <section className="container sectionSpacing">

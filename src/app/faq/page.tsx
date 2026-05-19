@@ -12,8 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default function FaqPage() {
+  const sectionId = (title: string) =>
+    `faq-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+
   return (
-    <div className="pageStack">
+    <div className="pageStack pageStack--faq">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="pageHero">
@@ -30,10 +33,18 @@ export default function FaqPage() {
         </div>
       </section>
 
+      <section className="container faqJumpStrip" aria-label="FAQ categories">
+        {faqSections.map((section) => (
+          <a key={section.title} href={`#${sectionId(section.title)}`}>
+            {section.title}
+          </a>
+        ))}
+      </section>
+
       {/* ── FAQ SECTIONS ─────────────────────────────────────────────── */}
       <section className="container sectionSpacing faqSectionStack">
         {faqSections.map((section) => (
-          <div key={section.title} className="faqSection">
+          <div key={section.title} className="faqSection" id={sectionId(section.title)}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", marginBottom: "1rem" }}>
               <h2 className="displayMix">{section.title}</h2>
               <span style={{ color: "var(--text-300)", fontSize: "0.8rem", fontFamily: "var(--font-accent)", whiteSpace: "nowrap" }}>

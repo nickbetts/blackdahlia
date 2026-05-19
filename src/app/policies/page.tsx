@@ -19,7 +19,7 @@ export default function PoliciesPage() {
   ];
 
   return (
-    <div className="pageStack">
+    <div className="pageStack pageStack--policies">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="pageHero">
@@ -73,6 +73,11 @@ export default function PoliciesPage() {
             </p>
           ))}
         </div>
+      </section>
+
+      <section className="container policyLegend" aria-label="Policy legend">
+        <span><CircleAlert size={14} /> Important</span>
+        <span><CheckCircle2 size={14} /> Included in written confirmation</span>
       </section>
 
       {/* ── POLICY CARDS ─────────────────────────────────────────────── */}

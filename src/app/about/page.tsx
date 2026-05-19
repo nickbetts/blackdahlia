@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ShieldCheck, Sparkle, Users } from "@phosphor-icons/react/dist/ssr";
 import { GiInkSwirl, GiSkullCrossedBones } from "react-icons/gi";
-import { aboutCopy, artists } from "@/content/studio";
+import { aboutCopy, artists, studioInfo } from "@/content/studio";
 import { getLeadImage, studioGallery } from "@/lib/media";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const yearsInOperation = Math.max(1, new Date().getFullYear() - studioInfo.founded);
+
   const studioValues = [
     { icon: <ShieldCheck weight="fill" size={18} />, text: "One client at a time — no overlap, no shared chair, no rush." },
     { icon: <GiSkullCrossedBones size={18} />, text: "Direct contact with your artist from brief to healed skin." },
@@ -24,7 +26,7 @@ export default function AboutPage() {
   const galleryImages = studioGallery.slice(0, 6);
 
   return (
-    <div className="pageStack">
+    <div className="pageStack pageStack--about">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="pageHero">
@@ -38,6 +40,21 @@ export default function AboutPage() {
             Three artists, custom work only, no flash wall. Built for long sessions and considered
             pieces — the kind you want to live with for a while.
           </p>
+        </div>
+      </section>
+
+      <section className="container editorialStatBand" aria-label="Studio at a glance">
+        <div>
+          <p className="editorialStatValue">{artists.length}</p>
+          <p className="editorialStatLabel">Resident artists</p>
+        </div>
+        <div>
+          <p className="editorialStatValue">{yearsInOperation}+</p>
+          <p className="editorialStatLabel">Years in operation</p>
+        </div>
+        <div>
+          <p className="editorialStatValue">Private</p>
+          <p className="editorialStatLabel">Appointment-only floor</p>
         </div>
       </section>
 

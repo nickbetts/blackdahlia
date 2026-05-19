@@ -269,6 +269,15 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   box-shadow: 0 12px 32px rgba(154, 61, 53, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+.headerCta:disabled,
+.primaryButton:disabled,
+.ghostButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+  box-shadow: none;
+}
+
 .ghostButton {
   align-items: center;
   background: transparent;
@@ -340,6 +349,21 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   border-bottom: 1px solid var(--border-soft);
   position: relative;
   overflow: hidden;
+}
+
+.pageHero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 75% at 88% 8%, rgba(201,162,107,0.1), transparent 70%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), transparent 30%);
+}
+
+.pageHero > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .pageHero h1 {
@@ -815,4 +839,743 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   letter-spacing: 0.05em;
   padding: 0.38rem 0.7rem;
   text-transform: uppercase;
+}
+
+/* ── BESPOKE PAGE IDENTITY ────────────────────────────────────── */
+.pageStack {
+  position: relative;
+  isolation: isolate;
+}
+
+.pageStack::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 340px;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(ellipse 70% 120% at 100% 0%, rgba(201,162,107,0.1), transparent 72%);
+}
+
+.pageStack--home::before {
+  background:
+    radial-gradient(ellipse 58% 130% at 100% 0%, rgba(154,76,59,0.22), transparent 70%),
+    radial-gradient(ellipse 45% 90% at 0% 5%, rgba(201,162,107,0.14), transparent 80%);
+}
+
+.pageStack--artists::before {
+  background: radial-gradient(ellipse 55% 120% at 8% 0%, rgba(201,162,107,0.16), transparent 74%);
+}
+
+.pageStack--artist::before {
+  background: radial-gradient(ellipse 55% 120% at 92% 0%, rgba(154,76,59,0.18), transparent 74%);
+}
+
+.pageStack--about::before {
+  background: radial-gradient(ellipse 62% 120% at 84% 0%, rgba(201,162,107,0.12), transparent 72%);
+}
+
+.pageStack--booking::before {
+  background: radial-gradient(ellipse 62% 120% at 18% 0%, rgba(154,76,59,0.16), transparent 72%);
+}
+
+.pageStack--contact::before {
+  background: radial-gradient(ellipse 60% 120% at 88% 0%, rgba(201,162,107,0.11), transparent 72%);
+}
+
+.pageStack--faq::before {
+  background: radial-gradient(ellipse 56% 120% at 10% 0%, rgba(201,162,107,0.13), transparent 72%);
+}
+
+.pageStack--policies::before {
+  background: radial-gradient(ellipse 56% 120% at 84% 0%, rgba(154,76,59,0.14), transparent 72%);
+}
+
+/* ── HERO DETAILS ─────────────────────────────────────────────── */
+.heroLedger {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.heroLedger span {
+  border: 1px solid rgba(201,162,107,0.22);
+  background: rgba(8,8,8,0.42);
+  color: var(--text-200);
+  border-radius: 999px;
+  padding: 0.36rem 0.7rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.heroCarousel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroCarouselViewport {
+  height: 100%;
+  overflow: hidden;
+}
+
+.heroCarouselTrack {
+  display: flex;
+  height: 100%;
+}
+
+.heroCarouselSlide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+.heroCarouselSlide img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 26%;
+  filter: saturate(0.84) contrast(1.04);
+  transform: scale(1.01);
+  transition: transform 900ms ease, filter 900ms ease;
+}
+
+.heroCarouselSlide[data-active="true"] img {
+  filter: saturate(0.98) contrast(1.08);
+  transform: scale(1.05);
+}
+
+.heroCarouselOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(8,8,8,0.2), transparent 30%);
+}
+
+.heroCarouselControls {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.6rem);
+  top: clamp(6rem, 16vh, 10rem);
+  z-index: 3;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.heroCarouselControls button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(8,8,8,0.4);
+  color: var(--text-100);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.heroCarouselControls button:hover {
+  background: rgba(201,162,107,0.2);
+  border-color: rgba(201,162,107,0.45);
+}
+
+.heroCarouselDots {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.6rem);
+  top: calc(clamp(6rem, 16vh, 10rem) + 2.8rem);
+  display: inline-flex;
+  gap: 0.35rem;
+  z-index: 3;
+}
+
+.heroCarouselDot {
+  width: 1.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.28);
+}
+
+.heroCarouselDot.active {
+  background: var(--accent-gold);
+}
+
+/* ── MARQUEE GSAP ─────────────────────────────────────────────── */
+.marqueeGsapOuter {
+  overflow: hidden;
+  width: 100%;
+  padding: 0.82rem 0;
+}
+
+.marqueeGsapTrack {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marqueeGsapSet {
+  display: inline-flex;
+  align-items: center;
+}
+
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-300);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-inline: 0.9rem;
+}
+
+.marqueeDot {
+  color: var(--accent-gold);
+  margin-left: 0.9rem;
+  opacity: 0.75;
+}
+
+/* ── COMMAND PALETTE ──────────────────────────────────────────── */
+.cmdOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: grid;
+  place-items: start center;
+  padding-top: min(16vh, 8rem);
+  background: rgba(8,8,8,0.64);
+  backdrop-filter: blur(6px);
+}
+
+.cmdDialog {
+  width: min(640px, 92vw);
+  background: linear-gradient(180deg, rgba(19,17,15,0.98), rgba(13,12,10,0.98));
+  border: 1px solid rgba(201,162,107,0.22);
+  border-radius: 14px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+  overflow: hidden;
+}
+
+.cmdInput {
+  width: 100%;
+  background: rgba(255,255,255,0.02);
+  border: none;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-100);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.98rem;
+  padding: 0.95rem 1rem;
+  outline: none;
+}
+
+.cmdInput::placeholder {
+  color: var(--text-300);
+}
+
+.cmdList {
+  max-height: min(58vh, 420px);
+  overflow: auto;
+  padding: 0.35rem;
+}
+
+.cmdEmpty {
+  color: var(--text-300);
+  font-size: 0.86rem;
+  padding: 0.6rem;
+}
+
+.cmdGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cmdGroup [cmdk-group-heading] {
+  color: var(--accent-gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.7rem 0.35rem;
+}
+
+.cmdItem {
+  border-radius: 8px;
+  color: var(--text-200);
+  cursor: pointer;
+  font-size: 0.92rem;
+  padding: 0.62rem 0.75rem;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.cmdItem[data-selected="true"],
+.cmdItem:hover {
+  background: rgba(201,162,107,0.12);
+  color: var(--text-100);
+}
+
+/* ── ARTIST DRAWER ────────────────────────────────────────────── */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(8,8,8,0.6);
+  backdrop-filter: blur(4px);
+}
+
+.drawerContent {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(1060px, 96vw);
+  max-height: 88vh;
+  z-index: 91;
+  border: 1px solid rgba(201,162,107,0.22);
+  border-bottom: none;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(180deg, #11100f 0%, #0b0b0a 100%);
+  box-shadow: 0 -18px 42px rgba(0,0,0,0.45);
+  overflow: auto;
+}
+
+.drawerHandle {
+  width: 42px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.25);
+  margin: 0.72rem auto 0.5rem;
+}
+
+.drawerInner {
+  display: grid;
+  grid-template-columns: minmax(220px, 330px) 1fr;
+  min-height: min(78vh, 640px);
+}
+
+.drawerMedia img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.drawerBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  padding: clamp(1.2rem, 3vw, 2.1rem);
+}
+
+.drawerBody p {
+  color: var(--text-200);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.drawerEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.heroDisplay {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+}
+
+.drawerTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.drawerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.62rem;
+  margin-top: 0.3rem;
+}
+
+/* ── BOOKING FORM ─────────────────────────────────────────────── */
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.bookingStepper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.bookingStepChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.02);
+  color: var(--text-300);
+  border-radius: 999px;
+  font-size: 0.73rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.62rem;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.bookingStepChip span {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+}
+
+.bookingStepChip.active {
+  color: var(--text-100);
+  border-color: rgba(201,162,107,0.5);
+  background: rgba(201,162,107,0.12);
+}
+
+.bookingStepChip.complete {
+  color: var(--accent-gold);
+  border-color: rgba(201,162,107,0.32);
+}
+
+.bookingProgressLabel {
+  color: var(--text-300);
+  font-size: 0.82rem;
+}
+
+.bookingStepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.bookingGrid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.bookingGrid.twoCols {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.bookingForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: var(--text-300);
+  font-size: 0.73rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.bookingForm input,
+.bookingForm textarea,
+.bookingForm select {
+  width: 100%;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  color: var(--text-100);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  padding: 0.65rem 0.76rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.bookingForm input:focus,
+.bookingForm textarea:focus,
+.bookingForm select:focus {
+  border-color: rgba(201,162,107,0.52);
+  box-shadow: 0 0 0 3px rgba(201,162,107,0.12);
+  background: rgba(255,255,255,0.04);
+}
+
+.bookingForm input::placeholder,
+.bookingForm textarea::placeholder {
+  color: var(--text-300);
+}
+
+.bookingForm textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.bookingControls {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.62rem;
+  margin-top: 0.2rem;
+}
+
+.bookingHint {
+  color: var(--text-300);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.bookingSuccess {
+  border: 1px solid rgba(201,162,107,0.35);
+  background: rgba(201,162,107,0.09);
+  color: var(--accent-gold);
+  border-radius: 8px;
+  padding: 0.65rem 0.76rem;
+  font-size: 0.83rem;
+}
+
+.bookingSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  padding: 0.9rem;
+}
+
+.bookingSummaryRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0.65rem;
+  align-items: baseline;
+}
+
+.bookingSummaryRow span {
+  color: var(--text-300);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.bookingSummaryRow strong {
+  color: var(--text-100);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.bookingPromise {
+  color: var(--text-300);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 0.95rem;
+}
+
+/* ── PAGE-SPECIFIC SUPPORT CLASSES ────────────────────────────── */
+.editorialStatBand {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.editorialStatBand > div {
+  background: var(--bg-900);
+  padding: 1.2rem 1.4rem;
+}
+
+.editorialStatValue {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 1;
+  color: var(--text-100);
+  letter-spacing: -0.02em;
+}
+
+.editorialStatLabel {
+  margin-top: 0.4rem;
+  color: var(--text-300);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.artistAtlasIntro {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, rgba(201,162,107,0.06), rgba(255,255,255,0.01));
+  border-radius: 12px;
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.artistAtlasIntro p {
+  color: var(--text-200);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.artistNoteCard {
+  border: 1px solid rgba(201,162,107,0.22);
+  border-radius: 10px;
+  background: rgba(201,162,107,0.05);
+  padding: 1rem 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.artistNoteCard p {
+  color: var(--text-200);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.contactMetaStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: -1.2rem;
+}
+
+.contactMetaStrip span {
+  border: 1px solid rgba(201,162,107,0.2);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  color: var(--text-200);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(8,8,8,0.5);
+}
+
+.faqJumpStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: -1.2rem;
+}
+
+.faqJumpStrip a {
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  color: var(--text-200);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.68rem;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.faqJumpStrip a:hover {
+  border-color: rgba(201,162,107,0.4);
+  color: var(--accent-gold);
+  background: rgba(201,162,107,0.08);
+}
+
+.policyLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.policyLegend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  color: var(--text-200);
+  font-size: 0.77rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.36rem 0.7rem;
+}
+
+.policyLegend svg {
+  color: var(--accent-gold);
+}
+
+.portfolioAlbumGrid {
+  width: 100%;
+}
+
+.portfolioAlbumTile {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.portfolioAlbumTile img {
+  transition: transform 0.32s ease, filter 0.32s ease;
+}
+
+.portfolioAlbumTile:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.08);
+}
+
+/* ── RESPONSIVE TUNING ────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .heroCarouselControls,
+  .heroCarouselDots {
+    right: 1.1rem;
+  }
+
+  .drawerInner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .drawerMedia {
+    max-height: 44vh;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 900px) {
+  .editorialStatBand,
+  .artistAtlasIntro {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .heroCarouselControls,
+  .heroCarouselDots {
+    display: none;
+  }
+
+  .bookingGrid.twoCols,
+  .bookingSummaryRow {
+    grid-template-columns: 1fr;
+  }
+
+  .bookingSummaryRow span {
+    margin-top: 0.2rem;
+  }
+
+  .ctaBandInner {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaBandLinks {
+    align-items: flex-start;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

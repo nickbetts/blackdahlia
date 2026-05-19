@@ -26,15 +26,35 @@ export function CommandPalette() {
       }
       if (e.key === "Escape") setOpen(false);
     }
+
+    function onTriggerClick(e: MouseEvent) {
+      const target = e.target as HTMLElement | null;
+      if (target?.closest("[data-command-trigger='true']")) {
+        e.preventDefault();
+        setOpen(true);
+      }
+    }
+
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    document.addEventListener("click", onTriggerClick);
+
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onTriggerClick);
+    };
   }, []);
 
   if (!open) return null;
 
   return (
     <div className="cmdOverlay" onClick={() => setOpen(false)}>
-      <div className="cmdDialog" onClick={(e) => e.stopPropagation()} role="dialog" aria-label="Navigation palette">
+      <div
+        className="cmdDialog"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation palette"
+      >
         <Command>
           <Command.Input className="cmdInput" placeholder="Where do you want to go?" autoFocus />
           <Command.List className="cmdList">

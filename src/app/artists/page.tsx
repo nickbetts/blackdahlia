@@ -24,7 +24,7 @@ export default function ArtistsPage() {
   ).slice(0, 12);
 
   return (
-    <div className="pageStack">
+    <div className="pageStack pageStack--artists">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="pageHero">
@@ -39,6 +39,19 @@ export default function ArtistsPage() {
             Read the room before you send the brief.
           </p>
         </div>
+      </section>
+
+      <section className="container artistAtlasIntro">
+        <div>
+          <p className="eyebrow">How to choose</p>
+          <h2 className="displayMix" style={{ marginTop: "0.45rem" }}>
+            Choose by <em>line, texture, and pace.</em>
+          </h2>
+        </div>
+        <p>
+          Every artist here works differently. Match your brief to the hand that naturally draws in that direction.
+          You will get better work, faster approvals, and fewer compromises.
+        </p>
       </section>
 
       {/* ── STYLE INDEX ──────────────────────────────────────────────── */}

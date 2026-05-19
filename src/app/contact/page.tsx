@@ -20,7 +20,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="pageStack">
+    <div className="pageStack pageStack--contact">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="pageHero">
@@ -35,6 +35,12 @@ export default function ContactPage() {
             aftercare, cover-up assessments — use the channels below.
           </p>
         </div>
+      </section>
+
+      <section className="container contactMetaStrip" aria-label="Visit readiness">
+        <span>Private appointments only</span>
+        <span>Littleport, Cambridgeshire</span>
+        <span>Replies within studio hours</span>
       </section>
 
       {/* ── CONTACT GRID ─────────────────────────────────────────────── */}

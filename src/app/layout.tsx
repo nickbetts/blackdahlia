@@ -100,10 +100,10 @@ export default function RootLayout({
 
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
               <button
+                type="button"
                 className="cmdHint"
                 aria-label="Open navigation palette"
-                onClick={undefined}
-                suppressHydrationWarning
+                data-command-trigger="true"
               >
                 <kbd>⌘</kbd><kbd>K</kbd>
               </button>

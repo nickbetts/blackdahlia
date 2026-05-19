@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function BookingPage() {
   return (
-    <div className="pageStack">
+    <div className="pageStack pageStack--booking">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="pageHero">
@@ -61,6 +61,9 @@ export default function BookingPage() {
             just hit send.
           </p>
           <BookingForm />
+          <p className="bookingPromise">
+            No automated bots and no generic templates. Every booking brief is reviewed by the studio team before it gets to the artist.
+          </p>
         </div>
       </section>
 

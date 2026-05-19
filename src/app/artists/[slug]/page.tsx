@@ -32,7 +32,7 @@ export default async function ArtistDetailPage({ params }: ArtistPageProps) {
   const gallery = getArtistGallery(artist.slug, 18);
 
   return (
-    <div className="pageStack">
+    <div className="pageStack pageStack--artist">
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="pageHero">
@@ -117,6 +117,12 @@ export default async function ArtistDetailPage({ params }: ArtistPageProps) {
 
           {/* Main */}
           <div className="artistDetailMain">
+            <div className="artistNoteCard">
+              <p className="eyebrow">Best booking result</p>
+              <p>
+                {`Mention exact placement, scale in centimeters, and at least one reference for tone. This gives ${artist.name} enough context to quote and plan accurately.`}
+              </p>
+            </div>
             <div>
               <p className="eyebrow">Portfolio</p>
               <h2
