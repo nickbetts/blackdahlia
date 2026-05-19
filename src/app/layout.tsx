@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Fraunces, Manrope, Special_Elite } from "next/font/google";
+import { Fraunces, Manrope, Special_Elite, Geist } from "next/font/google";
 import { studioInfo } from "@/content/studio";
 import { SiteNav } from "@/components/site-nav";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CommandPalette } from "@/components/command-palette";
+import { BorderBeam } from "@/components/ui/border-beam";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const headingFont = Fraunces({
   variable: "--font-heading",
@@ -69,7 +73,7 @@ export default function RootLayout({
   const currentYear = new Date().getFullYear();
 
   return (
-    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} ${accentFont.variable}`}>
+    <html lang="en" className={cn(headingFont.variable, bodyFont.variable, accentFont.variable, "font-sans", geist.variable)}>
       <body>
         <a className="skipLink" href="#main-content">
           Skip to content
@@ -104,8 +108,9 @@ export default function RootLayout({
               >
                 <kbd>⌘</kbd><kbd>K</kbd>
               </button>
-              <Link className="headerCta" href="/booking">
+              <Link className="headerCta" href="/booking" style={{ position: "relative", overflow: "hidden" }}>
                 <span>Book a session</span>
+                <BorderBeam colorFrom="#c9a26b" colorTo="#9a4c3b" size={60} duration={6} borderWidth={1} />
               </Link>
             </div>
           </div>
