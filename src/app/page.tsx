@@ -130,7 +130,7 @@ export default function Home() {
         <MarqueeGsap items={marqueeItems} speed={70} />
       </section>
 
-      <div className="pageStack pageStack--home" style={{ paddingTop: "5rem" }}>
+      <div className="pageStack pageStack--home" style={{ paddingTop: "3rem" }}>
 
         {/* ── SIGNATURE STYLES ─────────────────────────────────────── */}
         <section className="container sectionSpacing">

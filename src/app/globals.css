@@ -103,8 +103,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 .pageStack {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
-  padding-bottom: 6rem;
+  gap: 3rem;
+  padding-bottom: 3.5rem;
 }
 
 .sectionSpacing { display: flex; flex-direction: column; gap: 1.8rem; }
@@ -511,7 +511,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 }
 @media (max-width: 768px) { .portfolioGrid { grid-template-columns: repeat(2, 1fr); } }
 
-.portfolioCell { overflow: hidden; border-radius: 4px; cursor: pointer; position: relative; }
+.portfolioCell { overflow: hidden; border-radius: 4px; cursor: pointer; position: relative; aspect-ratio: 4/5; }
 .portfolioCell::after {
   content: '';
   position: absolute;
@@ -553,7 +553,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   display: grid;
   gap: 2rem;
   grid-template-columns: 5.5rem 1fr;
-  padding: 2.5rem 0;
+  padding: 1.8rem 0;
 }
 .processStep:last-child { border-bottom: 1px solid var(--border-soft); }
 
