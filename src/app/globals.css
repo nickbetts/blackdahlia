@@ -538,7 +538,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 }
 @media (max-width: 640px) { .revealGrid { grid-template-columns: 1fr; } }
 
-.revealCard { background: var(--bg-900); cursor: pointer; overflow: hidden; padding: 2rem; position: relative; }
+.revealCard { background: var(--bg-900); cursor: pointer; overflow: hidden; padding: 2rem; position: relative; transition: background 0.2s ease; }
+.revealCard:hover { background: var(--bg-950); }
 .revealCardInner { display: flex; flex-direction: column; gap: 0.9rem; position: relative; z-index: 10; }
 .revealCardIcon { color: var(--accent-gold); }
 .revealCardTitle { font-size: 1.1rem; font-family: var(--font-heading), serif; margin-bottom: 0.3rem; }
@@ -603,7 +604,9 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr auto;
+  overflow: hidden;
   padding: clamp(2rem, 4vw, 3.5rem);
+  position: relative;
 }
 
 .ctaBandLinks { display: flex; flex-direction: column; gap: 0.8rem; align-items: flex-end; }

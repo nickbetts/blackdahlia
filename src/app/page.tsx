@@ -16,7 +16,6 @@ import { LightRays } from "@/components/ui/light-rays";
 import { Lens } from "@/components/ui/lens";
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
-import { MagicCard } from "@/components/ui/magic-card";
 import { BorderBeam } from "@/components/ui/border-beam";
 
 export default function Home() {
@@ -290,37 +289,37 @@ export default function Home() {
           </div>
           <div className="faqPreviewGrid">
             {faqPreview.map((item) => (
-              <MagicCard key={item.question} className="faqPreviewCard" gradientColor="#e0e0e0" gradientOpacity={0.5}>
+              <div key={item.question} className="faqPreviewCard">
                 <h3>
                   <SealWarning weight="fill" size={15} style={{ display: "inline", marginRight: "0.35rem", color: "var(--accent-gold)" }} />
                   {item.question}
                 </h3>
                 <p>{item.answer}</p>
-              </MagicCard>
+              </div>
             ))}
           </div>
         </section>
 
         {/* ── CTA BAND ─────────────────────────────────────────────── */}
         <section className="container ctaBand">
-          <BorderBeam colorFrom="#111111" colorTo="#555555" size={80} duration={10} />
-          <ShootingStars
-            className="absolute inset-0 rounded-[inherit]"
-            starColor="#c9a26b"
-            trailColor="#9a4c3b"
-            minSpeed={8}
-            maxSpeed={20}
-            minDelay={900}
-            maxDelay={2200}
-          />
-          <StarsBackground
-            className="absolute inset-0 rounded-[inherit]"
-            starDensity={0.00015}
-            allStarsTwinkle
-            twinkleProbability={0.5}
-          />
-          <div className="ctaBandInner" style={{ position: "relative", zIndex: 2 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
+          <div className="ctaBandInner">
+            <BorderBeam colorFrom="#111111" colorTo="#555555" size={80} duration={10} />
+            <ShootingStars
+              className="absolute inset-0 rounded-[inherit]"
+              starColor="#c9a26b"
+              trailColor="#9a4c3b"
+              minSpeed={8}
+              maxSpeed={20}
+              minDelay={900}
+              maxDelay={2200}
+            />
+            <StarsBackground
+              className="absolute inset-0 rounded-[inherit]"
+              starDensity={0.00015}
+              allStarsTwinkle
+              twinkleProbability={0.5}
+            />
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", position: "relative", zIndex: 2 }}>
               <p className="eyebrow">Ready when you are</p>
               <h2 className="displayMix">
                 Got an idea? <em>Let&apos;s draw it.</em>
@@ -330,7 +329,7 @@ export default function Home() {
                 We&apos;ll come back with the artist, the date and the price.
               </p>
             </div>
-            <div className="ctaBandLinks">
+            <div className="ctaBandLinks" style={{ position: "relative", zIndex: 2 }}>
               <Link href="/booking" className="primaryButton">
                 Book a session <ArrowRight size={15} />
               </Link>
