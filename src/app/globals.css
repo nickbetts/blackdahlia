@@ -214,6 +214,306 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   gap: 1rem;
   justify-content: space-between;
   min-height: 72px;
+  position: relative;
+}
+
+/* ── DESKTOP NAV ACTIONS ─────────────────── */
+.headerActions { align-items: center; display: flex; gap: 0.6rem; }
+
+/* ── MEGA MENU TRIGGER ───────────────────── */
+.navMegaTrigger { align-items: center; display: flex; position: static; }
+.navMegaToggle { display: inline-flex; align-items: center; gap: 0.3rem; }
+.navChevron { color: currentColor; flex-shrink: 0; opacity: 0.6; }
+
+/* ── MEGA PANEL ──────────────────────────── */
+.navMegaPanel {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(24px) saturate(150%);
+  border-bottom: 1px solid var(--border-soft);
+  border-top: 1px solid var(--border-soft);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 90;
+}
+
+.navMegaInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-block: 1.5rem;
+}
+
+.navMegaArtists {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.navMegaArtistCard {
+  align-items: flex-start;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  position: relative;
+  transition: background 0.15s ease;
+}
+.navMegaArtistCard:hover { background: var(--bg-900); }
+
+.navMegaArtistImg {
+  aspect-ratio: 3 / 4;
+  border-radius: 7px;
+  overflow: hidden;
+  width: 100%;
+}
+.navMegaArtistImg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.navMegaArtistInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+.navMegaArtistName {
+  display: block;
+  font-family: var(--font-heading), serif;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+.navMegaArtistRole {
+  color: var(--text-300);
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.navMegaArtistTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+}
+.navMegaArtistTags span {
+  background: var(--bg-850);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  padding: 0.18rem 0.5rem;
+  color: var(--text-200);
+}
+.navMegaArtistArrow {
+  color: var(--text-300);
+  margin-top: auto;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  align-self: flex-end;
+}
+.navMegaArtistCard:hover .navMegaArtistArrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+.navMegaFooter {
+  align-items: center;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+.navMegaAll {
+  align-items: center;
+  color: var(--text-100);
+  display: inline-flex;
+  font-size: 0.84rem;
+  font-weight: 600;
+  gap: 0.4rem;
+  letter-spacing: 0.02em;
+  transition: gap 0.15s;
+}
+.navMegaAll:hover { gap: 0.7rem; }
+.navMegaMeta {
+  color: var(--text-300);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── HAMBURGER ───────────────────────────── */
+.hamburgerBtn {
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--text-100);
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 3.5px;
+  height: 40px;
+  justify-content: center;
+  padding: 0.5rem;
+  width: 40px;
+}
+.hamburgerLine {
+  background: currentColor;
+  border-radius: 2px;
+  display: block;
+  height: 1.5px;
+  transform-origin: center;
+  width: 22px;
+}
+
+/* ── MOBILE BACKDROP ─────────────────────── */
+.mobileBackdrop {
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.45);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 98;
+}
+
+/* ── MOBILE DRAWER ───────────────────────── */
+.mobileDrawer {
+  background: var(--bg-950);
+  border-left: 1px solid var(--border-soft);
+  bottom: 0;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 400px;
+  overflow-y: auto;
+  padding: 1.4rem 1.6rem 2rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 88vw;
+  z-index: 99;
+}
+
+.mobileDrawerHeader {
+  align-items: center;
+  border-bottom: 1px solid var(--border-soft);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.2rem;
+}
+.mobileDrawerClose {
+  align-items: center;
+  background: var(--bg-900);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  color: var(--text-100);
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  transition: background 0.15s;
+  width: 36px;
+  flex-shrink: 0;
+}
+.mobileDrawerClose:hover { background: var(--bg-850); }
+
+.mobileDrawerNav { flex: 1; padding-top: 1.2rem; padding-bottom: 0.5rem; }
+
+.mobileDrawerLink {
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-100);
+  display: block;
+  font-family: var(--font-heading), serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding: 0.65rem 0;
+  transition: opacity 0.15s;
+}
+.mobileDrawerLink:hover { opacity: 0.6; }
+.mobileDrawerLink.isActive { color: var(--text-100); }
+.mobileDrawerLink.mobileDrawerLinkSub {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-300);
+}
+
+/* ── MOBILE ARTIST SUB-LIST ──────────────── */
+.mobileArtistList {
+  border-left: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0.3rem 0 0.6rem 0.5rem;
+  padding-left: 1rem;
+}
+.mobileArtistItem {
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.55rem 0;
+  transition: opacity 0.15s;
+}
+.mobileArtistItem:hover { opacity: 0.65; }
+.mobileArtistThumb {
+  border-radius: 6px;
+  flex-shrink: 0;
+  height: 44px;
+  object-fit: cover;
+  width: 36px;
+}
+.mobileArtistItemName {
+  display: block;
+  font-family: var(--font-heading), serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.mobileArtistItemSpec {
+  color: var(--text-300);
+  display: block;
+  font-size: 0.73rem;
+  letter-spacing: 0.03em;
+}
+.mobileArtistArrow { color: var(--text-300); flex-shrink: 0; margin-left: auto; }
+
+/* ── MOBILE DRAWER FOOTER ────────────────── */
+.mobileDrawerFooter {
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-top: 1.4rem;
+}
+.mobileDrawerCta { justify-content: center; width: 100%; }
+.mobileDrawerMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.mobileDrawerMeta span,
+.mobileDrawerMeta a {
+  align-items: center;
+  color: var(--text-300);
+  display: flex;
+  font-size: 0.8rem;
+  gap: 0.4rem;
+  letter-spacing: 0.01em;
+}
+.mobileDrawerMeta a:hover { color: var(--text-200); }
+
+/* ── RESPONSIVE: hide/show nav vs hamburger ── */
+@media (max-width: 860px) {
+  .siteNav { display: none; }
+  .headerActions { display: none; }
+  .hamburgerBtn { display: flex; }
 }
 
 .brandWordmark { align-items: center; display: inline-flex; gap: 0.75rem; flex-shrink: 0; }

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Fraunces, Manrope, Special_Elite, Geist } from "next/font/google";
-import { studioInfo } from "@/content/studio";
-import { SiteNav } from "@/components/site-nav";
+import { artists, studioInfo } from "@/content/studio";
+import { getLeadImage } from "@/lib/media";
+import { NavBar } from "@/components/nav-bar";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CommandPalette } from "@/components/command-palette";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
-import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -33,16 +32,6 @@ const accentFont = Special_Elite({
   subsets: ["latin"],
   weight: ["400"],
 });
-
-const navLinks = [
-  { href: "/", label: "Studio" },
-  { href: "/about", label: "About" },
-  { href: "/artists", label: "Artists" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/policies", label: "Policies" },
-  { href: "/contact", label: "Visit" },
-  { href: "/booking", label: "Booking" },
-];
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.theblackdahlia.co.uk"),
@@ -75,6 +64,14 @@ export default function RootLayout({
 }>) {
   const currentYear = new Date().getFullYear();
 
+  const artistData = artists.map((a) => ({
+    slug: a.slug,
+    name: a.name,
+    role: a.role,
+    specialities: a.specialities,
+    leadImagePath: getLeadImage(a.slug)?.localPath ?? null,
+  }));
+
   return (
     <html lang="en" className={cn(headingFont.variable, bodyFont.variable, accentFont.variable, "font-sans", geist.variable)}>
       <body>
@@ -90,34 +87,13 @@ export default function RootLayout({
         <div className="ambientGrain" aria-hidden="true" />
 
         <header className="siteHeader">
-          <div className="container headerInner">
-            <Link href="/" className="brandWordmark">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/dahlialogo-dark.svg" className="brandLogo" alt="" aria-hidden="true" />
-              <span>
-                <strong>{studioInfo.name}</strong>
-                <small>{studioInfo.strapline}</small>
-              </span>
-            </Link>
-
-            <SiteNav items={navLinks} />
-
-            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-              <AnimatedThemeToggler className="themeToggler" variant="circle" />
-              <button
-                type="button"
-                className="cmdHint"
-                aria-label="Open navigation palette"
-                data-command-trigger="true"
-              >
-                <kbd>⌘</kbd><kbd>K</kbd>
-              </button>
-              <div style={{ position: "relative", display: "inline-flex", borderRadius: "8px" }}>
-                <GlowingEffect spread={28} borderWidth={1} disabled={false} proximity={50} />
-                <Link className="headerCta" href="/booking">Book a session</Link>
-              </div>
-            </div>
-          </div>
+          <NavBar
+            artistData={artistData}
+            studioName={studioInfo.name}
+            strapline={studioInfo.strapline}
+            email={studioInfo.email}
+            address={studioInfo.addressLines}
+          />
         </header>
 
         <main id="main-content" className="siteMain">
