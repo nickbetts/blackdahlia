@@ -74,7 +74,7 @@ export const artists = [
     shortBio:
       "Experienced co-owner artist focused on black and grey realism and blackwork with custom and pre-drawn concepts.",
     longBio:
-      "Sharnia is one of the co-owners at The Black Dahlia and an experienced tattoo artist specializing in black and grey realism and blackwork. She creates realistic and illustrative work, and collaborates closely on custom commissions.",
+      "Sharnia is one of the co-owners at The Black Dahlia and an experienced tattoo artist specialising in black and grey realism and blackwork. She creates realistic and illustrative work, and collaborates closely on custom commissions.",
     social: {
       instagram: "https://www.instagram.com/sharnia.tattoos/",
       facebook: "https://www.facebook.com/Sharnia.tattoos/",
