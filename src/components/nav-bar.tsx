@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
@@ -38,7 +39,10 @@ export function NavBar({ artistData, studioName, strapline, email, address }: Na
   const pathname = usePathname();
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => { setMounted(true); }, []);
 
   // Close on route change
   useEffect(() => {
@@ -208,7 +212,8 @@ export function NavBar({ artistData, studioName, strapline, email, address }: Na
         )}
       </AnimatePresence>
 
-      {/* ── MOBILE DRAWER ────────────────────────────────────────────── */}
+      {/* ── MOBILE DRAWER (portaled to body so it escapes the header's backdrop-filter containing block) ── */}
+      {mounted && createPortal(
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -339,7 +344,9 @@ export function NavBar({ artistData, studioName, strapline, email, address }: Na
             </motion.div>
           </>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+        document.body,
+      )}
     </>
   );
 }

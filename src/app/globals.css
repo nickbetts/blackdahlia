@@ -533,26 +533,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   max-width: 100%;
 }
 
-/* ── RESPONSIVE: hide/show nav vs hamburger ── */
-@media (max-width: 900px) {
-  .siteNav { display: none; }
-  .headerActions { display: none; }
-  .hamburgerBtn { display: flex; }
-  .brandWordmark small { display: none; }
-}
-
-@media (max-width: 640px) {
-  .headerInner { gap: 0.5rem; min-height: 60px; }
-  .brandWordmark { gap: 0.55rem; }
-  .brandWordmark strong { font-size: 0.95rem; }
-  .brandLogo { height: 34px; }
-  .mobileDrawer {
-    width: 92vw;
-    padding: 1.1rem 1.2rem max(2rem, env(safe-area-inset-bottom));
-  }
-  .mobileDrawerLink { font-size: 1.4rem; padding: 0.55rem 0; }
-}
-
 .brandLogo {
   display: block;
   flex-shrink: 0;
@@ -578,6 +558,26 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 }
 .siteNavLink:hover { color: var(--text-100); background: rgba(0, 0, 0, 0.05); }
 .siteNavLink.isActive { color: var(--accent-gold); }
+
+/* ── RESPONSIVE: hide/show nav vs hamburger ── */
+@media (max-width: 900px) {
+  .siteNav { display: none !important; }
+  .headerActions { display: none !important; }
+  .hamburgerBtn { display: flex !important; }
+  .brandWordmark small { display: none !important; }
+}
+
+@media (max-width: 640px) {
+  .headerInner { gap: 0.5rem; min-height: 60px; }
+  .brandWordmark { gap: 0.55rem; }
+  .brandWordmark strong { font-size: 0.95rem; }
+  .brandLogo { height: 34px; }
+  .mobileDrawer {
+    width: 92vw;
+    padding: 1.1rem 1.2rem max(2rem, env(safe-area-inset-bottom));
+  }
+  .mobileDrawerLink { font-size: 1.4rem; padding: 0.55rem 0; }
+}
 
 /* ── BUTTONS ───────────────────────────────────────────────────── */
 .headerCta,
