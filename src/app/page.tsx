@@ -7,9 +7,7 @@ import { TrustCards, type TrustPoint } from "@/components/trust-cards";
 import { artists, faqSections, homeIntro, studioInfo } from "@/content/studio";
 import { getLeadImage, heroImages, studioGallery } from "@/lib/media";
 import { BackgroundBeams } from "@/components/ui/background-beams";
-import { Particles } from "@/components/ui/particles";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
+
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { LightRays } from "@/components/ui/light-rays";
@@ -34,14 +32,14 @@ export default function Home() {
   const heroLedger = [
     "Private studio sessions",
     `${artists.length} resident artists`,
-    `Custom work since ${studioInfo.founded}`,
+    `Custom and flash since ${studioInfo.founded}`,
   ];
 
   const trustPoints: TrustPoint[] = [
     {
       icon: <ShieldCheck weight="fill" size={24} />,
       title: "Private room, no walk-ins",
-      body: "One client at a time. No queue, no rush — just your session, your artist, your piece.",
+      body: "One client at a time. No queue, no rush. Just your session, your artist, your piece.",
     },
     {
       icon: <GiRose size={22} />,
@@ -55,8 +53,8 @@ export default function Home() {
     },
     {
       icon: <GiInkSwirl size={22} />,
-      title: "Custom designs only",
-      body: "Everything drawn for your placement, your story. Nothing pulled off a flash wall.",
+      title: "Custom or pick from the wall",
+      body: "Custom pieces drawn for your placement and story, or grab something off the flash wall that’s ready to sit.",
     },
   ];
 
@@ -64,7 +62,7 @@ export default function Home() {
     {
       num: "01",
       title: "Send the idea",
-      body: "Placement, size, references — anything that tells us what you actually want. Mood boards welcome.",
+      body: "Placement, size, references, anything that tells us what you actually want. Mood boards welcome.",
     },
     {
       num: "02",
@@ -87,21 +85,12 @@ export default function Home() {
         <div className="heroBgOverlay" />
         <LightRays color="rgba(255,255,255,0.1)" count={5} speed={14} length="80vh" className="z-2" />
         <BackgroundBeams className="absolute inset-0 z-1 pointer-events-none opacity-40" />
-        <Particles
-          className="absolute inset-0 pointer-events-none"
-          style={{ zIndex: 1 }}
-          quantity={45}
-          color="#c9a26b"
-          size={0.5}
-          staticity={65}
-          ease={50}
-        />
 
         <div className="container heroContent">
           <p className="eyebrow">{homeIntro.eyebrow}</p>
           <h1 className="displayXXL">
-            <LineShadowText shadowColor="rgba(255,255,255,0.2)">Custom tattoos.</LineShadowText><br />
-            <em>Drawn with intent.</em>
+            <LineShadowText shadowColor="rgba(255,255,255,0.2)">Hand drawn.</LineShadowText><br />
+            <em>Inked properly.</em>
           </h1>
           <p className="lede">{homeIntro.subhead}</p>
           <div className="heroLedger" aria-label="Studio highlights">
@@ -118,7 +107,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="heroMeta">
-            <span><Clock3 size={15} /> Tue – Sat &middot; by appointment</span>
+            <span><Clock3 size={15} /> Tue to Sat &middot; by appointment</span>
             <span><MapPin size={15} /> 17 Granby Street, Littleport &middot; CB6&nbsp;1NE</span>
           </div>
         </div>
@@ -136,8 +125,8 @@ export default function Home() {
           <div>
             <p className="eyebrow"><AnimatedShinyText>What we do</AnimatedShinyText></p>
             <h2 className="displayLg" style={{ marginTop: "0.4rem", marginBottom: "1.2rem" }}>
-              Built across <em>blackwork</em>, realism,<br />
-              traditional &amp; illustrative.
+              What we tattoo best: <em>blackwork</em>,<br />
+              realism, traditional &amp; illustrative.
             </h2>
           </div>
           <div className="styleScroll">
@@ -158,7 +147,7 @@ export default function Home() {
             <div>
               <p className="eyebrow"><AnimatedShinyText>The artists</AnimatedShinyText></p>
               <h2 className="displayLg" style={{ marginTop: "0.4rem" }}>
-                Three artists.<br /><em>Three distinct hands.</em>
+                Three artists.<br /><em>Three sets of hands.</em>
               </h2>
             </div>
             <Link href="/artists" className="inlineAction">
@@ -304,21 +293,6 @@ export default function Home() {
         <section className="container ctaBand">
           <div className="ctaBandInner">
             <BorderBeam colorFrom="#111111" colorTo="#555555" size={80} duration={10} />
-            <ShootingStars
-              className="absolute inset-0 rounded-[inherit]"
-              starColor="#c9a26b"
-              trailColor="#9a4c3b"
-              minSpeed={8}
-              maxSpeed={20}
-              minDelay={900}
-              maxDelay={2200}
-            />
-            <StarsBackground
-              className="absolute inset-0 rounded-[inherit]"
-              starDensity={0.00015}
-              allStarsTwinkle
-              twinkleProbability={0.5}
-            />
             <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", position: "relative", zIndex: 2 }}>
               <p className="eyebrow">Ready when you are</p>
               <h2 className="displayMix">

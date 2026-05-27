@@ -11,14 +11,14 @@ import { StarsBackground } from "@/components/ui/stars-background";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn the story behind The Black Dahlia, the studio values, and the artists shaping custom tattoo work in Littleport.",
+    "Meet the people behind The Black Dahlia and see how the studio runs in Littleport.",
 };
 
 export default function AboutPage() {
   const yearsInOperation = Math.max(1, new Date().getFullYear() - studioInfo.founded);
 
   const studioValues = [
-    { icon: <ShieldCheck weight="fill" size={18} />, text: "One client at a time — no overlap, no shared chair, no rush." },
+    { icon: <ShieldCheck weight="fill" size={18} />, text: "One client at a time. No overlap, no shared chair, no rush." },
     { icon: <GiSkullCrossedBones size={18} />, text: "Direct contact with your artist from brief to healed skin." },
     { icon: <GiInkSwirl size={18} />, text: "Strict hygiene, single-use kit, aftercare you can actually follow." },
   ];
@@ -37,8 +37,8 @@ export default function AboutPage() {
             A private room<br /><em>for proper tattoos.</em>
           </h1>
           <p className="lede">
-            Three artists, custom work only, no flash wall. Built for long sessions and considered
-            pieces — the kind you want to live with for a while.
+            Three artists, custom work and a flash wall. Built for long sessions and pieces
+            you’ll actually want to keep.
           </p>
         </div>
       </section>
@@ -67,7 +67,7 @@ export default function AboutPage() {
               {aboutCopy.title}
             </h2>
             <p className="lede" style={{ marginBottom: "1.2rem" }}>
-              Tattooing here is artist-led, custom first, and paced to the work — not the diary.
+              We work to the tattoo, not the diary.
             </p>
             <div className="aboutBodyText">
               {aboutCopy.paragraphs.map((paragraph) => (
@@ -98,7 +98,7 @@ export default function AboutPage() {
               </p>
               <p style={{ color: "var(--text-200)", fontSize: "0.9rem" }}>
                 <Sparkle weight="fill" size={15} style={{ display: "inline", marginRight: "0.4rem" }} />
-                Custom commissions — placement and composition planned with you.
+                Custom commissions with placement and composition planned with you.
               </p>
             </div>
             <Link

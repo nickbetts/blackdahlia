@@ -120,7 +120,7 @@ export default async function ArtistDetailPage({ params }: ArtistPageProps) {
             <div className="artistNoteCard">
               <p className="eyebrow">Best booking result</p>
               <p>
-                {`Mention exact placement, scale in centimeters, and at least one reference for tone. This gives ${artist.name} enough context to quote and plan accurately.`}
+                {`Tell us exact placement, size in centimetres, and at least one reference for tone. That’s enough for ${artist.name} to plan it properly and come back with a real quote.`}
               </p>
             </div>
             <div>

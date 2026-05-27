@@ -205,7 +205,7 @@ export function NavBar({ artistData, studioName, strapline, email, address }: Na
                 <Link href="/artists" className="navMegaAll">
                   View all portfolios <ArrowRight size={13} />
                 </Link>
-                <span className="navMegaMeta">Three resident artists · Custom work only</span>
+                <span className="navMegaMeta">Three resident artists · Custom and flash</span>
               </div>
             </div>
           </motion.div>
@@ -337,7 +337,7 @@ export function NavBar({ artistData, studioName, strapline, email, address }: Na
                 </Link>
                 <div className="mobileDrawerMeta">
                   <span><MapPin size={13} /> {address.slice(0, 2).join(", ")}</span>
-                  <span><Clock3 size={13} /> Tue – Sat · by appointment</span>
+                  <span><Clock3 size={13} /> Tue to Sat · by appointment</span>
                   <a href={`mailto:${email}`}>{email}</a>
                 </div>
               </div>

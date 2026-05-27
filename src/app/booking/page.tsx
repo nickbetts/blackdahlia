@@ -20,8 +20,8 @@ export default function BookingPage() {
             Send your idea.<br /><em>We&apos;ll take it from there.</em>
           </h1>
           <p className="lede">
-            Four short steps. Your brief goes straight into the studio dashboard so the team can
-            review, assign, and schedule properly.
+            Four short steps. It lands straight with the studio so we can read it, pick the right
+            artist, and get back to you.
           </p>
         </div>
       </section>
@@ -34,14 +34,14 @@ export default function BookingPage() {
             className="displayMix"
             style={{ marginTop: "0.5rem", marginBottom: "1rem" }}
           >
-            What we need <em>to help properly.</em>
+            What we need <em>from you.</em>
           </h2>
           <p style={{ color: "var(--text-200)", fontSize: "0.95rem", lineHeight: 1.65, marginBottom: "1.2rem" }}>
-            The more we know, the faster we can match you with the right artist and quote the
-            piece properly. A couple of minutes here saves a week of emails.
+            The more you tell us, the faster we can put you with the right artist and give you
+            a real quote. Two minutes here saves a week of emails.
           </p>
           <ol className="bookingChecklist">
-            <li>Describe the idea — mood, story, references, not just the object.</li>
+            <li>Describe the idea. Mood, story, references, not just the object.</li>
             <li>Tell us where it goes and roughly how big you want it.</li>
             <li>Drop any Instagram, Pinterest or image links you&apos;re drawing from.</li>
             <li>Flag cover-ups, existing ink, or anything tricky about the placement.</li>
@@ -57,11 +57,11 @@ export default function BookingPage() {
             Four steps. <em>One email.</em>
           </h2>
           <p style={{ color: "var(--text-200)", fontSize: "0.9rem", lineHeight: 1.6, marginBottom: "1.4rem" }}>
-            Submit once and the enquiry lands directly in the internal queue for action.
+            Send it once. It lands straight with us, no portals, no chasing.
           </p>
           <BookingForm />
           <p className="bookingPromise">
-            No automated bots and no generic templates. Every booking brief is reviewed by the studio team before it gets to the artist.
+            No bots, no copy-paste replies. A real person reads every brief before it goes to the artist.
           </p>
         </div>
       </section>

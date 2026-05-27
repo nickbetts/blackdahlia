@@ -49,8 +49,8 @@ export default function ArtistsPage() {
           </h2>
         </div>
         <p>
-          Every artist here works differently. Match your brief to the hand that naturally draws in that direction.
-          You will get better work, faster approvals, and fewer compromises.
+          Every artist here works differently. Send your brief to the hand that already draws
+          in that direction and you’ll get better work with a lot less back-and-forth.
         </p>
       </section>
 

@@ -27,8 +27,8 @@ export default function FaqPage() {
             Everything <em>before<br />you sit down.</em>
           </h1>
           <p className="lede">
-            Booking, deposits, prep, healing, cover-ups — the questions we get every week, answered
-            once, clearly.
+            Booking, deposits, prep, healing, cover-ups. The questions we get every week,
+            answered once and clearly.
           </p>
         </div>
       </section>

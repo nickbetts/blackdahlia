@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function PoliciesPage() {
   const keyTerms = [
-    "Deposits are non-refundable — they hold the artist's time.",
+    "Deposits are non-refundable. They hold the artist's time.",
     "One reschedule with 7+ days' notice. After that the deposit's gone.",
     "No-shows lose the deposit and slot priority on future bookings.",
   ];
@@ -30,7 +30,7 @@ export default function PoliciesPage() {
             The <em>house rules.</em>
           </h1>
           <p className="lede">
-            Read these before you book. They keep the room running properly — fair on artists,
+            Read these before you book. They keep the room running properly, fair on artists,
             fair on clients, and clear from the start.
           </p>
         </div>

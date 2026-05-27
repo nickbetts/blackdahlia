@@ -322,7 +322,7 @@ export function BookingForm() {
           </div>
 
           <p className="bookingHint">
-            We need at least one way to reach you — email, phone, or Instagram.
+            We just need one way to reach you. Email, phone or Instagram all work.
           </p>
 
           <div className="bookingGrid twoCols">

@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   const addressOneLine = studioInfo.addressLines.join(", ");
   const responseExpectations = [
-    "Booking briefs jump the queue — use the booking form if it's a real piece.",
-    "Drop references and placement up front — it saves three emails.",
+    "Booking briefs jump the queue. Use the booking form if it's a real piece.",
+    "Drop references and placement up front. It saves three emails.",
     "Policy, aftercare and visit questions go straight to the team.",
   ];
 
@@ -31,8 +31,8 @@ export default function ContactPage() {
             Questions first?<br /><em>Drop us a line.</em>
           </h1>
           <p className="lede">
-            For an actual booking, the form is faster. For anything else — visit planning, policy,
-            aftercare, cover-up assessments — use the channels below.
+            For an actual booking, the form is faster. For anything else like visit planning,
+            policy, aftercare or cover-up assessments, use the channels below.
           </p>
         </div>
       </section>
@@ -90,7 +90,7 @@ export default function ContactPage() {
         <div className="contactPanel">
           <p className="eyebrow">Find the studio</p>
           <h2 className="displayMix" style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
-            Private <em>— appointment only.</em>
+            Private, <em>by appointment.</em>
           </h2>
           <p
             style={{
@@ -122,7 +122,7 @@ export default function ContactPage() {
             </p>
             <a
               className="ghostButton"
-              href={`mailto:${studioInfo.email}?subject=${encodeURIComponent("Question — The Black Dahlia")}`}
+              href={`mailto:${studioInfo.email}?subject=${encodeURIComponent("Question for The Black Dahlia")}`}
             >
               Open email draft
             </a>

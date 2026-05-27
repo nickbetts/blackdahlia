@@ -19,6 +19,7 @@ export const studioInfo = {
 
 export const services = [
   "Custom tattoo design",
+  "Flash designs from the wall",
   "Blackwork and black and grey realism",
   "Traditional and neo-traditional",
   "Illustrative and floral pieces",
@@ -27,10 +28,10 @@ export const services = [
 ];
 
 export const homeIntro = {
-  eyebrow: `Est. ${2019} — Littleport, Cambridgeshire`,
-  headline: "Custom tattoos. Hand drawn. Appointment only.",
+  eyebrow: `Since ${2019} in Littleport, Cambridgeshire`,
+  headline: "Custom tattoos and flash. Hand drawn. By appointment.",
   subhead:
-    "A three-artist room making blackwork, realism, illustrative and traditional work — built one brief at a time, never off a flash wall.",
+    "A small three-artist room doing custom work and flash. Blackwork, realism, illustrative and traditional. Drawn for you, never rushed.",
   ctaPrimary: {
     label: "Book a session",
     href: "/booking",
@@ -40,25 +41,26 @@ export const homeIntro = {
     href: "/artists",
   },
   marquee: [
-    "Custom work only",
-    "Appointment only",
+    "Custom and flash",
+    "By appointment",
     "Hand drawn",
     "Blackwork · Realism · Illustrative",
-    `Est. ${2019}`,
-    "Littleport · Ely",
+    `Since ${2019}`,
+    "Littleport, Ely",
   ],
 };
 
 export const aboutCopy = {
   title: "About the studio",
   paragraphs: [
-    "We design custom tattoos with you and bring them to skin properly — from a rough idea to a piece that fits the placement, your story and how you sit.",
-    "The room is quiet, low-traffic and built for long sessions. You won’t share it with a queue, and your artist won’t share their head with another booking.",
-    "We specialise across blackwork, black-and-grey realism, traditional, colour and illustrative work — and we don’t take pieces we can’t do right.",
+    "We draw your tattoo with you, then we ink it properly. From a rough idea to a piece that suits your placement, your story and the way you sit.",
+    "We also have a flash wall if you want something already drawn. Pick a piece, book a slot, get it done.",
+    "The room is quiet and built for long sessions. You won’t share it with a queue, and your artist won’t be juggling another booking in their head.",
+    "We cover blackwork, black and grey realism, traditional, colour and illustrative work. If a piece isn’t right for us we’ll say so and point you somewhere it is.",
   ],
   story: [
-    `Opened in ${2019} by Laura and Sharnia after years working together in larger shops.`,
-    "Built as an appointment-only space — calmer pacing, less noise, more headspace for the work.",
+    `Opened in ${2019} by Laura and Sharnia after years working together in bigger shops.`,
+    "Appointment-only from day one. Calmer room, no walk-in chaos, more headspace for the work.",
     "Three resident artists now share the floor, each with their own lane and full books.",
   ],
 };

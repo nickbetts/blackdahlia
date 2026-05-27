@@ -107,7 +107,7 @@ export default function RootLayout({
               <img src="/dahlialogo-dark.svg" className="brandLogo brandLogoFooter" alt="" aria-hidden="true" />
               <h2>{studioInfo.name}</h2>
               <p>
-                Private tattoo studio in {studioInfo.city}. Three artists, custom work only,
+                Private tattoo studio in {studioInfo.city}. Three artists, custom work and flash,
                 inked by appointment since {studioInfo.founded}.
               </p>
             </section>
