@@ -1,6 +1,30 @@
 # The Black Dahlia Site
 
-Static-export Next.js 16 site for The Black Dahlia, using locally committed crawl/media artifacts.
+Next.js 16 site for The Black Dahlia, using locally committed crawl/media artifacts.
+
+## Admin Area
+
+This repo now includes a protected `/admin` dashboard for:
+
+- Reviewing incoming booking enquiries.
+- Updating enquiry status, assignment, and notes.
+- Creating and viewing artist bookings in a calendar view.
+
+### Default login
+
+- Username: `admin`
+- Password: `blackdahlia420`
+
+Override these in environment variables for production.
+
+### Required environment variables
+
+Copy `.env.example` and set:
+
+- `DATABASE_URL` (Neon / Vercel Postgres compatible connection string)
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+- `ADMIN_SESSION_SECRET`
 
 ## Local Development
 
@@ -9,7 +33,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000)
 
 ## Content Pipeline
 
@@ -22,6 +46,7 @@ npm run refresh-content
 ```
 
 `npm run refresh-content` regenerates:
+
 - `data/crawl/*`
 - `src/content/media.json`
 - `public/media/*`
@@ -36,6 +61,7 @@ npm run build
 ```
 
 `npm run build` calls `scripts/prepare-content.mjs` before `next build`:
+
 - If committed artifacts exist, build uses them (no network crawl).
 - If artifacts are missing in local dev, it auto-generates them.
 - If artifacts are missing on Vercel, build fails fast with instructions.
@@ -43,10 +69,13 @@ npm run build
 ## Vercel Deployment Notes
 
 This repo is safe for Vercel as configured:
-- Uses `next build` with App Router static export (`output: "export"`).
+
+- Uses `next build` with App Router server features enabled.
 - Avoids external crawling during normal Vercel builds.
 - Requires committed media/content artifacts in git.
+- Requires `DATABASE_URL` and admin auth environment variables for `/admin`.
 
 Optional manual refresh behavior:
+
 - Set `FORCE_CONTENT_REFRESH=1` to force recrawl during a build.
 - Not recommended on Vercel unless intentionally rebuilding source assets remotely.

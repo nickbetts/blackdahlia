@@ -123,14 +123,7 @@ export function NavBar({ artistData, studioName, strapline, email, address }: Na
         {/* ── DESKTOP ACTIONS ──────────────────────── */}
         <div className="headerActions">
           <AnimatedThemeToggler className="themeToggler" variant="circle" />
-          <button
-            type="button"
-            className="cmdHint"
-            aria-label="Open navigation palette"
-            data-command-trigger="true"
-          >
-            <kbd>⌘</kbd><kbd>K</kbd>
-          </button>
+
           <div style={{ position: "relative", display: "inline-flex", borderRadius: "8px" }}>
             <GlowingEffect spread={28} borderWidth={1} disabled={false} proximity={50} />
             <Link className="headerCta" href="/booking">Book a session</Link>

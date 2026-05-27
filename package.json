@@ -19,6 +19,7 @@
   "dependencies": {
     "@base-ui/react": "^1.4.1",
     "@gsap/react": "^2.1.2",
+    "@neondatabase/serverless": "^1.1.0",
     "@phosphor-icons/react": "^2.1.10",
     "@react-three/fiber": "^9.6.1",
     "@use-gesture/react": "^10.3.1",

@@ -20,8 +20,8 @@ export default function BookingPage() {
             Send your idea.<br /><em>We&apos;ll take it from there.</em>
           </h1>
           <p className="lede">
-            Four short steps. The form ends in a prefilled email so everything lands in one
-            clean message — no back-and-forth, no missing details.
+            Four short steps. Your brief goes straight into the studio dashboard so the team can
+            review, assign, and schedule properly.
           </p>
         </div>
       </section>
@@ -57,8 +57,7 @@ export default function BookingPage() {
             Four steps. <em>One email.</em>
           </h2>
           <p style={{ color: "var(--text-200)", fontSize: "0.9rem", lineHeight: 1.6, marginBottom: "1.4rem" }}>
-            We open your mail app at the end with the brief already written — you
-            just hit send.
+            Submit once and the enquiry lands directly in the internal queue for action.
           </p>
           <BookingForm />
           <p className="bookingPromise">

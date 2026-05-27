@@ -1,6 +1,7 @@
 "use client"
 
 import { FC, useEffect, useRef, useState } from "react"
+import { usePathname } from "next/navigation"
 import { motion, useSpring } from "motion/react"
 
 interface Position {
@@ -71,6 +72,8 @@ export function SmoothCursor({
   cursor = <DefaultCursorSVG />,
   springConfig = { damping: 45, stiffness: 400, mass: 1, restDelta: 0.001 },
 }: SmoothCursorProps) {
+  const pathname = usePathname()
+  const cursorDisabled = pathname.startsWith("/admin")
   const lastMousePos = useRef<Position>({ x: 0, y: 0 })
   const velocity = useRef<Position>({ x: 0, y: 0 })
   const lastUpdateTime = useRef(Date.now())
@@ -87,17 +90,17 @@ export function SmoothCursor({
   useEffect(() => {
     const mediaQuery = window.matchMedia(DESKTOP_POINTER_QUERY)
     const updateEnabled = () => {
-      const nextIsEnabled = mediaQuery.matches
+      const nextIsEnabled = mediaQuery.matches && !cursorDisabled
       setIsEnabled(nextIsEnabled)
       if (!nextIsEnabled) setIsVisible(false)
     }
     updateEnabled()
     mediaQuery.addEventListener("change", updateEnabled)
     return () => mediaQuery.removeEventListener("change", updateEnabled)
-  }, [])
+  }, [cursorDisabled])
 
   useEffect(() => {
-    if (!isEnabled) return
+    if (!isEnabled || cursorDisabled) return
 
     let timeout: ReturnType<typeof setTimeout> | null = null
 
@@ -154,9 +157,9 @@ export function SmoothCursor({
       if (rafId) cancelAnimationFrame(rafId)
       if (timeout !== null) clearTimeout(timeout)
     }
-  }, [cursorX, cursorY, rotation, scale, isEnabled])
+  }, [cursorX, cursorY, rotation, scale, isEnabled, cursorDisabled])
 
-  if (!isEnabled) return null
+  if (!isEnabled || cursorDisabled) return null
 
   return (
     <motion.div

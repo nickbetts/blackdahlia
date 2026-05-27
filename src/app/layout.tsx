@@ -5,7 +5,6 @@ import { artists, studioInfo } from "@/content/studio";
 import { getLeadImage } from "@/lib/media";
 import { NavBar } from "@/components/nav-bar";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { CommandPalette } from "@/components/command-palette";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import "./globals.css";
@@ -82,7 +81,6 @@ export default function RootLayout({
         </a>
 
         <SmoothScroll />
-        <CommandPalette />
         <div className="ambientGradient" aria-hidden="true" />
         <div className="ambientGrain" aria-hidden="true" />
 
