@@ -21,7 +21,6 @@ type BookingState = {
   styleDirection: string;
   sizeAndPlacement: string;
   referenceLinks: string;
-  medicalNotes: string;
   concept: string;
 };
 
@@ -40,7 +39,6 @@ const initialState: BookingState = {
   styleDirection: "",
   sizeAndPlacement: "",
   referenceLinks: "",
-  medicalNotes: "",
   concept: "",
 };
 
@@ -506,14 +504,6 @@ export function BookingForm() {
             </label>
           </div>
 
-          <label>
-            Medical or access notes
-            <input
-              value={form.medicalNotes}
-              onChange={(event) => updateField("medicalNotes", event.target.value)}
-              placeholder="Allergies, skin sensitivities, accessibility considerations"
-            />
-          </label>
         </div>
       ) : null}
 
