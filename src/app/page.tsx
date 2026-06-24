@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Clock3, MapPin } from "lucide-react";
+import { ArrowRight, ChevronDown, Clock3, MapPin } from "lucide-react";
 import { ShieldCheck, CheckCircle, SealWarning } from "@phosphor-icons/react/dist/ssr";
 import { GiRose, GiInkSwirl, GiDiamondHard } from "react-icons/gi";
 import { MarqueeGsap } from "@/components/marquee-gsap";
@@ -110,11 +110,16 @@ export default function Home() {
             <span><Clock3 size={15} /> Tue to Sat &middot; by appointment</span>
             <span><MapPin size={15} /> 17 Granby Street, Littleport &middot; CB6&nbsp;1NE</span>
           </div>
+
+          <a href="#home-content-start" className="heroScrollCue" aria-label="Scroll down to continue">
+            <span>Scroll</span>
+            <ChevronDown size={18} aria-hidden="true" />
+          </a>
         </div>
       </section>
 
       {/* ── MARQUEE ──────────────────────────────────────────────────── */}
-      <section className="marqueeBand" aria-hidden="true">
+      <section id="home-content-start" className="marqueeBand" aria-hidden="true">
         <MarqueeGsap items={marqueeItems} speed={70} />
       </section>
 

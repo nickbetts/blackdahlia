@@ -635,10 +635,10 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 
 /* ── HERO — FULL SCREEN ────────────────────────────────────────── */
 .heroFull {
-  min-height: 100svh;
+  min-height: calc(100svh - 72px);
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   /* Dark-zone: hero overlays images — preserve light text tokens */
   --text-100: #f4efe6;
@@ -675,8 +675,10 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 .heroContent {
   position: relative;
   z-index: 2;
-  padding-bottom: clamp(3rem, 7vw, 6rem);
-  padding-top: 4rem;
+  min-height: calc(100svh - 72px);
+  justify-content: center;
+  padding-top: clamp(1.8rem, 4vw, 3rem);
+  padding-bottom: clamp(4.5rem, 9vw, 7rem);
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
@@ -1310,8 +1312,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 
 .heroCarouselControls {
   position: absolute;
-  right: clamp(1rem, 3vw, 2.6rem);
-  top: clamp(6rem, 16vh, 10rem);
+  left: clamp(1rem, 3vw, 2.6rem);
+  bottom: clamp(5.2rem, 11vh, 7.8rem);
   z-index: 3;
   display: flex;
   gap: 0.5rem;
@@ -1337,11 +1339,44 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 
 .heroCarouselDots {
   position: absolute;
-  right: clamp(1rem, 3vw, 2.6rem);
-  top: calc(clamp(6rem, 16vh, 10rem) + 2.8rem);
+  left: clamp(1rem, 3vw, 2.6rem);
+  bottom: calc(clamp(5.2rem, 11vh, 7.8rem) - 1.7rem);
   display: inline-flex;
   gap: 0.35rem;
   z-index: 3;
+}
+
+.heroScrollCue {
+  align-items: center;
+  color: var(--text-200);
+  display: inline-flex;
+  gap: 0.38rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  width: fit-content;
+  font-size: 0.72rem;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.heroScrollCue svg {
+  animation: heroCueDrift 1.6s ease-in-out infinite;
+}
+
+.heroScrollCue:hover {
+  color: var(--text-100);
+  opacity: 1;
+}
+
+@keyframes heroCueDrift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
 }
 
 .heroCarouselDot {
@@ -2843,7 +2878,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 @media (max-width: 1080px) {
   .heroCarouselControls,
   .heroCarouselDots {
-    right: 1.1rem;
+    left: 1.1rem;
   }
 
   .drawerInner {
@@ -2869,9 +2904,18 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 }
 
 @media (max-width: 720px) {
+  .heroFull,
+  .heroContent {
+    min-height: calc(100svh - 64px);
+  }
+
   .heroCarouselControls,
   .heroCarouselDots {
     display: none;
+  }
+
+  .heroScrollCue {
+    margin-top: 0.2rem;
   }
 
   .bookingGrid.twoCols,
