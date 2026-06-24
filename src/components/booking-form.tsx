@@ -573,7 +573,7 @@ export function BookingForm() {
           <ShimmerButton
             type="submit"
             disabled={!isReadyToSend || isSubmitting}
-            className="disabled:opacity-40 disabled:cursor-not-allowed w-full"
+            className="disabled:opacity-40 disabled:cursor-not-allowed w-full min-h-13 text-[1.05rem]"
           >
             {isSubmitting ? "Sending..." : "Send my brief"}
           </ShimmerButton>
@@ -581,7 +581,7 @@ export function BookingForm() {
       </div>
 
       <p className="bookingHint">
-        Your brief goes straight to our internal admin queue for review before booking.
+        Hit send and it lands with the studio team first, then goes to the right artist.
       </p>
 
       {submitted ? (

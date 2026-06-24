@@ -61,7 +61,7 @@ export default function BookingPage() {
           </p>
           <BookingForm />
           <p className="bookingPromise">
-            No bots, no copy-paste replies. A real person reads every brief before it goes to the artist.
+            No bots. No copy-paste replies. Just a proper human read-through.
           </p>
         </div>
       </section>
