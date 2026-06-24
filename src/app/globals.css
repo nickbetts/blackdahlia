@@ -725,7 +725,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   margin-top: 0.6rem;
 }
 
-.pageHeroDivider { width: 40px; height: 1px; background: var(--accent-gold); margin-top: 1.2rem; opacity: 0.6; }
+.pageHeroDivider { display: none; }
 
 /* ── MARQUEE ───────────────────────────────────────────────────── */
 .marqueeBand {
