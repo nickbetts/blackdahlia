@@ -117,12 +117,6 @@ export default async function ArtistDetailPage({ params }: ArtistPageProps) {
 
           {/* Main */}
           <div className="artistDetailMain">
-            <div className="artistNoteCard">
-              <p className="eyebrow">Best booking result</p>
-              <p>
-                {`Tell us exact placement, size in centimetres, and at least one reference for tone. That’s enough for ${artist.name} to plan it properly and come back with a real quote.`}
-              </p>
-            </div>
             <div>
               <p className="eyebrow">Portfolio</p>
               <h2
