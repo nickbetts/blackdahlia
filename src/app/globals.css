@@ -723,6 +723,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   letter-spacing: -0.025em;
   line-height: 0.92;
   margin-top: 0.6rem;
+  margin-bottom: clamp(0.8rem, 2vw, 1.4rem);
 }
 
 .pageHeroDivider { display: none; }
