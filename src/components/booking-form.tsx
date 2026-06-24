@@ -16,7 +16,6 @@ type BookingState = {
   dateOfBirth: string;
   preferredDate: string;
   availabilityWindow: string;
-  budgetRange: string;
   preferredArtist: string;
   isCoverUp: "No" | "Yes";
   styleDirection: string;
@@ -36,7 +35,6 @@ const initialState: BookingState = {
   dateOfBirth: "",
   preferredDate: "",
   availabilityWindow: "",
-  budgetRange: "",
   preferredArtist: "",
   isCoverUp: "No",
   styleDirection: "",
@@ -508,25 +506,14 @@ export function BookingForm() {
             </label>
           </div>
 
-          <div className="bookingGrid twoCols">
-            <label>
-              Budget range
-              <input
-                value={form.budgetRange}
-                onChange={(event) => updateField("budgetRange", event.target.value)}
-                placeholder="e.g. GBP300-GBP450"
-              />
-            </label>
-
-            <label>
-              Medical or access notes
-              <input
-                value={form.medicalNotes}
-                onChange={(event) => updateField("medicalNotes", event.target.value)}
-                placeholder="Allergies, skin sensitivities, accessibility considerations"
-              />
-            </label>
-          </div>
+          <label>
+            Medical or access notes
+            <input
+              value={form.medicalNotes}
+              onChange={(event) => updateField("medicalNotes", event.target.value)}
+              placeholder="Allergies, skin sensitivities, accessibility considerations"
+            />
+          </label>
         </div>
       ) : null}
 
