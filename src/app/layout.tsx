@@ -6,7 +6,6 @@ import { getLeadImage } from "@/lib/media";
 import { NavBar } from "@/components/nav-bar";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -75,7 +74,6 @@ export default function RootLayout({
     <html lang="en" className={cn(headingFont.variable, bodyFont.variable, accentFont.variable, "font-sans", geist.variable)}>
       <body>
         <ScrollProgress className="bg-linear-to-r from-black via-neutral-400 to-black" />
-        <SmoothCursor />
         <a className="skipLink" href="#main-content">
           Skip to content
         </a>

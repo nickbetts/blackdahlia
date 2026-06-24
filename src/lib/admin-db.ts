@@ -293,6 +293,21 @@ export async function ensureAdminSchema(): Promise<void> {
       `;
 
       await sql`
+        DO $$
+        BEGIN
+          IF NOT EXISTS (
+            SELECT 1
+            FROM pg_constraint
+            WHERE conname = 'admin_bookings_valid_window'
+          ) THEN
+            ALTER TABLE admin_bookings
+            ADD CONSTRAINT admin_bookings_valid_window CHECK (end_at > start_at);
+          END IF;
+        END
+        $$;
+      `;
+
+      await sql`
         CREATE TABLE IF NOT EXISTS admin_artist_weekly_availability (
           id SERIAL PRIMARY KEY,
           artist_slug TEXT NOT NULL,
@@ -314,6 +329,21 @@ export async function ensureAdminSchema(): Promise<void> {
           end_at TIMESTAMPTZ NOT NULL,
           reason TEXT
         );
+      `;
+
+      await sql`
+        DO $$
+        BEGIN
+          IF NOT EXISTS (
+            SELECT 1
+            FROM pg_constraint
+            WHERE conname = 'admin_artist_time_off_valid_window'
+          ) THEN
+            ALTER TABLE admin_artist_time_off
+            ADD CONSTRAINT admin_artist_time_off_valid_window CHECK (end_at > start_at);
+          END IF;
+        END
+        $$;
       `;
 
       await sql`
@@ -766,42 +796,72 @@ export async function createBooking(input: CreateBookingInput): Promise<AdminBoo
     throw new Error("Booking end time must be after start time");
   }
 
-  const [row] = (await sql`
-    INSERT INTO admin_bookings (
-      enquiry_id,
-      artist_slug,
-      client_name,
-      client_email,
-      start_at,
-      end_at,
-      status,
-      notes
-    ) VALUES (
-      ${input.enquiryId ?? null},
-      ${artistSlug},
-      ${input.clientName.trim()},
-      ${input.clientEmail.trim()},
-      ${startAt.toISOString()},
-      ${endAt.toISOString()},
-      ${status},
-      ${input.notes?.trim() || null}
-    )
-    RETURNING *;
-  `) as BookingRow[];
+  if (status === "scheduled") {
+    const [conflict] = (await sql`
+      SELECT id
+      FROM admin_bookings
+      WHERE artist_slug = ${artistSlug}
+        AND status = 'scheduled'
+        AND tstzrange(start_at, end_at, '[)') && tstzrange(${startAt.toISOString()}::timestamptz, ${endAt.toISOString()}::timestamptz, '[)')
+      LIMIT 1;
+    `) as Array<{ id: number }>;
 
-  if (!row) {
-    throw new Error("Could not create booking");
+    if (conflict) {
+      throw new Error("This artist already has a scheduled booking that overlaps this time window.");
+    }
   }
 
-  if (input.enquiryId) {
-    await sql`
+  const enquiryId = input.enquiryId ?? null;
+
+  const [row] = (await sql`
+    WITH target_enquiry AS (
+      SELECT id
+      FROM admin_enquiries
+      WHERE id = ${enquiryId}
+    ),
+    inserted AS (
+      INSERT INTO admin_bookings (
+        enquiry_id,
+        artist_slug,
+        client_name,
+        client_email,
+        start_at,
+        end_at,
+        status,
+        notes
+      )
+      SELECT
+        ${enquiryId},
+        ${artistSlug},
+        ${input.clientName.trim()},
+        ${input.clientEmail.trim()},
+        ${startAt.toISOString()},
+        ${endAt.toISOString()},
+        ${status},
+        ${input.notes?.trim() || null}
+      WHERE ${enquiryId}::integer IS NULL OR EXISTS (SELECT 1 FROM target_enquiry)
+      RETURNING *
+    ),
+    updated AS (
       UPDATE admin_enquiries
       SET
         status = 'booked',
         assigned_artist_slug = ${artistSlug},
         updated_at = NOW()
-      WHERE id = ${input.enquiryId};
-    `;
+      WHERE id IN (SELECT id FROM target_enquiry)
+        AND EXISTS (SELECT 1 FROM inserted)
+      RETURNING id
+    )
+    SELECT inserted.*
+    FROM inserted;
+  `) as BookingRow[];
+
+  if (!row) {
+    if (enquiryId) {
+      throw new Error("Enquiry not found");
+    }
+
+    throw new Error("Could not create booking");
   }
 
   return mapBooking(row);
@@ -835,6 +895,22 @@ export async function updateBooking(id: number, input: UpdateBookingInput): Prom
 
   if (endAt <= startAt) {
     throw new Error("Booking end time must be after start time");
+  }
+
+  if (status === "scheduled") {
+    const [conflict] = (await sql`
+      SELECT id
+      FROM admin_bookings
+      WHERE artist_slug = ${existing.artist_slug}
+        AND status = 'scheduled'
+        AND id <> ${id}
+        AND tstzrange(start_at, end_at, '[)') && tstzrange(${startAt.toISOString()}::timestamptz, ${endAt.toISOString()}::timestamptz, '[)')
+      LIMIT 1;
+    `) as Array<{ id: number }>;
+
+    if (conflict) {
+      throw new Error("This artist already has a scheduled booking that overlaps this time window.");
+    }
   }
 
   const notes = input.notes !== undefined ? input.notes.trim() : normalizeText(existing.notes);
