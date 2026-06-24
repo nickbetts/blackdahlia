@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, CircleAlert } from "lucide-react";
 import { policySections } from "@/content/studio";
-import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 
 export const metadata: Metadata = {
@@ -129,15 +128,6 @@ export default function PoliciesPage() {
 
       {/* ── CTA BAND ─────────────────────────────────────────────────── */}
       <section className="container ctaBand">
-        <ShootingStars
-          className="absolute inset-0 rounded-[inherit]"
-          starColor="#c9a26b"
-          trailColor="#9a4c3b"
-          minSpeed={8}
-          maxSpeed={20}
-          minDelay={900}
-          maxDelay={2200}
-        />
         <StarsBackground
           className="absolute inset-0 rounded-[inherit]"
           starDensity={0.00015}

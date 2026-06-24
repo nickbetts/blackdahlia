@@ -5,7 +5,6 @@ import { ShieldCheck, Sparkle, Users } from "@phosphor-icons/react/dist/ssr";
 import { GiInkSwirl, GiSkullCrossedBones } from "react-icons/gi";
 import { aboutCopy, artists, studioInfo } from "@/content/studio";
 import { getLeadImage, studioGallery } from "@/lib/media";
-import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 
 export const metadata: Metadata = {
@@ -203,15 +202,6 @@ export default function AboutPage() {
 
       {/* ── CTA BAND ─────────────────────────────────────────────────── */}
       <section className="container ctaBand">
-        <ShootingStars
-          className="absolute inset-0 rounded-[inherit]"
-          starColor="#c9a26b"
-          trailColor="#9a4c3b"
-          minSpeed={8}
-          maxSpeed={20}
-          minDelay={900}
-          maxDelay={2200}
-        />
         <StarsBackground
           className="absolute inset-0 rounded-[inherit]"
           starDensity={0.00015}

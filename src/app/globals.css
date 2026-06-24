@@ -543,6 +543,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 
 .brandLogoFooter {
   height: 64px;
+  align-self: flex-start;
+  margin-left: -6px;
 }
 
 .siteNav { align-items: center; display: flex; flex-wrap: wrap; gap: 0.1rem; }
@@ -966,7 +968,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
 
 .footerBrand { display: flex; flex-direction: column; gap: 0.7rem; }
 .footerBrand p { color: var(--text-300); font-size: 0.85rem; line-height: 1.6; max-width: 34ch; }
-.footerBrand h2 { font-size: 1.1rem; letter-spacing: 0.01em; }
+.footerBrand h2 { font-size: 1.1rem; letter-spacing: 0.01em; margin-top: -0.2rem; }
 
 .footerEyebrow {
   color: var(--accent-gold);

@@ -6,11 +6,9 @@ import { MarqueeGsap } from "@/components/marquee-gsap";
 import { TrustCards, type TrustPoint } from "@/components/trust-cards";
 import { artists, faqSections, homeIntro, studioInfo } from "@/content/studio";
 import { getLeadImage, heroImages, studioGallery } from "@/lib/media";
-import { BackgroundBeams } from "@/components/ui/background-beams";
 
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { HeroCarousel } from "@/components/hero-carousel";
-import { LightRays } from "@/components/ui/light-rays";
 import { Lens } from "@/components/ui/lens";
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
@@ -83,8 +81,6 @@ export default function Home() {
       <section className="heroFull">
         <HeroCarousel slides={heroSlides} />
         <div className="heroBgOverlay" />
-        <LightRays color="rgba(255,255,255,0.1)" count={5} speed={14} length="80vh" className="z-2" />
-        <BackgroundBeams className="absolute inset-0 z-1 pointer-events-none opacity-40" />
 
         <div className="container heroContent">
           <p className="eyebrow">{homeIntro.eyebrow}</p>
