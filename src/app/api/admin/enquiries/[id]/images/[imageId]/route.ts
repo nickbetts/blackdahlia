@@ -26,8 +26,9 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
 
   try {
     const image = await getEnquiryImageBinary(enquiryId, parsedImageId);
+    const body = Buffer.from(image.content);
 
-    return new NextResponse(image.content, {
+    return new NextResponse(body, {
       status: 200,
       headers: {
         "Content-Type": image.mimeType,

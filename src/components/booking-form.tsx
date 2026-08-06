@@ -271,37 +271,39 @@ export function BookingForm() {
     setSubmitted(false);
 
     try {
-      const payload = new FormData();
+      const formData = new FormData();
 
-      payload.set("firstName", form.firstName);
-      payload.set("lastName", form.lastName);
-      payload.set("email", form.email);
-      payload.set("phone", form.phone);
-      payload.set("instagram", form.instagram);
-      payload.set("pronouns", form.pronouns);
-      payload.set("dateOfBirth", form.dateOfBirth);
-      payload.set("preferredDate", form.preferredDate);
-      payload.set("availabilityWindow", form.availabilityWindow);
-      payload.set("preferredArtist", form.preferredArtist);
-      payload.set("isCoverUp", String(form.isCoverUp === "Yes"));
-      payload.set("styleDirection", form.styleDirection);
-      payload.set("sizeAndPlacement", form.sizeAndPlacement);
-      payload.set("referenceLinks", form.referenceLinks);
-      payload.set("concept", form.concept);
+      formData.set("firstName", form.firstName);
+      formData.set("lastName", form.lastName);
+      formData.set("email", form.email);
+      formData.set("phone", form.phone);
+      formData.set("instagram", form.instagram);
+      formData.set("pronouns", form.pronouns);
+      formData.set("dateOfBirth", form.dateOfBirth);
+      formData.set("preferredDate", form.preferredDate);
+      formData.set("availabilityWindow", form.availabilityWindow);
+      formData.set("preferredArtist", form.preferredArtist);
+      formData.set("isCoverUp", String(form.isCoverUp === "Yes"));
+      formData.set("styleDirection", form.styleDirection);
+      formData.set("sizeAndPlacement", form.sizeAndPlacement);
+      formData.set("referenceLinks", form.referenceLinks);
+      formData.set("concept", form.concept);
 
       for (const image of referenceImages) {
-        payload.append("referenceImages", image);
+        formData.append("referenceImages", image);
       }
 
       const response = await fetch("/api/admin/enquiries", {
         method: "POST",
-        body: payload,
+        body: formData,
       });
 
-      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+      const responsePayload = (await response.json().catch(() => null)) as { error?: string } | null;
 
       if (!response.ok) {
-        throw new Error(payload?.error || "Could not submit your booking brief right now.");
+        throw new Error(
+          responsePayload?.error || "Could not submit your booking brief right now."
+        );
       }
 
       setSubmitted(true);
