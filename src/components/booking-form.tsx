@@ -69,6 +69,8 @@ function formatSlotLabel(slot: AvailabilityWindow): string {
 
 export function BookingForm() {
   const [form, setForm] = useState<BookingState>(initialState);
+  const [referenceImages, setReferenceImages] = useState<File[]>([]);
+  const [referenceImagesError, setReferenceImagesError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -183,6 +185,33 @@ export function BookingForm() {
     setForm((current) => ({ ...current, [key]: value }));
   }
 
+  function handleReferenceImageChange(files: FileList | null) {
+    if (!files) {
+      setReferenceImages([]);
+      setReferenceImagesError(null);
+      return;
+    }
+
+    const selected = Array.from(files).filter((file) => file.size > 0);
+
+    if (selected.length > 6) {
+      setReferenceImages([]);
+      setReferenceImagesError("Please upload up to 6 images.");
+      return;
+    }
+
+    const oversize = selected.find((file) => file.size > 8 * 1024 * 1024);
+
+    if (oversize) {
+      setReferenceImages([]);
+      setReferenceImagesError("Each image must be 8MB or smaller.");
+      return;
+    }
+
+    setReferenceImages(selected);
+    setReferenceImagesError(null);
+  }
+
   function handleAvailabilitySlotSelect(slotId: string) {
     setSelectedAvailabilitySlotId(slotId);
 
@@ -242,15 +271,31 @@ export function BookingForm() {
     setSubmitted(false);
 
     try {
+      const payload = new FormData();
+
+      payload.set("firstName", form.firstName);
+      payload.set("lastName", form.lastName);
+      payload.set("email", form.email);
+      payload.set("phone", form.phone);
+      payload.set("instagram", form.instagram);
+      payload.set("pronouns", form.pronouns);
+      payload.set("dateOfBirth", form.dateOfBirth);
+      payload.set("preferredDate", form.preferredDate);
+      payload.set("availabilityWindow", form.availabilityWindow);
+      payload.set("preferredArtist", form.preferredArtist);
+      payload.set("isCoverUp", String(form.isCoverUp === "Yes"));
+      payload.set("styleDirection", form.styleDirection);
+      payload.set("sizeAndPlacement", form.sizeAndPlacement);
+      payload.set("referenceLinks", form.referenceLinks);
+      payload.set("concept", form.concept);
+
+      for (const image of referenceImages) {
+        payload.append("referenceImages", image);
+      }
+
       const response = await fetch("/api/admin/enquiries", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...form,
-          isCoverUp: form.isCoverUp === "Yes",
-        }),
+        body: payload,
       });
 
       const payload = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -261,6 +306,8 @@ export function BookingForm() {
 
       setSubmitted(true);
       setForm(initialState);
+      setReferenceImages([]);
+      setReferenceImagesError(null);
       setCurrentStep(0);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Could not submit your booking brief right now.";
@@ -427,6 +474,27 @@ export function BookingForm() {
           </label>
 
           <label>
+            Inspiration or placement photos
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              multiple
+              onChange={(event) => handleReferenceImageChange(event.target.files)}
+            />
+          </label>
+
+          {referenceImages.length > 0 ? (
+            <p className="bookingHint">
+              {referenceImages.length} image{referenceImages.length === 1 ? "" : "s"} selected: {referenceImages
+                .map((file) => file.name)
+                .join(", ")}
+            </p>
+          ) : null}
+
+          {referenceImagesError ? <p className="bookingError">{referenceImagesError}</p> : null}
+
+          <label>
             Describe your tattoo concept*
             <textarea
               required
@@ -543,6 +611,10 @@ export function BookingForm() {
             <div className="bookingSummaryRow">
               <span>Concept brief</span>
               <strong>{form.concept || "Not provided"}</strong>
+            </div>
+            <div className="bookingSummaryRow">
+              <span>Uploaded images</span>
+              <strong>{referenceImages.length > 0 ? `${referenceImages.length} selected` : "None uploaded"}</strong>
             </div>
           </div>
         </div>

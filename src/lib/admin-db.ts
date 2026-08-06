@@ -9,9 +9,11 @@ import {
   type AvailabilityWindow,
   type BookingStatus,
   type CreateBookingInput,
+  type CreateEnquiryImageInput,
   type CreateEnquiryInput,
   type CreateTimeOffInput,
   type EnquiryStatus,
+  type EnquiryImage,
   type TimeOffPeriod,
   type UpdateBookingInput,
   type UpdateEnquiryInput,
@@ -44,6 +46,17 @@ type EnquiryRow = {
   concept: string;
   status: EnquiryStatus;
   admin_notes: string | null;
+  reference_images?: unknown;
+};
+
+type EnquiryImageRow = {
+  id: number;
+  enquiry_id: number;
+  created_at: string | Date;
+  file_name: string;
+  mime_type: string;
+  byte_size: number;
+  image_data_base64: string;
 };
 
 type BookingRow = {
@@ -111,6 +124,41 @@ function normalizeText(value: string | null | undefined): string {
   return value?.trim() || "";
 }
 
+function parseEnquiryImages(value: unknown): EnquiryImage[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const items: EnquiryImage[] = [];
+
+  for (const item of value) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) {
+      continue;
+    }
+
+    const record = item as Record<string, unknown>;
+    const id = Number(record.id);
+    const createdAt = String(record.createdAt || "");
+    const fileName = String(record.fileName || "").trim();
+    const mimeType = String(record.mimeType || "").trim();
+    const byteSize = Number(record.byteSize);
+
+    if (!Number.isFinite(id) || !createdAt || !fileName || !mimeType || !Number.isFinite(byteSize)) {
+      continue;
+    }
+
+    items.push({
+      id,
+      createdAt: toIso(createdAt),
+      fileName,
+      mimeType,
+      byteSize,
+    });
+  }
+
+  return items;
+}
+
 function mapEnquiry(row: EnquiryRow): AdminEnquiry {
   return {
     id: row.id,
@@ -134,6 +182,7 @@ function mapEnquiry(row: EnquiryRow): AdminEnquiry {
     referenceLinks: normalizeText(row.reference_links),
     medicalNotes: normalizeText(row.medical_notes),
     concept: row.concept,
+    referenceImages: parseEnquiryImages(row.reference_images),
     status: row.status,
     adminNotes: normalizeText(row.admin_notes),
   };
@@ -293,6 +342,18 @@ export async function ensureAdminSchema(): Promise<void> {
       `;
 
       await sql`
+        CREATE TABLE IF NOT EXISTS admin_enquiry_images (
+          id SERIAL PRIMARY KEY,
+          enquiry_id INTEGER NOT NULL REFERENCES admin_enquiries(id) ON DELETE CASCADE,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          file_name TEXT NOT NULL,
+          mime_type TEXT NOT NULL,
+          byte_size INTEGER NOT NULL,
+          image_data_base64 TEXT NOT NULL
+        );
+      `;
+
+      await sql`
         DO $$
         BEGIN
           IF NOT EXISTS (
@@ -357,6 +418,11 @@ export async function ensureAdminSchema(): Promise<void> {
       `;
 
       await sql`
+        CREATE INDEX IF NOT EXISTS idx_admin_enquiry_images_enquiry
+        ON admin_enquiry_images(enquiry_id, created_at ASC);
+      `;
+
+      await sql`
         CREATE INDEX IF NOT EXISTS idx_admin_artist_time_off_artist_start
         ON admin_artist_time_off(artist_slug, start_at);
       `;
@@ -379,9 +445,27 @@ export async function listEnquiries(limit = 100): Promise<AdminEnquiry[]> {
   const sql = getSqlClient();
 
   const rows = (await sql`
-    SELECT *
-    FROM admin_enquiries
-    ORDER BY created_at DESC
+    SELECT
+      e.*,
+      COALESCE(
+        (
+          SELECT json_agg(
+            json_build_object(
+              'id', i.id,
+              'createdAt', i.created_at,
+              'fileName', i.file_name,
+              'mimeType', i.mime_type,
+              'byteSize', i.byte_size
+            )
+            ORDER BY i.created_at ASC
+          )
+          FROM admin_enquiry_images i
+          WHERE i.enquiry_id = e.id
+        ),
+        '[]'::json
+      ) AS reference_images
+    FROM admin_enquiries e
+    ORDER BY e.created_at DESC
     LIMIT ${Math.max(1, Math.min(limit, 500))};
   `) as EnquiryRow[];
 
@@ -443,7 +527,97 @@ export async function createEnquiry(input: CreateEnquiryInput): Promise<AdminEnq
     throw new Error("Could not create enquiry");
   }
 
-  return mapEnquiry(row);
+  const imageInputs = Array.isArray(input.referenceImages) ? input.referenceImages : [];
+
+  for (const image of imageInputs) {
+    await insertEnquiryImage(row.id, image);
+  }
+
+  const [created] = (await sql`
+    SELECT
+      e.*,
+      COALESCE(
+        (
+          SELECT json_agg(
+            json_build_object(
+              'id', i.id,
+              'createdAt', i.created_at,
+              'fileName', i.file_name,
+              'mimeType', i.mime_type,
+              'byteSize', i.byte_size
+            )
+            ORDER BY i.created_at ASC
+          )
+          FROM admin_enquiry_images i
+          WHERE i.enquiry_id = e.id
+        ),
+        '[]'::json
+      ) AS reference_images
+    FROM admin_enquiries e
+    WHERE e.id = ${row.id}
+    LIMIT 1;
+  `) as EnquiryRow[];
+
+  if (!created) {
+    throw new Error("Could not load created enquiry");
+  }
+
+  return mapEnquiry(created);
+}
+
+async function insertEnquiryImage(enquiryId: number, image: CreateEnquiryImageInput): Promise<void> {
+  const sql = getSqlClient();
+  const fileName = image.fileName.trim();
+  const mimeType = image.mimeType.trim().toLowerCase();
+  const base64Data = image.base64Data.trim();
+  const byteSize = Number(image.byteSize);
+
+  if (!fileName || !mimeType || !base64Data || !Number.isFinite(byteSize) || byteSize < 1) {
+    throw new Error("Invalid enquiry image payload.");
+  }
+
+  await sql`
+    INSERT INTO admin_enquiry_images (
+      enquiry_id,
+      file_name,
+      mime_type,
+      byte_size,
+      image_data_base64
+    ) VALUES (
+      ${enquiryId},
+      ${fileName.slice(0, 240)},
+      ${mimeType.slice(0, 120)},
+      ${Math.round(byteSize)},
+      ${base64Data}
+    );
+  `;
+}
+
+export async function getEnquiryImageBinary(
+  enquiryId: number,
+  imageId: number
+): Promise<{ fileName: string; mimeType: string; content: Uint8Array }> {
+  await ensureAdminSchema();
+  const sql = getSqlClient();
+
+  const [row] = (await sql`
+    SELECT id, enquiry_id, created_at, file_name, mime_type, byte_size, image_data_base64
+    FROM admin_enquiry_images
+    WHERE id = ${imageId} AND enquiry_id = ${enquiryId}
+    LIMIT 1;
+  `) as EnquiryImageRow[];
+
+  if (!row) {
+    throw new Error("Enquiry image not found");
+  }
+
+  const buffer = Buffer.from(row.image_data_base64, "base64");
+
+  return {
+    fileName: row.file_name,
+    mimeType: row.mime_type,
+    content: new Uint8Array(buffer),
+  };
 }
 
 export async function updateEnquiry(id: number, input: UpdateEnquiryInput): Promise<AdminEnquiry> {

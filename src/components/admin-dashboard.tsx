@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   CalendarDays,
   CalendarOff,
+  Camera,
   AtSign,
   Clock3,
   LogOut,
@@ -604,6 +605,33 @@ function EnquiryCard({
       </div>
 
       <p className="adminEnquiryBrief">{enquiry.concept}</p>
+
+      {enquiry.referenceImages.length > 0 ? (
+        <div className="adminEnquiryImages">
+          <p>
+            <Camera size={14} /> Uploaded reference images ({enquiry.referenceImages.length})
+          </p>
+
+          <div className="adminEnquiryImageGrid">
+            {enquiry.referenceImages.map((image) => {
+              const imageUrl = `/api/admin/enquiries/${enquiry.id}/images/${image.id}`;
+
+              return (
+                <a
+                  key={image.id}
+                  href={imageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="adminEnquiryImageLink"
+                  aria-label={`Open ${image.fileName}`}
+                >
+                  <img src={imageUrl} alt={`Reference upload: ${image.fileName}`} loading="lazy" />
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
 
       <form className="adminQuickBook" onSubmit={createBookingFromEnquiry}>
         <p>Schedule from enquiry</p>

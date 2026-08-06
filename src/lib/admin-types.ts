@@ -36,8 +36,24 @@ export type AdminEnquiry = {
   referenceLinks: string;
   medicalNotes: string;
   concept: string;
+  referenceImages: EnquiryImage[];
   status: EnquiryStatus;
   adminNotes: string;
+};
+
+export type EnquiryImage = {
+  id: number;
+  createdAt: string;
+  fileName: string;
+  mimeType: string;
+  byteSize: number;
+};
+
+export type CreateEnquiryImageInput = {
+  fileName: string;
+  mimeType: string;
+  byteSize: number;
+  base64Data: string;
 };
 
 export type AdminBooking = {
@@ -111,6 +127,7 @@ export type CreateEnquiryInput = {
   styleDirection: string;
   sizeAndPlacement: string;
   referenceLinks?: string;
+  referenceImages?: CreateEnquiryImageInput[];
   medicalNotes?: string;
   concept: string;
 };
