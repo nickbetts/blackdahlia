@@ -565,7 +565,7 @@ function EnquiryCard({
   }
 
   return (
-    <article className="adminEnquiryCard">
+    <article className={`adminEnquiryCard is-${status}`}>
       <header>
         <div>
           <strong>
