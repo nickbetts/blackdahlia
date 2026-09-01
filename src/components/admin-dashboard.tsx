@@ -10,6 +10,8 @@ import {
   ChevronDown,
   ChevronUp,
   Clock3,
+  Download,
+  ImageOff,
   LogOut,
   Mail,
   Phone,
@@ -28,6 +30,7 @@ import {
   type AvailabilityStatus,
   type ArtistAdminOption,
   type BookingStatus,
+  type EnquiryImage,
   type TimeOffPeriod,
   type WeekdayIndex,
   type WeeklyAvailabilityRule,
@@ -127,6 +130,63 @@ function formatDateTime(isoDate: string): string {
     hour: "2-digit",
     minute: "2-digit",
   }).format(date);
+}
+
+function formatBytes(bytes: number): string {
+  if (!Number.isFinite(bytes) || bytes <= 0) return "";
+  if (bytes < 1024) return `${bytes} B`;
+  const kb = bytes / 1024;
+  if (kb < 1024) return `${kb.toFixed(kb >= 10 ? 0 : 1)} KB`;
+  const mb = kb / 1024;
+  return `${mb.toFixed(mb >= 10 ? 0 : 1)} MB`;
+}
+
+// Formats that most non-Safari browsers can't render natively.
+const nonRenderableImageMimes = new Set([
+  "image/heic",
+  "image/heif",
+  "image/tiff",
+  "image/bmp",
+]);
+
+function formatImageKind(mimeType: string): string {
+  const short = mimeType.replace(/^image\//, "").toUpperCase();
+  return short || "FILE";
+}
+
+function EnquiryReferenceThumb({ image, imageUrl }: { image: EnquiryImage; imageUrl: string }) {
+  const [hasError, setHasError] = useState(
+    nonRenderableImageMimes.has(image.mimeType.toLowerCase())
+  );
+
+  return (
+    <a
+      href={imageUrl}
+      target="_blank"
+      rel="noreferrer"
+      className={`adminEnquiryImageLink${hasError ? " is-fallback" : ""}`}
+      aria-label={`Open ${image.fileName}`}
+      title={`${image.fileName}${image.byteSize ? ` (${formatBytes(image.byteSize)})` : ""}`}
+    >
+      {hasError ? (
+        <div className="adminEnquiryImageFallback">
+          <ImageOff size={18} aria-hidden />
+          <strong>{formatImageKind(image.mimeType)}</strong>
+          <span>{formatBytes(image.byteSize)}</span>
+          <span className="adminEnquiryImageFallbackOpen">
+            <Download size={11} /> Open
+          </span>
+        </div>
+      ) : (
+        <img
+          src={imageUrl}
+          alt={`Reference upload: ${image.fileName}`}
+          loading="lazy"
+          onError={() => setHasError(true)}
+        />
+      )}
+    </a>
+  );
 }
 
 function monthTitle(monthCursor: Date): string {
@@ -618,19 +678,7 @@ function EnquiryCard({
           <div className="adminEnquiryImageGrid">
             {enquiry.referenceImages.map((image) => {
               const imageUrl = `/api/admin/enquiries/${enquiry.id}/images/${image.id}`;
-
-              return (
-                <a
-                  key={image.id}
-                  href={imageUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="adminEnquiryImageLink"
-                  aria-label={`Open ${image.fileName}`}
-                >
-                  <img src={imageUrl} alt={`Reference upload: ${image.fileName}`} loading="lazy" />
-                </a>
-              );
+              return <EnquiryReferenceThumb key={image.id} image={image} imageUrl={imageUrl} />;
             })}
           </div>
         </div>

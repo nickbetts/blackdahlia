@@ -200,11 +200,11 @@ export function BookingForm() {
       return;
     }
 
-    const oversize = selected.find((file) => file.size > 8 * 1024 * 1024);
+    const oversize = selected.find((file) => file.size > 12 * 1024 * 1024);
 
     if (oversize) {
       setReferenceImages([]);
-      setReferenceImagesError("Each image must be 8MB or smaller.");
+      setReferenceImagesError("Each image must be 12MB or smaller.");
       return;
     }
 

@@ -2184,6 +2184,46 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   transform: scale(1.04);
 }
 
+.adminEnquiryImageLink.is-fallback {
+  background: rgba(0, 0, 0, 0.03);
+  border-style: dashed;
+}
+
+.adminEnquiryImageFallback {
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  color: var(--text-300);
+  text-align: center;
+  line-height: 1.15;
+}
+
+.adminEnquiryImageFallback strong {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text-200);
+}
+
+.adminEnquiryImageFallback span {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+}
+
+.adminEnquiryImageFallbackOpen {
+  margin-top: 0.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: var(--text-100);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 .adminFormStack,
 .adminQuickBook,
 .adminBookingForm {

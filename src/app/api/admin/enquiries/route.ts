@@ -7,16 +7,75 @@ import type { CreateEnquiryInput } from "@/lib/admin-types";
 export const runtime = "nodejs";
 
 const MAX_ENQUIRY_IMAGES = 6;
-const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
-const MAX_TOTAL_IMAGE_BYTES = 24 * 1024 * 1024;
+const MAX_IMAGE_BYTES = 12 * 1024 * 1024;
+const MAX_TOTAL_IMAGE_BYTES = 32 * 1024 * 1024;
 
-const allowedImageMimeTypes = new Set([
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-  "image/heic",
-  "image/heif",
-]);
+type NormalizedImageMime =
+  | "image/jpeg"
+  | "image/png"
+  | "image/webp"
+  | "image/heic"
+  | "image/heif"
+  | "image/gif"
+  | "image/avif"
+  | "image/bmp"
+  | "image/tiff";
+
+const mimeAliases: Record<string, NormalizedImageMime> = {
+  "image/jpeg": "image/jpeg",
+  "image/jpg": "image/jpeg",
+  "image/pjpeg": "image/jpeg",
+  "image/png": "image/png",
+  "image/x-png": "image/png",
+  "image/webp": "image/webp",
+  "image/heic": "image/heic",
+  "image/heic-sequence": "image/heic",
+  "image/heif": "image/heif",
+  "image/heif-sequence": "image/heif",
+  "image/x-heic": "image/heic",
+  "image/x-heif": "image/heif",
+  "image/gif": "image/gif",
+  "image/avif": "image/avif",
+  "image/bmp": "image/bmp",
+  "image/x-ms-bmp": "image/bmp",
+  "image/tiff": "image/tiff",
+  "image/tif": "image/tiff",
+  "image/x-tiff": "image/tiff",
+};
+
+const extensionMime: Record<string, NormalizedImageMime> = {
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  jfif: "image/jpeg",
+  jpe: "image/jpeg",
+  png: "image/png",
+  webp: "image/webp",
+  heic: "image/heic",
+  heif: "image/heif",
+  gif: "image/gif",
+  avif: "image/avif",
+  bmp: "image/bmp",
+  tif: "image/tiff",
+  tiff: "image/tiff",
+};
+
+function resolveImageMime(file: File): NormalizedImageMime | null {
+  const rawMime = file.type.trim().toLowerCase();
+  const aliased = rawMime ? mimeAliases[rawMime] : undefined;
+
+  if (aliased) {
+    return aliased;
+  }
+
+  const extMatch = /\.([a-z0-9]+)$/i.exec(file.name || "");
+  const ext = extMatch?.[1]?.toLowerCase();
+
+  if (ext && extensionMime[ext]) {
+    return extensionMime[ext];
+  }
+
+  return null;
+}
 
 function parseCreateEnquiryInput(payload: unknown): CreateEnquiryInput {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
@@ -101,20 +160,26 @@ async function parseCreateEnquiryFromMultipart(formData: FormData): Promise<Crea
 
   const referenceImages = await Promise.all(
     imageFiles.map(async (file, index) => {
-      const mimeType = file.type.trim().toLowerCase();
+      const mimeType = resolveImageMime(file);
 
-      if (!allowedImageMimeTypes.has(mimeType)) {
-        throw new Error("Only JPEG, PNG, WebP, or HEIC images are supported.");
+      if (!mimeType) {
+        throw new Error(
+          "That image format isn't supported. Please upload JPEG, PNG, WebP, HEIC/HEIF, GIF, AVIF, BMP, or TIFF."
+        );
       }
 
       if (file.size > MAX_IMAGE_BYTES) {
-        throw new Error("Each image must be 8MB or smaller.");
+        throw new Error(
+          `Each image must be ${Math.floor(MAX_IMAGE_BYTES / 1024 / 1024)}MB or smaller.`
+        );
       }
 
       totalBytes += file.size;
 
       if (totalBytes > MAX_TOTAL_IMAGE_BYTES) {
-        throw new Error("Total image upload size must be 24MB or smaller.");
+        throw new Error(
+          `Total image upload size must be ${Math.floor(MAX_TOTAL_IMAGE_BYTES / 1024 / 1024)}MB or smaller.`
+        );
       }
 
       const bytes = new Uint8Array(await file.arrayBuffer());
