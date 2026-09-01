@@ -7,6 +7,8 @@ import {
   CalendarOff,
   Camera,
   AtSign,
+  ChevronDown,
+  ChevronUp,
   Clock3,
   LogOut,
   Mail,
@@ -481,6 +483,7 @@ function EnquiryCard({
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [isError, setIsError] = useState(false);
+  const [isActionsOpen, setIsActionsOpen] = useState(false);
 
   async function saveEnquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -633,70 +636,84 @@ function EnquiryCard({
         </div>
       ) : null}
 
-      <form className="adminQuickBook" onSubmit={createBookingFromEnquiry}>
-        <p>Schedule from enquiry</p>
-        <div className="adminFieldRow">
-          <label>
-            Start
-            <input
-              type="datetime-local"
-              value={quickStartAt}
-              onChange={(event) => setQuickStartAt(event.target.value)}
-              required
-            />
-          </label>
-          <label>
-            End
-            <input
-              type="datetime-local"
-              value={quickEndAt}
-              onChange={(event) => setQuickEndAt(event.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <button className="primaryButton" type="submit" disabled={isSaving}>
-          <Plus size={14} /> Schedule booking
-        </button>
-      </form>
+      <button
+        type="button"
+        className="adminEnquiryToggle"
+        onClick={() => setIsActionsOpen((v) => !v)}
+        aria-expanded={isActionsOpen}
+      >
+        {isActionsOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        {isActionsOpen ? "Hide actions" : "Manage enquiry"}
+      </button>
 
-      <form className="adminFormStack" onSubmit={saveEnquiry}>
-        <div className="adminFieldRow">
-          <label>
-            Status
-            <select value={status} onChange={(event) => setStatus(event.target.value as typeof status)}>
-              {enquiryStatuses.map((item) => (
-                <option key={item} value={item}>
-                  {item.replaceAll("_", " ")}
-                </option>
-              ))}
-            </select>
-          </label>
+      {isActionsOpen ? (
+        <>
+          <form className="adminQuickBook" onSubmit={createBookingFromEnquiry}>
+            <p>Schedule from enquiry</p>
+            <div className="adminFieldRow">
+              <label>
+                Start
+                <input
+                  type="datetime-local"
+                  value={quickStartAt}
+                  onChange={(event) => setQuickStartAt(event.target.value)}
+                  required
+                />
+              </label>
+              <label>
+                End
+                <input
+                  type="datetime-local"
+                  value={quickEndAt}
+                  onChange={(event) => setQuickEndAt(event.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <button className="primaryButton" type="submit" disabled={isSaving}>
+              <Plus size={14} /> Schedule booking
+            </button>
+          </form>
 
-          <label>
-            Assigned artist
-            <select
-              value={assignedArtistSlug}
-              onChange={(event) => setAssignedArtistSlug(event.target.value as ArtistSlug)}
-            >
-              {artists.map((artist) => (
-                <option key={artist.slug} value={artist.slug}>
-                  {artist.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+          <form className="adminFormStack" onSubmit={saveEnquiry}>
+            <div className="adminFieldRow">
+              <label>
+                Status
+                <select value={status} onChange={(event) => setStatus(event.target.value as typeof status)}>
+                  {enquiryStatuses.map((item) => (
+                    <option key={item} value={item}>
+                      {item.replaceAll("_", " ")}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-        <label>
-          Internal notes
-          <textarea value={adminNotes} onChange={(event) => setAdminNotes(event.target.value)} rows={3} />
-        </label>
+              <label>
+                Assigned artist
+                <select
+                  value={assignedArtistSlug}
+                  onChange={(event) => setAssignedArtistSlug(event.target.value as ArtistSlug)}
+                >
+                  {artists.map((artist) => (
+                    <option key={artist.slug} value={artist.slug}>
+                      {artist.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
 
-        <button className="ghostButton" type="submit" disabled={isSaving}>
-          <Save size={14} /> Save enquiry details
-        </button>
-      </form>
+            <label>
+              Internal notes
+              <textarea value={adminNotes} onChange={(event) => setAdminNotes(event.target.value)} rows={3} />
+            </label>
+
+            <button className="ghostButton" type="submit" disabled={isSaving}>
+              <Save size={14} /> Save enquiry details
+            </button>
+          </form>
+        </>
+      ) : null}
 
       {message ? (
         <p className={`adminNotice ${isError ? "adminNoticeError" : "adminNoticeSuccess"}`}>{message}</p>
