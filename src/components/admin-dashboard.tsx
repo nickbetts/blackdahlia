@@ -3,6 +3,8 @@
 import { FormEvent, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
+  ArrowDown,
+  ArrowUp,
   CalendarDays,
   CalendarOff,
   Camera,
@@ -12,6 +14,7 @@ import {
   Clock3,
   Download,
   ImageOff,
+  Images,
   LogOut,
   Mail,
   Phone,
@@ -19,6 +22,7 @@ import {
   RotateCcw,
   Save,
   Trash2,
+  Upload,
   XCircle,
 } from "lucide-react";
 import type { ArtistSlug } from "@/content/studio";
@@ -31,6 +35,7 @@ import {
   type ArtistAdminOption,
   type BookingStatus,
   type EnquiryImage,
+  type GalleryImage,
   type TimeOffPeriod,
   type WeekdayIndex,
   type WeeklyAvailabilityRule,
@@ -43,11 +48,12 @@ type AdminDashboardProps = {
   initialBookings: AdminBooking[];
   initialWeeklyAvailability: WeeklyAvailabilityRule[];
   initialTimeOff: TimeOffPeriod[];
+  initialGallery: GalleryImage[];
 };
 
 type EnquiryFilter = "action" | "all" | "resolved";
 
-type AdminTabKey = "enquiries" | "calendar" | "availability";
+type AdminTabKey = "enquiries" | "calendar" | "availability" | "gallery";
 
 type ManualBookingDraft = {
   artistSlug: ArtistSlug;
@@ -777,6 +783,7 @@ export function AdminDashboard({
   initialBookings,
   initialWeeklyAvailability,
   initialTimeOff,
+  initialGallery,
 }: AdminDashboardProps) {
   const router = useRouter();
 
@@ -1181,6 +1188,7 @@ export function AdminDashboard({
             { key: "enquiries", label: "Enquiries", icon: Mail },
             { key: "calendar", label: "Calendar", icon: CalendarDays },
             { key: "availability", label: "Availability", icon: Clock3 },
+            { key: "gallery", label: "Galleries", icon: Images },
           ] as const
         ).map((tab) => {
           const Icon = tab.icon;
@@ -1198,7 +1206,6 @@ export function AdminDashboard({
           );
         })}
       </nav>
-
       {activeTab === "enquiries" ? (
         <section className="adminTabPanel">
           <div className="adminPanel">
@@ -1666,6 +1673,449 @@ export function AdminDashboard({
           </div>
         </section>
       ) : null}
+
+      {activeTab === "gallery" ? (
+        <section className="adminTabPanel">
+          <GalleryManager
+            artists={artists}
+            initialGallery={initialGallery}
+          />
+        </section>
+      ) : null}
+    </div>
+  );
+}
+
+const GALLERY_MAX_BYTES = 8 * 1024 * 1024;
+const GALLERY_ACCEPT_MIME = new Set([
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+  "image/avif",
+  "image/gif",
+]);
+
+function readFileAsBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error ?? new Error("Could not read file"));
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result !== "string") {
+        reject(new Error("Unexpected file reader result"));
+        return;
+      }
+      const commaIndex = result.indexOf(",");
+      resolve(commaIndex >= 0 ? result.slice(commaIndex + 1) : result);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function readImageDimensions(file: File): Promise<{ width: number | null; height: number | null }> {
+  return new Promise((resolve) => {
+    const url = URL.createObjectURL(file);
+    const image = new Image();
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve({ width: image.naturalWidth || null, height: image.naturalHeight || null });
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(url);
+      resolve({ width: null, height: null });
+    };
+    image.src = url;
+  });
+}
+
+function sortGallery(list: GalleryImage[]): GalleryImage[] {
+  return [...list].sort((a, b) => {
+    if (a.artistSlug !== b.artistSlug) return a.artistSlug.localeCompare(b.artistSlug);
+    if (a.position !== b.position) return a.position - b.position;
+    return a.id - b.id;
+  });
+}
+
+function GalleryManager({
+  artists,
+  initialGallery,
+}: {
+  artists: ArtistAdminOption[];
+  initialGallery: GalleryImage[];
+}) {
+  const defaultArtistSlug: ArtistSlug = artists[0]?.slug || "sharnia";
+  const [activeArtist, setActiveArtist] = useState<ArtistSlug>(defaultArtistSlug);
+  const [gallery, setGallery] = useState<GalleryImage[]>(sortGallery(initialGallery));
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<{ done: number; total: number }>({
+    done: 0,
+    total: 0,
+  });
+  const [notice, setNotice] = useState<string | null>(null);
+  const [noticeIsError, setNoticeIsError] = useState(false);
+  const [busyId, setBusyId] = useState<number | null>(null);
+
+  const visibleImages = useMemo(
+    () => gallery.filter((image) => image.artistSlug === activeArtist),
+    [gallery, activeArtist]
+  );
+
+  const countsByArtist = useMemo(() => {
+    const counts = new Map<ArtistSlug, number>();
+    for (const image of gallery) {
+      counts.set(image.artistSlug, (counts.get(image.artistSlug) ?? 0) + 1);
+    }
+    return counts;
+  }, [gallery]);
+
+  function replaceGalleryForArtist(next: GalleryImage[], slug: ArtistSlug) {
+    setGallery((current) => {
+      const others = current.filter((image) => image.artistSlug !== slug);
+      return sortGallery([...others, ...next]);
+    });
+  }
+
+  function reportError(error: unknown, fallback: string) {
+    setNoticeIsError(true);
+    setNotice(error instanceof Error ? error.message : fallback);
+  }
+
+  async function handleFilesSelected(files: FileList | null) {
+    if (!files || files.length === 0) return;
+
+    const fileList = Array.from(files);
+    setIsUploading(true);
+    setUploadProgress({ done: 0, total: fileList.length });
+    setNotice(null);
+    setNoticeIsError(false);
+
+    let uploadedCount = 0;
+    let firstError: string | null = null;
+
+    for (const file of fileList) {
+      try {
+        const mimeType = (file.type || "").toLowerCase();
+        if (!GALLERY_ACCEPT_MIME.has(mimeType)) {
+          throw new Error(`${file.name}: unsupported file type.`);
+        }
+        if (file.size > GALLERY_MAX_BYTES) {
+          throw new Error(`${file.name}: larger than 8MB. Please resize and retry.`);
+        }
+
+        const [base64Data, dimensions] = await Promise.all([
+          readFileAsBase64(file),
+          readImageDimensions(file),
+        ]);
+
+        const response = await fetch("/api/admin/gallery", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            artistSlug: activeArtist,
+            alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " "),
+            mimeType,
+            byteSize: file.size,
+            base64Data,
+            width: dimensions.width,
+            height: dimensions.height,
+          }),
+        });
+
+        const payload = (await response.json().catch(() => null)) as
+          | { image?: GalleryImage; error?: string }
+          | null;
+
+        if (!response.ok || !payload?.image) {
+          throw new Error(payload?.error || `${file.name}: upload failed.`);
+        }
+
+        setGallery((current) => sortGallery([...current, payload.image!]));
+        uploadedCount += 1;
+      } catch (error) {
+        if (!firstError) {
+          firstError = error instanceof Error ? error.message : "Upload failed.";
+        }
+      } finally {
+        setUploadProgress((current) => ({ ...current, done: current.done + 1 }));
+      }
+    }
+
+    setIsUploading(false);
+    setUploadProgress({ done: 0, total: 0 });
+
+    if (firstError) {
+      setNoticeIsError(true);
+      setNotice(
+        uploadedCount > 0
+          ? `${uploadedCount} uploaded, but some failed: ${firstError}`
+          : firstError
+      );
+    } else {
+      setNoticeIsError(false);
+      setNotice(`${uploadedCount} image${uploadedCount === 1 ? "" : "s"} uploaded.`);
+    }
+  }
+
+  async function handleDelete(imageId: number) {
+    if (typeof window !== "undefined" && !window.confirm("Delete this image?")) {
+      return;
+    }
+
+    setBusyId(imageId);
+    setNotice(null);
+    setNoticeIsError(false);
+
+    try {
+      const response = await fetch(`/api/admin/gallery/${imageId}`, { method: "DELETE" });
+      if (!response.ok) {
+        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(payload?.error || "Could not delete image.");
+      }
+      setGallery((current) => current.filter((image) => image.id !== imageId));
+      setNotice("Image removed.");
+    } catch (error) {
+      reportError(error, "Could not delete image.");
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function handleMove(imageId: number, direction: -1 | 1) {
+    const current = [...visibleImages];
+    const index = current.findIndex((image) => image.id === imageId);
+    if (index < 0) return;
+    const nextIndex = index + direction;
+    if (nextIndex < 0 || nextIndex >= current.length) return;
+
+    const swapped = [...current];
+    [swapped[index], swapped[nextIndex]] = [swapped[nextIndex], swapped[index]];
+    const orderedIds = swapped.map((image) => image.id);
+
+    replaceGalleryForArtist(
+      swapped.map((image, position) => ({ ...image, position })),
+      activeArtist
+    );
+
+    setBusyId(imageId);
+    setNotice(null);
+    setNoticeIsError(false);
+
+    try {
+      const response = await fetch("/api/admin/gallery/reorder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ artistSlug: activeArtist, orderedIds }),
+      });
+      const payload = (await response.json().catch(() => null)) as
+        | { gallery?: GalleryImage[]; error?: string }
+        | null;
+      if (!response.ok || !payload?.gallery) {
+        throw new Error(payload?.error || "Could not reorder gallery.");
+      }
+      replaceGalleryForArtist(payload.gallery, activeArtist);
+    } catch (error) {
+      reportError(error, "Could not reorder gallery.");
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function handleAltBlur(image: GalleryImage, nextAlt: string) {
+    const trimmed = nextAlt.trim();
+    if (trimmed === image.alt) return;
+
+    setBusyId(image.id);
+    setNotice(null);
+    setNoticeIsError(false);
+
+    try {
+      const response = await fetch(`/api/admin/gallery/${image.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ alt: trimmed }),
+      });
+      const payload = (await response.json().catch(() => null)) as
+        | { image?: GalleryImage; error?: string }
+        | null;
+      if (!response.ok || !payload?.image) {
+        throw new Error(payload?.error || "Could not update caption.");
+      }
+      setGallery((current) =>
+        current.map((entry) => (entry.id === image.id ? payload.image! : entry))
+      );
+    } catch (error) {
+      reportError(error, "Could not update caption.");
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function handleReassign(imageId: number, nextSlug: ArtistSlug) {
+    setBusyId(imageId);
+    setNotice(null);
+    setNoticeIsError(false);
+
+    try {
+      const response = await fetch(`/api/admin/gallery/${imageId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ artistSlug: nextSlug }),
+      });
+      const payload = (await response.json().catch(() => null)) as
+        | { image?: GalleryImage; error?: string }
+        | null;
+      if (!response.ok || !payload?.image) {
+        throw new Error(payload?.error || "Could not reassign image.");
+      }
+      setGallery((current) =>
+        sortGallery(
+          current.map((entry) => (entry.id === imageId ? payload.image! : entry))
+        )
+      );
+      setNotice(`Moved to ${artists.find((a) => a.slug === nextSlug)?.name || nextSlug}.`);
+    } catch (error) {
+      reportError(error, "Could not reassign image.");
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  return (
+    <div className="adminPanel">
+      <header className="adminPanelHeader adminPanelHeader--stacked">
+        <div>
+          <h2>
+            <Images size={16} /> Artist galleries
+          </h2>
+          <span>Upload, caption, reorder or reassign the images shown on each artist page.</span>
+        </div>
+
+        <div className="adminEnquiryFilters" role="tablist" aria-label="Gallery artist">
+          {artists.map((artist) => (
+            <button
+              key={artist.slug}
+              type="button"
+              className={`adminFilterBtn${activeArtist === artist.slug ? " is-active" : ""}`}
+              onClick={() => setActiveArtist(artist.slug)}
+            >
+              {artist.name}
+              <span className="adminGalleryCount">{countsByArtist.get(artist.slug) ?? 0}</span>
+            </button>
+          ))}
+        </div>
+      </header>
+
+      <div className="adminGalleryUpload">
+        <label className={`adminGalleryDropzone${isUploading ? " is-busy" : ""}`}>
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/avif,image/gif"
+            multiple
+            disabled={isUploading}
+            onChange={(event) => {
+              void handleFilesSelected(event.target.files);
+              event.target.value = "";
+            }}
+            style={{ display: "none" }}
+          />
+          <Upload size={16} />
+          <span>
+            {isUploading
+              ? `Uploading ${uploadProgress.done} / ${uploadProgress.total}...`
+              : `Click or drop JPG / PNG / WebP / AVIF images (max 8MB each) to add to ${
+                  artists.find((a) => a.slug === activeArtist)?.name || activeArtist
+                }`}
+          </span>
+        </label>
+      </div>
+
+      {notice ? (
+        <p className={`adminNotice ${noticeIsError ? "adminNoticeError" : "adminNoticeSuccess"}`}>
+          {notice}
+        </p>
+      ) : null}
+
+      {visibleImages.length === 0 ? (
+        <p className="adminEmptyState">
+          No custom gallery images for this artist yet. The website will fall back to the crawled
+          archive until you upload some.
+        </p>
+      ) : (
+        <div className="adminGalleryGrid">
+          {visibleImages.map((image, index) => (
+            <article key={image.id} className="adminGalleryCard">
+              <div className="adminGalleryThumb">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/api/gallery/${image.id}`}
+                  alt={image.alt || `Gallery image ${image.id}`}
+                  loading="lazy"
+                />
+              </div>
+              <div className="adminGalleryMeta">
+                <label>
+                  Caption / alt text
+                  <input
+                    defaultValue={image.alt}
+                    disabled={busyId === image.id}
+                    onBlur={(event) => void handleAltBlur(image, event.target.value)}
+                  />
+                </label>
+
+                <div className="adminGalleryMetaRow">
+                  <span className="adminGalleryPosition">
+                    #{index + 1}
+                    {image.width && image.height ? ` · ${image.width}×${image.height}` : ""}
+                  </span>
+                  <select
+                    value={image.artistSlug}
+                    disabled={busyId === image.id}
+                    onChange={(event) =>
+                      void handleReassign(image.id, event.target.value as ArtistSlug)
+                    }
+                  >
+                    {artists.map((artist) => (
+                      <option key={artist.slug} value={artist.slug}>
+                        {artist.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="adminGalleryActions">
+                  <button
+                    type="button"
+                    className="ghostButton"
+                    disabled={busyId === image.id || index === 0}
+                    onClick={() => void handleMove(image.id, -1)}
+                    aria-label="Move up"
+                  >
+                    <ArrowUp size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    className="ghostButton"
+                    disabled={busyId === image.id || index === visibleImages.length - 1}
+                    onClick={() => void handleMove(image.id, 1)}
+                    aria-label="Move down"
+                  >
+                    <ArrowDown size={14} />
+                  </button>
+                  <button
+                    type="button"
+                    className="ghostButton adminGalleryDelete"
+                    disabled={busyId === image.id}
+                    onClick={() => void handleDelete(image.id)}
+                  >
+                    <Trash2 size={14} /> Delete
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import mediaManifest from "@/content/media.json";
 import type { ArtistSlug } from "@/content/studio";
+import { listGalleryImages } from "@/lib/admin-db";
+import type { GalleryImage } from "@/lib/admin-types";
 
 export type MediaImage = {
   sourceUrl: string;
@@ -65,4 +67,45 @@ export const studioGallery = pickUniqueByHash([
 
 export function getLeadImage(slug: ArtistSlug) {
   return getArtistGallery(slug, 1)[0] ?? heroImages[0] ?? null;
+}
+
+function galleryImageToMediaImage(image: GalleryImage): MediaImage {
+  return {
+    sourceUrl: `/api/gallery/${image.id}`,
+    localPath: `/api/gallery/${image.id}`,
+    title: image.alt || "",
+    pageUrl: "",
+    artist: image.artistSlug,
+    hash: `managed-${image.id}`,
+    bytes: image.byteSize,
+    contentType: image.mimeType,
+  };
+}
+
+async function fetchManagedGallery(slug: ArtistSlug): Promise<MediaImage[]> {
+  try {
+    const managed = await listGalleryImages(slug);
+    return managed.map(galleryImageToMediaImage);
+  } catch {
+    return [];
+  }
+}
+
+export async function getArtistManagedGallery(slug: ArtistSlug, count = 18): Promise<MediaImage[]> {
+  const managed = await fetchManagedGallery(slug);
+  if (managed.length >= count) {
+    return managed.slice(0, count);
+  }
+
+  const fallback = getArtistGallery(slug, count).filter(
+    (image) => !managed.some((entry) => entry.localPath === image.localPath)
+  );
+
+  return [...managed, ...fallback].slice(0, count);
+}
+
+export async function getArtistManagedLeadImage(slug: ArtistSlug): Promise<MediaImage | null> {
+  const managed = await fetchManagedGallery(slug);
+  if (managed[0]) return managed[0];
+  return getLeadImage(slug);
 }

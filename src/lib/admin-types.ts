@@ -175,3 +175,37 @@ export type ArtistAdminOption = {
   slug: ArtistSlug;
   name: string;
 };
+
+export type GalleryImage = {
+  id: number;
+  artistSlug: ArtistSlug;
+  position: number;
+  alt: string;
+  mimeType: string;
+  byteSize: number;
+  width: number | null;
+  height: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateGalleryImageInput = {
+  artistSlug: ArtistSlug;
+  alt?: string;
+  mimeType: string;
+  byteSize: number;
+  base64Data: string;
+  width?: number | null;
+  height?: number | null;
+};
+
+export type UpdateGalleryImageInput = {
+  alt?: string;
+  position?: number;
+  artistSlug?: ArtistSlug;
+};
+
+export type ReorderGalleryInput = {
+  artistSlug: ArtistSlug;
+  orderedIds: number[];
+};

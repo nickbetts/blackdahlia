@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Camera, MoveLeft, Music4, Users, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { artists } from "@/content/studio";
-import { getArtistGallery, getLeadImage } from "@/lib/media";
+import { getArtistManagedGallery, getArtistManagedLeadImage } from "@/lib/media";
 
 type ArtistPageProps = {
   params: Promise<{ slug: string }>;
@@ -28,8 +28,8 @@ export default async function ArtistDetailPage({ params }: ArtistPageProps) {
   const artist = artists.find((entry) => entry.slug === slug);
   if (!artist) notFound();
 
-  const leadImage = getLeadImage(artist.slug);
-  const gallery = getArtistGallery(artist.slug, 18);
+  const leadImage = await getArtistManagedLeadImage(artist.slug);
+  const gallery = await getArtistManagedGallery(artist.slug, 18);
 
   return (
     <div className="pageStack pageStack--artist">

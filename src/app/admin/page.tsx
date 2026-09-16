@@ -59,6 +59,7 @@ export default async function AdminPage() {
         initialBookings={data.bookings}
         initialWeeklyAvailability={data.weeklyAvailability}
         initialTimeOff={data.timeOff}
+        initialGallery={data.gallery}
       />
     </div>
   );

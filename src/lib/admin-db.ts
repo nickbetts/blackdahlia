@@ -11,12 +11,16 @@ import {
   type CreateBookingInput,
   type CreateEnquiryImageInput,
   type CreateEnquiryInput,
+  type CreateGalleryImageInput,
   type CreateTimeOffInput,
   type EnquiryStatus,
   type EnquiryImage,
+  type GalleryImage,
+  type ReorderGalleryInput,
   type TimeOffPeriod,
   type UpdateBookingInput,
   type UpdateEnquiryInput,
+  type UpdateGalleryImageInput,
   type UpsertWeeklyRuleInput,
   type WeekdayIndex,
   type WeeklyAvailabilityRule,
@@ -425,6 +429,27 @@ export async function ensureAdminSchema(): Promise<void> {
       await sql`
         CREATE INDEX IF NOT EXISTS idx_admin_artist_time_off_artist_start
         ON admin_artist_time_off(artist_slug, start_at);
+      `;
+
+      await sql`
+        CREATE TABLE IF NOT EXISTS admin_artist_gallery (
+          id SERIAL PRIMARY KEY,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          artist_slug TEXT NOT NULL,
+          position INTEGER NOT NULL DEFAULT 0,
+          alt TEXT NOT NULL DEFAULT '',
+          mime_type TEXT NOT NULL,
+          byte_size INTEGER NOT NULL,
+          width INTEGER,
+          height INTEGER,
+          image_data_base64 TEXT NOT NULL
+        );
+      `;
+
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_admin_artist_gallery_artist_position
+        ON admin_artist_gallery(artist_slug, position ASC, id ASC);
       `;
 
       await sql`
@@ -1113,13 +1138,264 @@ export async function dashboardData(): Promise<{
   bookings: AdminBooking[];
   weeklyAvailability: WeeklyAvailabilityRule[];
   timeOff: TimeOffPeriod[];
+  gallery: GalleryImage[];
 }> {
-  const [enquiries, bookings, weeklyAvailability, timeOff] = await Promise.all([
+  const [enquiries, bookings, weeklyAvailability, timeOff, gallery] = await Promise.all([
     listEnquiries(120),
     listBookings({ limit: 400 }),
     listWeeklyAvailability(),
     listTimeOff({ limit: 200 }),
+    listGalleryImages(),
   ]);
 
-  return { enquiries, bookings, weeklyAvailability, timeOff };
+  return { enquiries, bookings, weeklyAvailability, timeOff, gallery };
+}
+
+type GalleryImageRow = {
+  id: number;
+  created_at: string | Date;
+  updated_at: string | Date;
+  artist_slug: ArtistSlug;
+  position: number;
+  alt: string | null;
+  mime_type: string;
+  byte_size: number;
+  width: number | null;
+  height: number | null;
+};
+
+function mapGalleryImage(row: GalleryImageRow): GalleryImage {
+  return {
+    id: row.id,
+    createdAt: toIso(row.created_at),
+    updatedAt: toIso(row.updated_at),
+    artistSlug: row.artist_slug,
+    position: row.position,
+    alt: normalizeText(row.alt),
+    mimeType: row.mime_type,
+    byteSize: row.byte_size,
+    width: row.width,
+    height: row.height,
+  };
+}
+
+const ALLOWED_GALLERY_MIME_TYPES = new Set([
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+  "image/avif",
+  "image/gif",
+]);
+
+const MAX_GALLERY_IMAGE_BYTES = 8 * 1024 * 1024;
+
+export async function listGalleryImages(artistSlug?: ArtistSlug): Promise<GalleryImage[]> {
+  await ensureAdminSchema();
+  const sql = getSqlClient();
+
+  const filterSlug = artistSlug ? ensureArtistSlug(artistSlug) : null;
+
+  const rows = (await sql`
+    SELECT id, created_at, updated_at, artist_slug, position, alt, mime_type, byte_size, width, height
+    FROM admin_artist_gallery
+    WHERE (${filterSlug}::text IS NULL OR artist_slug = ${filterSlug})
+    ORDER BY artist_slug ASC, position ASC, id ASC;
+  `) as GalleryImageRow[];
+
+  return rows.map(mapGalleryImage);
+}
+
+export async function getGalleryImageBinary(
+  imageId: number
+): Promise<{ mimeType: string; byteSize: number; content: Uint8Array } | null> {
+  await ensureAdminSchema();
+  const sql = getSqlClient();
+
+  const [row] = (await sql`
+    SELECT mime_type, byte_size, image_data_base64
+    FROM admin_artist_gallery
+    WHERE id = ${imageId}
+    LIMIT 1;
+  `) as Array<{ mime_type: string; byte_size: number; image_data_base64: string }>;
+
+  if (!row) {
+    return null;
+  }
+
+  const buffer = Buffer.from(row.image_data_base64, "base64");
+  return {
+    mimeType: row.mime_type,
+    byteSize: row.byte_size,
+    content: new Uint8Array(buffer),
+  };
+}
+
+export async function createGalleryImage(input: CreateGalleryImageInput): Promise<GalleryImage> {
+  await ensureAdminSchema();
+  const sql = getSqlClient();
+
+  const artistSlug = ensureArtistSlug(input.artistSlug);
+  const mimeType = input.mimeType.trim().toLowerCase();
+  const base64Data = input.base64Data.trim();
+  const byteSize = Number(input.byteSize);
+  const alt = (input.alt || "").trim().slice(0, 400);
+
+  if (!ALLOWED_GALLERY_MIME_TYPES.has(mimeType)) {
+    throw new Error("Unsupported image type. Use JPG, PNG, WebP, AVIF or GIF.");
+  }
+
+  if (!base64Data) {
+    throw new Error("Missing image data.");
+  }
+
+  if (!Number.isFinite(byteSize) || byteSize < 1) {
+    throw new Error("Invalid image size.");
+  }
+
+  if (byteSize > MAX_GALLERY_IMAGE_BYTES) {
+    throw new Error("Image is larger than the 8MB limit. Please resize it and try again.");
+  }
+
+  const [{ next_position }] = (await sql`
+    SELECT COALESCE(MAX(position), -1) + 1 AS next_position
+    FROM admin_artist_gallery
+    WHERE artist_slug = ${artistSlug};
+  `) as Array<{ next_position: number }>;
+
+  const width = Number.isFinite(input.width as number) ? Math.max(0, Math.round(input.width as number)) : null;
+  const height = Number.isFinite(input.height as number) ? Math.max(0, Math.round(input.height as number)) : null;
+
+  const [row] = (await sql`
+    INSERT INTO admin_artist_gallery (
+      artist_slug,
+      position,
+      alt,
+      mime_type,
+      byte_size,
+      width,
+      height,
+      image_data_base64
+    ) VALUES (
+      ${artistSlug},
+      ${next_position},
+      ${alt},
+      ${mimeType.slice(0, 120)},
+      ${Math.round(byteSize)},
+      ${width},
+      ${height},
+      ${base64Data}
+    )
+    RETURNING id, created_at, updated_at, artist_slug, position, alt, mime_type, byte_size, width, height;
+  `) as GalleryImageRow[];
+
+  if (!row) {
+    throw new Error("Could not save gallery image.");
+  }
+
+  return mapGalleryImage(row);
+}
+
+export async function updateGalleryImage(
+  id: number,
+  input: UpdateGalleryImageInput
+): Promise<GalleryImage> {
+  await ensureAdminSchema();
+  const sql = getSqlClient();
+
+  const [existing] = (await sql`
+    SELECT id, artist_slug, position
+    FROM admin_artist_gallery
+    WHERE id = ${id}
+    LIMIT 1;
+  `) as Array<{ id: number; artist_slug: ArtistSlug; position: number }>;
+
+  if (!existing) {
+    throw new Error("Gallery image not found");
+  }
+
+  const nextArtistSlug = input.artistSlug
+    ? ensureArtistSlug(input.artistSlug)
+    : existing.artist_slug;
+
+  let nextPosition = existing.position;
+
+  if (nextArtistSlug !== existing.artist_slug) {
+    const [{ next_position }] = (await sql`
+      SELECT COALESCE(MAX(position), -1) + 1 AS next_position
+      FROM admin_artist_gallery
+      WHERE artist_slug = ${nextArtistSlug};
+    `) as Array<{ next_position: number }>;
+    nextPosition = next_position;
+  } else if (typeof input.position === "number" && Number.isFinite(input.position)) {
+    nextPosition = Math.max(0, Math.round(input.position));
+  }
+
+  const alt = input.alt !== undefined ? input.alt.trim().slice(0, 400) : null;
+
+  const [row] = (await sql`
+    UPDATE admin_artist_gallery
+    SET
+      artist_slug = ${nextArtistSlug},
+      position = ${nextPosition},
+      alt = COALESCE(${alt}, alt),
+      updated_at = NOW()
+    WHERE id = ${id}
+    RETURNING id, created_at, updated_at, artist_slug, position, alt, mime_type, byte_size, width, height;
+  `) as GalleryImageRow[];
+
+  if (!row) {
+    throw new Error("Gallery image not found");
+  }
+
+  return mapGalleryImage(row);
+}
+
+export async function deleteGalleryImage(id: number): Promise<void> {
+  await ensureAdminSchema();
+  const sql = getSqlClient();
+
+  const [row] = (await sql`
+    DELETE FROM admin_artist_gallery
+    WHERE id = ${id}
+    RETURNING id;
+  `) as Array<{ id: number }>;
+
+  if (!row) {
+    throw new Error("Gallery image not found");
+  }
+}
+
+export async function reorderGalleryImages(input: ReorderGalleryInput): Promise<GalleryImage[]> {
+  await ensureAdminSchema();
+  const sql = getSqlClient();
+
+  const artistSlug = ensureArtistSlug(input.artistSlug);
+  const orderedIds = Array.isArray(input.orderedIds)
+    ? input.orderedIds.map((id) => Number(id)).filter((id) => Number.isFinite(id))
+    : [];
+
+  if (orderedIds.length === 0) {
+    return listGalleryImages(artistSlug);
+  }
+
+  const existing = (await sql`
+    SELECT id
+    FROM admin_artist_gallery
+    WHERE artist_slug = ${artistSlug};
+  `) as Array<{ id: number }>;
+
+  const existingIds = new Set(existing.map((row) => row.id));
+
+  for (let index = 0; index < orderedIds.length; index += 1) {
+    const rowId = orderedIds[index];
+    if (!existingIds.has(rowId)) continue;
+    await sql`
+      UPDATE admin_artist_gallery
+      SET position = ${index}, updated_at = NOW()
+      WHERE id = ${rowId} AND artist_slug = ${artistSlug};
+    `;
+  }
+
+  return listGalleryImages(artistSlug);
 }

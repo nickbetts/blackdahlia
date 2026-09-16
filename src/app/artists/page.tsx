@@ -4,7 +4,7 @@ import { ArrowRight, Camera, ExternalLink } from "lucide-react";
 import { GiSkullCrossedBones, GiRose } from "react-icons/gi";
 import { ArtistDrawer } from "@/components/artist-drawer";
 import { artists } from "@/content/studio";
-import { getArtistGallery, getLeadImage } from "@/lib/media";
+import { getArtistManagedGallery, getArtistManagedLeadImage } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Artists",
@@ -18,10 +18,19 @@ const motifIcons = [
   <GiRose key="rose2" size={12} />,
 ];
 
-export default function ArtistsPage() {
+export default async function ArtistsPage() {
   const styleIndex = Array.from(
     new Set(artists.flatMap((artist) => artist.specialities))
   ).slice(0, 12);
+
+  const artistMedia = await Promise.all(
+    artists.map(async (artist, index) => ({
+      slug: artist.slug,
+      leadImage: await getArtistManagedLeadImage(artist.slug),
+      thumbnails: await getArtistManagedGallery(artist.slug, index === 0 ? 5 : 3),
+    }))
+  );
+  const mediaBySlug = new Map(artistMedia.map((entry) => [entry.slug, entry]));
 
   return (
     <div className="pageStack pageStack--artists">
@@ -68,8 +77,9 @@ export default function ArtistsPage() {
       <section className="container sectionSpacing">
         <div className="artistAtlasGrid">
           {artists.map((artist, index) => {
-            const leadImage = getLeadImage(artist.slug);
-            const thumbnailGallery = getArtistGallery(artist.slug, index === 0 ? 5 : 3);
+            const media = mediaBySlug.get(artist.slug);
+            const leadImage = media?.leadImage ?? null;
+            const thumbnailGallery = media?.thumbnails ?? [];
             const motifIcon = motifIcons[index % motifIcons.length];
             const isPrimary = index === 0;
 
