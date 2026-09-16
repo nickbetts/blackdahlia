@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { artists } from "@/content/studio";
+import { blogArticles } from "@/content/blog";
 
 const baseUrl = "https://www.theblackdahlia.co.uk";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/about", "/artists", "/faq", "/policies", "/contact", "/booking"];
+  const staticRoutes = ["", "/about", "/artists", "/blog", "/faq", "/policies", "/contact", "/booking"];
 
   const staticEntries = staticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
@@ -20,5 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...artistEntries];
+  const blogEntries = blogArticles.map((article) => ({
+    url: `${baseUrl}/blog/${article.slug}`,
+    lastModified: article.updatedAt,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...artistEntries, ...blogEntries];
 }

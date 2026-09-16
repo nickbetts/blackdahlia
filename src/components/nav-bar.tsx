@@ -29,6 +29,7 @@ const mainLinks = [
   { href: "/", label: "Studio" },
   { href: "/about", label: "About" },
   { href: "/artists", label: "Artists", hasMega: true },
+  { href: "/blog", label: "Journal" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Visit" },
 ];
