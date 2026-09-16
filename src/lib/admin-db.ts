@@ -437,6 +437,7 @@ export async function ensureAdminSchema(): Promise<void> {
           created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
           updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
           artist_slug TEXT NOT NULL,
+          featured BOOLEAN NOT NULL DEFAULT FALSE,
           position INTEGER NOT NULL DEFAULT 0,
           alt TEXT NOT NULL DEFAULT '',
           mime_type TEXT NOT NULL,
@@ -450,6 +451,11 @@ export async function ensureAdminSchema(): Promise<void> {
       await sql`
         CREATE INDEX IF NOT EXISTS idx_admin_artist_gallery_artist_position
         ON admin_artist_gallery(artist_slug, position ASC, id ASC);
+      `;
+
+      await sql`
+        ALTER TABLE admin_artist_gallery
+        ADD COLUMN IF NOT EXISTS featured BOOLEAN NOT NULL DEFAULT FALSE;
       `;
 
       await sql`
@@ -1156,6 +1162,7 @@ type GalleryImageRow = {
   created_at: string | Date;
   updated_at: string | Date;
   artist_slug: ArtistSlug;
+  featured: boolean;
   position: number;
   alt: string | null;
   mime_type: string;
@@ -1170,6 +1177,7 @@ function mapGalleryImage(row: GalleryImageRow): GalleryImage {
     createdAt: toIso(row.created_at),
     updatedAt: toIso(row.updated_at),
     artistSlug: row.artist_slug,
+    featured: row.featured,
     position: row.position,
     alt: normalizeText(row.alt),
     mimeType: row.mime_type,
@@ -1197,7 +1205,7 @@ export async function listGalleryImages(artistSlug?: ArtistSlug): Promise<Galler
   const filterSlug = artistSlug ? ensureArtistSlug(artistSlug) : null;
 
   const rows = (await sql`
-    SELECT id, created_at, updated_at, artist_slug, position, alt, mime_type, byte_size, width, height
+    SELECT id, created_at, updated_at, artist_slug, featured, position, alt, mime_type, byte_size, width, height
     FROM admin_artist_gallery
     WHERE (${filterSlug}::text IS NULL OR artist_slug = ${filterSlug})
     ORDER BY artist_slug ASC, position ASC, id ASC;
@@ -1269,6 +1277,7 @@ export async function createGalleryImage(input: CreateGalleryImageInput): Promis
   const [row] = (await sql`
     INSERT INTO admin_artist_gallery (
       artist_slug,
+      featured,
       position,
       alt,
       mime_type,
@@ -1278,6 +1287,7 @@ export async function createGalleryImage(input: CreateGalleryImageInput): Promis
       image_data_base64
     ) VALUES (
       ${artistSlug},
+      ${false},
       ${next_position},
       ${alt},
       ${mimeType.slice(0, 120)},
@@ -1286,7 +1296,7 @@ export async function createGalleryImage(input: CreateGalleryImageInput): Promis
       ${height},
       ${base64Data}
     )
-    RETURNING id, created_at, updated_at, artist_slug, position, alt, mime_type, byte_size, width, height;
+    RETURNING id, created_at, updated_at, artist_slug, featured, position, alt, mime_type, byte_size, width, height;
   `) as GalleryImageRow[];
 
   if (!row) {
@@ -1304,7 +1314,7 @@ export async function updateGalleryImage(
   const sql = getSqlClient();
 
   const [existing] = (await sql`
-    SELECT id, artist_slug, position
+    SELECT id, artist_slug, featured, position
     FROM admin_artist_gallery
     WHERE id = ${id}
     LIMIT 1;
@@ -1317,6 +1327,16 @@ export async function updateGalleryImage(
   const nextArtistSlug = input.artistSlug
     ? ensureArtistSlug(input.artistSlug)
     : existing.artist_slug;
+
+  const shouldFeature = input.featured === true;
+
+  if (shouldFeature) {
+    await sql`
+      UPDATE admin_artist_gallery
+      SET featured = FALSE, updated_at = NOW()
+      WHERE artist_slug = ${nextArtistSlug} AND id <> ${id};
+    `;
+  }
 
   let nextPosition = existing.position;
 
@@ -1337,11 +1357,16 @@ export async function updateGalleryImage(
     UPDATE admin_artist_gallery
     SET
       artist_slug = ${nextArtistSlug},
+      featured = CASE
+        WHEN ${input.featured !== undefined} THEN ${shouldFeature}
+        WHEN ${nextArtistSlug !== existing.artist_slug} THEN FALSE
+        ELSE featured
+      END,
       position = ${nextPosition},
       alt = COALESCE(${alt}, alt),
       updated_at = NOW()
     WHERE id = ${id}
-    RETURNING id, created_at, updated_at, artist_slug, position, alt, mime_type, byte_size, width, height;
+    RETURNING id, created_at, updated_at, artist_slug, featured, position, alt, mime_type, byte_size, width, height;
   `) as GalleryImageRow[];
 
   if (!row) {

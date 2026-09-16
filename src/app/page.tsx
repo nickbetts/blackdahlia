@@ -5,7 +5,7 @@ import { GiRose, GiInkSwirl, GiDiamondHard } from "react-icons/gi";
 import { MarqueeGsap } from "@/components/marquee-gsap";
 import { TrustCards, type TrustPoint } from "@/components/trust-cards";
 import { artists, faqSections, homeIntro, studioInfo } from "@/content/studio";
-import { getLeadImage, heroImages, studioGallery } from "@/lib/media";
+import { getArtistManagedLeadImage, heroImages, studioGallery } from "@/lib/media";
 
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { HeroCarousel } from "@/components/hero-carousel";
@@ -14,7 +14,7 @@ import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { BorderBeam } from "@/components/ui/border-beam";
 
-export default function Home() {
+export default async function Home() {
   const signatureStyles = Array.from(
     new Set(artists.flatMap((a) => a.specialities))
   ).slice(0, 9);
@@ -26,6 +26,12 @@ export default function Home() {
     src: image.localPath,
     alt: image.title || "The Black Dahlia tattoo studio",
   }));
+
+  const managedLeadImages = new Map(
+    await Promise.all(
+      artists.map(async (artist) => [artist.slug, await getArtistManagedLeadImage(artist.slug)] as const)
+    )
+  );
 
   const heroLedger = [
     "Private studio sessions",
@@ -158,7 +164,7 @@ export default function Home() {
 
           <div className="artistTriptych">
             {artists.map((artist) => {
-              const image = getLeadImage(artist.slug);
+              const image = managedLeadImages.get(artist.slug);
               return (
                 <CardContainer
                   key={artist.slug}

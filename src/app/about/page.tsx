@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { ShieldCheck, Sparkle, Users } from "@phosphor-icons/react/dist/ssr";
 import { GiInkSwirl, GiSkullCrossedBones } from "react-icons/gi";
 import { aboutCopy, artists, studioInfo } from "@/content/studio";
-import { getLeadImage, studioGallery } from "@/lib/media";
+import { getArtistManagedLeadImage, studioGallery } from "@/lib/media";
 import { StarsBackground } from "@/components/ui/stars-background";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Meet the people behind The Black Dahlia and see how the studio runs in Littleport.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
   const yearsInOperation = Math.max(1, new Date().getFullYear() - studioInfo.founded);
 
   const studioValues = [
@@ -23,6 +23,11 @@ export default function AboutPage() {
   ];
 
   const galleryImages = studioGallery.slice(0, 6);
+  const managedLeadImages = new Map(
+    await Promise.all(
+      artists.map(async (artist) => [artist.slug, await getArtistManagedLeadImage(artist.slug)] as const)
+    )
+  );
 
   return (
     <div className="pageStack pageStack--about">
@@ -147,7 +152,7 @@ export default function AboutPage() {
 
         <div className="aboutGalleryGrid" style={{ marginTop: "1.6rem" }}>
           {artists.map((artist) => {
-            const image = getLeadImage(artist.slug);
+              const image = managedLeadImages.get(artist.slug);
             return (
               <Link key={artist.slug} href={`/artists/${artist.slug}`} style={{ display: "block", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
                 {image ? (

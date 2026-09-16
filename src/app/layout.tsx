@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Fraunces, Manrope, Special_Elite, Geist } from "next/font/google";
 import { artists, studioInfo } from "@/content/studio";
-import { getLeadImage } from "@/lib/media";
+import { getArtistManagedLeadImage } from "@/lib/media";
 import { NavBar } from "@/components/nav-bar";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import "./globals.css";
@@ -54,20 +54,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const currentYear = new Date().getFullYear();
 
-  const artistData = artists.map((a) => ({
-    slug: a.slug,
-    name: a.name,
-    role: a.role,
-    specialities: a.specialities,
-    leadImagePath: getLeadImage(a.slug)?.localPath ?? null,
-  }));
+  const artistData = await Promise.all(
+    artists.map(async (a) => ({
+      slug: a.slug,
+      name: a.name,
+      role: a.role,
+      specialities: a.specialities,
+      leadImagePath: (await getArtistManagedLeadImage(a.slug))?.localPath ?? null,
+    }))
+  );
 
   return (
     <html lang="en" className={cn(headingFont.variable, bodyFont.variable, accentFont.variable, "font-sans", geist.variable)}>

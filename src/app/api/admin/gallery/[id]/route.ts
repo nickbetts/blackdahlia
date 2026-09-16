@@ -24,7 +24,7 @@ export async function PATCH(request: NextRequest, { params }: RouteProps) {
   }
 
   const payload = (await request.json().catch(() => null)) as
-    | { alt?: string; position?: number; artistSlug?: ArtistSlug }
+    | { alt?: string; position?: number; artistSlug?: ArtistSlug; featured?: boolean }
     | null;
 
   if (!payload) {
@@ -36,6 +36,7 @@ export async function PATCH(request: NextRequest, { params }: RouteProps) {
       alt: payload.alt,
       position: payload.position,
       artistSlug: payload.artistSlug,
+      featured: payload.featured,
     });
     return NextResponse.json({ image });
   } catch (error) {

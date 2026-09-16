@@ -1,4 +1,6 @@
 import mediaManifest from "@/content/media.json";
+import { readdirSync, statSync } from "node:fs";
+import path from "node:path";
 import type { ArtistSlug } from "@/content/studio";
 import { listGalleryImages } from "@/lib/admin-db";
 import type { GalleryImage } from "@/lib/admin-types";
@@ -9,6 +11,7 @@ export type MediaImage = {
   title: string;
   pageUrl: string;
   artist: ArtistSlug | null;
+  featured?: boolean;
   hash: string;
   bytes: number;
   contentType: string;
@@ -73,21 +76,58 @@ function galleryImageToMediaImage(image: GalleryImage): MediaImage {
   return {
     sourceUrl: `/api/gallery/${image.id}`,
     localPath: `/api/gallery/${image.id}`,
-    title: image.alt || "",
+    title: "",
     pageUrl: "",
     artist: image.artistSlug,
+    featured: image.featured,
     hash: `managed-${image.id}`,
     bytes: image.byteSize,
     contentType: image.mimeType,
   };
 }
 
-async function fetchManagedGallery(slug: ArtistSlug): Promise<MediaImage[]> {
+function importedInstagramGallery(slug: ArtistSlug): MediaImage[] {
+  const directory = path.join(process.cwd(), "public", "media", "artists", slug, "instagram");
+
   try {
-    const managed = await listGalleryImages(slug);
-    return managed.map(galleryImageToMediaImage);
+    return readdirSync(directory)
+      .filter((fileName) => /\.(jpe?g|png|webp|avif)$/i.test(fileName))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+      .map((fileName) => {
+        const filePath = path.join(directory, fileName);
+        const bytes = statSync(filePath).size;
+        const extension = path.extname(fileName).toLowerCase();
+        const contentType = extension === ".jpg" || extension === ".jpeg"
+          ? "image/jpeg"
+          : `image/${extension.slice(1)}`;
+
+        return {
+          sourceUrl: `/media/artists/${slug}/instagram/${fileName}`,
+          localPath: `/media/artists/${slug}/instagram/${fileName}`,
+          title: "",
+          pageUrl: "",
+          artist: slug,
+          hash: `instagram-${slug}-${fileName}`,
+          bytes,
+          contentType,
+        };
+      });
   } catch {
     return [];
+  }
+}
+
+async function fetchManagedGallery(slug: ArtistSlug): Promise<MediaImage[]> {
+  const imported = importedInstagramGallery(slug);
+
+  try {
+    const managed = await listGalleryImages(slug);
+    return [
+      ...imported,
+      ...managed.map(galleryImageToMediaImage),
+    ];
+  } catch {
+    return imported;
   }
 }
 
@@ -106,6 +146,8 @@ export async function getArtistManagedGallery(slug: ArtistSlug, count = 18): Pro
 
 export async function getArtistManagedLeadImage(slug: ArtistSlug): Promise<MediaImage | null> {
   const managed = await fetchManagedGallery(slug);
+  const featured = managed.find((image) => image.featured);
+  if (featured) return featured;
   if (managed[0]) return managed[0];
   return getLeadImage(slug);
 }

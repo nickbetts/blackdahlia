@@ -179,6 +179,7 @@ export type ArtistAdminOption = {
 export type GalleryImage = {
   id: number;
   artistSlug: ArtistSlug;
+  featured: boolean;
   position: number;
   alt: string;
   mimeType: string;
@@ -203,6 +204,7 @@ export type UpdateGalleryImageInput = {
   alt?: string;
   position?: number;
   artistSlug?: ArtistSlug;
+  featured?: boolean;
 };
 
 export type ReorderGalleryInput = {

@@ -5,9 +5,7 @@ import { ColumnsPhotoAlbum, type RenderPhotoProps, type RenderPhotoContext } fro
 import "react-photo-album/columns.css";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/captions.css";
 
 interface GalleryImage {
   src: string;
@@ -56,11 +54,10 @@ export function PortfolioGallery({ images, columns = 3 }: PortfolioGalleryProps)
         close={() => setIndex(-1)}
         slides={images.map((img) => ({
           src: img.src,
-          title: img.title,
           width: img.width,
           height: img.height,
         }))}
-        plugins={[Zoom, Captions]}
+        plugins={[Zoom]}
       />
     </>
   );

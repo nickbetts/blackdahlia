@@ -21,6 +21,7 @@ import {
   Plus,
   RotateCcw,
   Save,
+  Star,
   Trash2,
   Upload,
   XCircle,
@@ -1813,7 +1814,7 @@ function GalleryManager({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             artistSlug: activeArtist,
-            alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " "),
+            alt: "",
             mimeType,
             byteSize: file.size,
             base64Data,
@@ -1921,36 +1922,6 @@ function GalleryManager({
     }
   }
 
-  async function handleAltBlur(image: GalleryImage, nextAlt: string) {
-    const trimmed = nextAlt.trim();
-    if (trimmed === image.alt) return;
-
-    setBusyId(image.id);
-    setNotice(null);
-    setNoticeIsError(false);
-
-    try {
-      const response = await fetch(`/api/admin/gallery/${image.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ alt: trimmed }),
-      });
-      const payload = (await response.json().catch(() => null)) as
-        | { image?: GalleryImage; error?: string }
-        | null;
-      if (!response.ok || !payload?.image) {
-        throw new Error(payload?.error || "Could not update caption.");
-      }
-      setGallery((current) =>
-        current.map((entry) => (entry.id === image.id ? payload.image! : entry))
-      );
-    } catch (error) {
-      reportError(error, "Could not update caption.");
-    } finally {
-      setBusyId(null);
-    }
-  }
-
   async function handleReassign(imageId: number, nextSlug: ArtistSlug) {
     setBusyId(imageId);
     setNotice(null);
@@ -1981,6 +1952,38 @@ function GalleryManager({
     }
   }
 
+  async function handleSetFeatured(imageId: number) {
+    setBusyId(imageId);
+    setNotice(null);
+    setNoticeIsError(false);
+
+    try {
+      const response = await fetch(`/api/admin/gallery/${imageId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ featured: true }),
+      });
+      const payload = (await response.json().catch(() => null)) as
+        | { image?: GalleryImage; error?: string }
+        | null;
+      if (!response.ok || !payload?.image) {
+        throw new Error(payload?.error || "Could not set featured image.");
+      }
+      setGallery((current) =>
+        current.map((entry) =>
+          entry.artistSlug === activeArtist
+            ? { ...entry, featured: entry.id === imageId }
+            : entry
+        )
+      );
+      setNotice("Featured image updated. It now appears on the artist cards and navigation.");
+    } catch (error) {
+      reportError(error, "Could not set featured image.");
+    } finally {
+      setBusyId(null);
+    }
+  }
+
   return (
     <div className="adminPanel">
       <header className="adminPanelHeader adminPanelHeader--stacked">
@@ -1988,7 +1991,7 @@ function GalleryManager({
           <h2>
             <Images size={16} /> Artist galleries
           </h2>
-          <span>Upload, caption, reorder or reassign the images shown on each artist page.</span>
+          <span>Upload, reorder or reassign the images shown on each artist page.</span>
         </div>
 
         <div className="adminEnquiryFilters" role="tablist" aria-label="Gallery artist">
@@ -2049,20 +2052,11 @@ function GalleryManager({
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/api/gallery/${image.id}`}
-                  alt={image.alt || `Gallery image ${image.id}`}
+                  alt={`${artists.find((artist) => artist.slug === image.artistSlug)?.name || "Artist"} tattoo`}
                   loading="lazy"
                 />
               </div>
               <div className="adminGalleryMeta">
-                <label>
-                  Caption / alt text
-                  <input
-                    defaultValue={image.alt}
-                    disabled={busyId === image.id}
-                    onBlur={(event) => void handleAltBlur(image, event.target.value)}
-                  />
-                </label>
-
                 <div className="adminGalleryMetaRow">
                   <span className="adminGalleryPosition">
                     #{index + 1}
@@ -2084,6 +2078,17 @@ function GalleryManager({
                 </div>
 
                 <div className="adminGalleryActions">
+                  <button
+                    type="button"
+                    className={`ghostButton adminGalleryFeature${image.featured ? " is-featured" : ""}`}
+                    disabled={busyId === image.id || image.featured}
+                    onClick={() => void handleSetFeatured(image.id)}
+                    aria-label={image.featured ? "Featured image" : "Set as featured image"}
+                    title={image.featured ? "Featured image" : "Set as featured image"}
+                  >
+                    <Star size={14} fill={image.featured ? "currentColor" : "none"} />
+                    {image.featured ? "Featured" : "Feature"}
+                  </button>
                   <button
                     type="button"
                     className="ghostButton"

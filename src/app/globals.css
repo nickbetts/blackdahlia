@@ -3454,6 +3454,12 @@ h1, h2, h3, h4 { font-family: var(--font-heading), serif; line-height: 1.05; }
   font-size: 0.68rem;
 }
 
+.adminGalleryActions .adminGalleryFeature.is-featured {
+  color: #8a5a00;
+  border-color: rgba(138, 90, 0, 0.35);
+  background: rgba(218, 165, 32, 0.12);
+}
+
 .adminGalleryActions .adminGalleryDelete {
   margin-left: auto;
   color: #a11919;
