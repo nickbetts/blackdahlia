@@ -122,10 +122,7 @@ async function fetchManagedGallery(slug: ArtistSlug): Promise<MediaImage[]> {
 
   try {
     const managed = await listGalleryImages(slug);
-    return [
-      ...imported,
-      ...managed.map(galleryImageToMediaImage),
-    ];
+    return managed.length > 0 ? managed.map(galleryImageToMediaImage) : imported;
   } catch {
     return imported;
   }

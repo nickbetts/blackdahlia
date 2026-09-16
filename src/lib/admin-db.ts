@@ -1,4 +1,6 @@
 import { neon } from "@neondatabase/serverless";
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
 import { artists } from "@/content/studio";
 import type { ArtistSlug } from "@/content/studio";
 import {
@@ -119,6 +121,63 @@ function getSqlClient(): ReturnType<typeof neon> {
 }
 
 let schemaInitPromise: Promise<void> | null = null;
+
+async function seedImportedGalleryImages(sql: ReturnType<typeof neon>): Promise<void> {
+  const root = path.join(process.cwd(), "public", "media", "artists");
+
+  for (const artist of artists) {
+    const directory = path.join(root, artist.slug, "instagram");
+    let fileNames: string[];
+
+    try {
+      fileNames = readdirSync(directory)
+        .filter((fileName) => /\.(jpe?g|png|webp|avif)$/i.test(fileName))
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+    } catch {
+      continue;
+    }
+
+    if (fileNames.length === 0) continue;
+
+    const [{ count }] = (await sql`
+      SELECT COUNT(*)::integer AS count
+      FROM admin_artist_gallery
+      WHERE artist_slug = ${artist.slug};
+    `) as Array<{ count: number }>;
+
+    if (Number(count) > 0) continue;
+
+    for (const [position, fileName] of fileNames.entries()) {
+      const filePath = path.join(directory, fileName);
+      const extension = path.extname(fileName).toLowerCase();
+      const mimeType = extension === ".jpg" || extension === ".jpeg"
+        ? "image/jpeg"
+        : `image/${extension.slice(1)}`;
+      const byteSize = statSync(filePath).size;
+      const base64Data = readFileSync(filePath).toString("base64");
+
+      await sql`
+        INSERT INTO admin_artist_gallery (
+          artist_slug,
+          featured,
+          position,
+          alt,
+          mime_type,
+          byte_size,
+          image_data_base64
+        ) VALUES (
+          ${artist.slug},
+          ${false},
+          ${position},
+          ${""},
+          ${mimeType},
+          ${byteSize},
+          ${base64Data}
+        );
+      `;
+    }
+  }
+}
 
 function toIso(value: string | Date): string {
   return value instanceof Date ? value.toISOString() : new Date(value).toISOString();
@@ -452,6 +511,8 @@ export async function ensureAdminSchema(): Promise<void> {
         CREATE INDEX IF NOT EXISTS idx_admin_artist_gallery_artist_position
         ON admin_artist_gallery(artist_slug, position ASC, id ASC);
       `;
+
+      await seedImportedGalleryImages(sql);
 
       await sql`
         ALTER TABLE admin_artist_gallery
